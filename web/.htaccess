@@ -1,0 +1,8 @@
+#表示重写引擎开，关闭off，作用就是方便的开启或关闭以下的语句，这样就不需要一条一条的注释语句了。
+RewriteEngine on
+
+#这两句语句的意思是请求的文件或路径是不存在的，如果文件或路径存在将返回已经存在的文件或路径
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . index.php
