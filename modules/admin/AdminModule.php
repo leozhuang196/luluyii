@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\admin;
 
 class AdminModule extends \yii\base\Module
@@ -10,6 +9,5 @@ class AdminModule extends \yii\base\Module
     {
         parent::init();
         $this->layout = 'main.php';
-        // custom initialization code goes here
     }
 }

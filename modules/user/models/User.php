@@ -103,10 +103,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         //由于传入的$token是Bfe5gCKLvTVxjjPr5QgnZNgXhgRFqsBQ_1456996433这种形式的，截取_后面的unix时间戳
 
         $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        //表示保存的时间
+        //表示保存的时间，user.passwordResetTokenExpire定义在params.php文件中
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
 
-        //如果$token是之前的unix时间戳+保存的时间 >= 当前时间，则表示重置密码的令牌还未过期
+        //如果$token是之前的unix时间戳+保存的时间 >= 当前Unix时间，则表示重置密码的令牌还未过期
         //如果令牌过期了，则返回flase
         return $timestamp + $expire >= time();
     }
@@ -116,6 +116,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->getPrimaryKey();
     }
 
+    //当前用户的（cookie）认证密钥
     public function getAuthKey()
     {
         return $this->auth_key;

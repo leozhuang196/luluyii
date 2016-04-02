@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
-
 use Yii;
+use app\models\Test;
 use yii\web\Controller;
 
 class TestController extends Controller
@@ -93,7 +93,6 @@ class TestController extends Controller
         }
     }
 
-
     //return a>=b
     function actionAb()
     {
@@ -102,10 +101,10 @@ class TestController extends Controller
         var_dump($a>=$b);
     }
 
-
-
-
-
-
-
+    function actionParams()
+    {
+        //var_dump(yii::$app->params['smtpHost']);
+        //echo Yii::getVersion();
+        echo time();
+    }
 }

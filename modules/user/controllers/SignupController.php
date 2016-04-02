@@ -41,15 +41,27 @@ class SignupController extends \yii\web\Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
+                \Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请前去完成验证');
+                return $this->goHome();
+//                 return $this->goHome();
                 //登录操作
-                if (Yii::$app->getUser()->login($user)) {
+                /* if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
-                }
+                } */
             }
         }
 
-        return $this->render('index', [
-            'model' => $model,
-        ]);
+        return $this->render('index', ['model' => $model]);
+    }
+
+    //验证邮箱时删除token
+    public function actionActivateAccount($token)
+    {
+        $model = new SignupForm();
+        if($model->removeToken($token)){
+            \Yii::$app->getSession()->setFlash('success','邮件已经验证，请登录您的帐号。');
+            return $this->goHome();
+        }
+        return $this->render('activate-account');
     }
 }

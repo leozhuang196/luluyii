@@ -42,7 +42,7 @@ class ModifyPasswordForm extends Model
     {
         if ($this->validate()){
             $user = $this->getUser();
-            $user->password = $this->new_password;
+            $user->setPassword($this->new_password);
             return $user->save();
         }
     }

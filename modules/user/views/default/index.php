@@ -14,9 +14,6 @@ $user = Yii::$app->user->identity;
             'options' => ['class'=>'nav nav-pills nav-stacked'],
             'items' => [
                 ['label' => '修改密码','url'=>'modify-password'],
-                ['label' => '个人资料','url'=>'#'],
-                ['label' => '更换头像','url'=>'#'],
-                ['label' => '账号绑定','url'=>'#'],
             ],
         ])?>
     </div>

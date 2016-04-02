@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'sys_site_name') ?>
                     <?= $form->field($model, 'sys_site_description') ?>
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::submitButton('修改', ['class' => 'btn btn-primary']) ?>
                     </div>
                  </div>
             </div>

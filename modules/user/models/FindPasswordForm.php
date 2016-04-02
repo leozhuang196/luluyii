@@ -1,7 +1,7 @@
 <?php
 namespace app\modules\user\models;
+use yii;
 use yii\base\Model;
-use app\models\config\EmailConfig;
 
 class FindPasswordForm extends Model
 {
@@ -14,10 +14,10 @@ class FindPasswordForm extends Model
             'class' => 'yii\swiftmailer\Mailer',
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => EmailConfig::getKey('smtpHost'),
-                'username' => EmailConfig::getKey('smtpUser'),
-                'password' => EmailConfig::getKey('smtpPassword'),
-                'port' => EmailConfig::getKey('smtpPort'),
+                'host' => yii::$app->params['smtpHost'],
+                'username' => yii::$app->params['smtpUser'],
+                'password' => yii::$app->params['smtpPassword'],
+                'port' => yii::$app->params['smtpPort'],
                 'encryption' => 'tls',
         ]]);
     }
@@ -30,7 +30,7 @@ class FindPasswordForm extends Model
             ['email','email'],
             //检测用户输入的邮箱是否存在于数据库
             //用户是服务器验证，需要在控制器中添加$model->validate()进行服务器验证
-            //当然，不管如果在客户端先验证了，最好也在服务器端再一次进行验证
+            //当然，如果在客户端先验证了，最好也在服务器端再一次进行验证
             ['email','exist',
                 'targetClass' => 'app\modules\user\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
@@ -63,7 +63,7 @@ class FindPasswordForm extends Model
             //$user->save()保存密码令牌
             if($user->save()){
                 return  \Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
-                    ->setFrom([EmailConfig::getKey('smtpUser') => \Yii::$app->name])
+                    ->setFrom([yii::$app->params['smtpUser'] => \Yii::$app->name])
                     ->setTo($this->email)
                     ->setSubject(\Yii::$app->name.'重置密码 ' )
                     ->send();

@@ -34,9 +34,7 @@ class LoginController extends \yii\web\Controller
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
             return $this->goBack();
         }
-        return $this->render('index', [
-            'model' => $model,
-        ]);
+        return $this->render('index', ['model' => $model,]);
     }
 
 }

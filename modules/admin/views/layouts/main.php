@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\modules\admin\models\config\Config;
 
 AppAsset::register($this);
 ?>
@@ -27,15 +28,11 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        //'brandLabel' => Yii::$app->name,
+        'brandLabel' => Config::findOne(['`key`'=>'sys_site_name'])->value,
+        'brandUrl' => ['/admin'],
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-left'],
-        'items' => [['label' => '首页', 'url' => ['/site/index']],
         ],
     ]);
     if (Yii::$app->user->isGuest) {
@@ -43,26 +40,23 @@ AppAsset::register($this);
     } else {
         $menuItems = [
             ['label' => '系统配置',
-            'items'=>[
-                ['label'=>'基本配置','url'=>['/admin/config/basic']],
-                ['label'=>'主题配置','url'=>['/admin/config/theme']],
-                ['label'=>'邮件配置','url'=>['/admin/config/email']],
-            ]
-            ],
-            ['label' => '文章',
+                'url'=>['/admin/config/'],
                 'items'=>[
-                    ['label'=>'新建文章','url'=>['/admin/content/create']],
-                    ['label'=>'所有文章','url'=>['/admin/content/index']],
+                    ['label'=>'基本配置','url'=>['/admin/config/basic']],
+                    ['label'=>'主题配置','url'=>['/admin/config/theme']],
                 ]
             ],
             ['label' => 'rbac',
-            'items'=>[
-                ['label'=>'角色管理','url'=>['/admin/rbac/role']],
-                ['label'=>'权限管理','url'=>['/admin/rbac/permission']],
-            ]
+                'url'=>['/admin/rbac/'],
+                'items'=>[
+                    ['label'=>'角色管理','url'=>['/admin/rbac/role']],
+                    ['label'=>'权限管理','url'=>['/admin/rbac/permission']],
+                ]
             ],
             ['label' => Yii::$app->user->identity->username,
                 'items' => [
+                    ['label'=>'<span class="glyphicon glyphicon-home"></span> 个人中心',
+                        'url'=>['/user/modify-password']],
                     ['label' => '<span class="glyphicon glyphicon-log-out"></span> 退出登录',
                         'url' => ['/user/logout'],'linkOptions' => ['data-method' => 'post']],
                 ],

@@ -29,13 +29,13 @@ class ItemForm extends \yii\base\Model
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
-            'type' => 'Type',
-            'description' => 'Description',
-            'rule_name' => 'Rule Name',
+            'name' => '角色/权限',
+            'type' => '类型',
+            'description' => '描述',
+            'rule_name' => '规则名',
             'data' => 'Data',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'created_at' => '创建时间',
+            'updated_at' => '修改时间',
         ];
     }
 }

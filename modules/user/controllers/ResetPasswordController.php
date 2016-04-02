@@ -8,6 +8,7 @@ class ResetPasswordController extends \yii\web\Controller
     {
         $model = new ResetPasswordForm($token);
         if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->resetPassword()){
+
             \Yii::$app->getSession()->setFlash('success','新的密码已经生效，请重新登录您的帐号。');
             return $this->goHome();
         }

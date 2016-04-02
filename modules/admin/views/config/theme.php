@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
                 <div class='panel-body'>
                     <?= $form->field($model, 'sys_site_theme') ?>
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::submitButton('修改', ['class' => 'btn btn-primary']) ?>
                     </div>
                 </div>
             </div>

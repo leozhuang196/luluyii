@@ -18,7 +18,7 @@ class ResetPasswordForm extends Model
         //通过token获取当前用户的所有数据
         $this->_user = User::findByPasswordResetToken($token);
         if(!$this->_user){
-            throw new InvalidParamException('重置密码令牌无效或者已经过期');
+            throw new InvalidParamException('重置密码令牌已经过期');
         }
     }
 
@@ -43,12 +43,13 @@ class ResetPasswordForm extends Model
     {
         $user = $this->_user;
 
-        //动态添加password属性
-        //为什么这里不需要对密码进行加密就保存，还是说已经加密了？
-        $user->password =  $this->password;
+       //这里其实使用的是php的魔术方法
+       //当调用不存在的属性/方法时，会调用__set()方法
+       //由于User::setPassword()的基类中BaseActiveRecord有__set()方法
+       //当$user->password其实访问的就是User::setPassword()方法
+       //$user->password =  $this->password;
 
-        //$user->setPassword($this->password);
-
+       $user->setPassword($this->password);
         //移除重置密码的令牌
         $user->removePasswordResetToken();
 
