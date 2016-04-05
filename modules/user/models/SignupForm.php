@@ -48,11 +48,11 @@ class SignupForm extends Model
     {
         return
         [
-            'username' => '用户名',
-            'password' => '密码',
-            'repassword' => '重复密码',
-            'email' => '邮箱',
-            'verifyCode'=>'验证码',
+            'username' => Yii::t('user', 'Username'),
+            'password' => Yii::t('user', 'Password'),
+            'repassword' => Yii::t('user', 'RePassword'),
+            'email' => Yii::t('user', 'Email'),
+            'verifyCode'=> Yii::t('user', 'VerifyCode'),
         ];
     }
 

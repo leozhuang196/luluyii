@@ -1,12 +1,13 @@
 <?php
 namespace app\modules\user\models;
+use Yii;
 use yii\base\Model;
 use yii\base\InvalidParamException;
 
 class ResetPasswordForm extends Model
 {
-    public $password;
-    public $repassword;
+    public $new_password;
+    public $renew_password;
     private $_user;
 
     //$token是从连接处传递过来的
@@ -25,17 +26,17 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            [['password','repassword'],'required'],
-            [['password','repassword'],'string','min'=>6],
-            ['repassword','compare','compareAttribute'=>'password','message'=>'两次输入的密码不一致']
+            [['new_password','renew_password'],'required'],
+            [['new_password','renew_password'],'string','min'=>6],
+            ['renew_password','compare','compareAttribute'=>'new_password','message'=>'两次输入的密码不一致']
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'password'=>'密码',
-            'repassword'=>'重复密码',
+            'new_password'=> Yii::t('user', 'New Password'),
+            'renew_password'=> Yii::t('user', 'Renew Password'),
         ];
     }
 
@@ -49,7 +50,7 @@ class ResetPasswordForm extends Model
        //当$user->password其实访问的就是User::setPassword()方法
        //$user->password =  $this->password;
 
-       $user->setPassword($this->password);
+       $user->setPassword($this->new_password);
         //移除重置密码的令牌
         $user->removePasswordResetToken();
 

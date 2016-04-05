@@ -1,5 +1,6 @@
 <?php
 namespace app\modules\user\models;
+use Yii;
 use yii\base\Model;
 
 class ModifyPasswordForm extends Model
@@ -22,9 +23,9 @@ class ModifyPasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'old_password'=>'旧密码',
-            'new_password'=>'新密码',
-            'renew_password'=>'重复新密码',
+            'old_password'=> Yii::t('user', 'Old Password'),
+            'new_password'=> Yii::t('user', 'New Password'),
+            'renew_password'=> Yii::t('user', 'Renew Password'),
         ];
     }
 

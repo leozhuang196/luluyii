@@ -42,7 +42,7 @@ class FindPasswordForm extends Model
     public function attributeLabels()
     {
         return [
-            'email'=>'输入邮箱',
+            'email'=> Yii::t('user', 'Email'),
         ];
     }
 

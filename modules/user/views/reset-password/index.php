@@ -13,8 +13,8 @@ $this->title = '重置密码';
             </div>
             <div class='panel-body'>
                 <?php $form=ActiveForm::begin(['id'=>'resetPasswordForm']);?>
-                    <?= $form->field($model,'password')->passwordInput()?>
-                    <?= $form->field($model,'repassword')->passwordInput()?>
+                    <?= $form->field($model,'new_password')->passwordInput()?>
+                    <?= $form->field($model,'renew_password')->passwordInput()?>
                     <?= Html::submitButton('保存',['class'=>'btn btn-primary'])?>
                 <?php ActiveForm::end();?>
             </div>

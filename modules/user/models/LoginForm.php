@@ -25,9 +25,9 @@ class LoginForm extends Model
    public function attributeLabels()
    {
        return [
-           'username' => '用户名 /邮箱',
-            'password' => '密码',
-           'rememberMe' => '记住我',
+           'username' => '用户名 / 邮箱',
+           'password' => Yii::t('user', 'Password'),
+           'rememberMe' => Yii::t('user', 'Remember Me'),
        ];
    }
     //验证密码的正确性
