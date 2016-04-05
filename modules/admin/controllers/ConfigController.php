@@ -4,9 +4,25 @@ use Yii;
 use app\modules\admin\models\config\BasicConfig;
 use app\modules\admin\models\config\ThemeConfig;
 use yii\web\Controller;
+use yii\filters\AccessControl;
 
 class ConfigController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+    
     public function actionBasic()
     {
         $model = new BasicConfig();
