@@ -48,6 +48,15 @@ $config = [
                 //basePath设置资源所在的文件目录
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                'user' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'zh-CH',
+                    'basePath' => '@app/modules/user/messages',
+                ],
+            ],
+        ],
 
 
 
@@ -77,6 +86,7 @@ $config = [
         'urlManager' => [
             //用于URL路径化
             'enablePrettyUrl' => true,
+            //'suffix'=>'.html',
             //指定是否在URL在保留入口脚本 index.php
             'showScriptName' => false,
             //同时还要在index.php同级目录下新建.htaccess文件
