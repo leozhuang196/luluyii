@@ -3,28 +3,12 @@
 namespace app\modules\admin\modules\rbac\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use app\modules\admin\modules\rbac\controllers\ItemController;
 use app\modules\admin\modules\rbac\models\RoleForm;
 use yii\rbac\Role;
 
 class RoleController extends ItemController
 {
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
-    
     public function actionIndex()
     {
         $roles = $this->authManager->getRoles();
