@@ -3,6 +3,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Test;
 use yii\web\Controller;
+use app\models\Customer;
+use app\models\Order;
 
 class TestController extends Controller
 {
@@ -106,5 +108,46 @@ class TestController extends Controller
         //var_dump(yii::$app->params['smtpHost']);
         //echo Yii::getVersion();
         echo time();
+    }
+
+    function actionOrder()
+    {
+    /******************************* 关联查询 ****************************/
+        /********** 1、根据顾客名字查询顾客订单，顾客1:n订单 ******/
+        //查询zhangsan的订单
+        $customer = Customer::find()->where(['name' => 'zhangsan'])->one();
+        $order = $customer->getOrder();
+        print_r($order);
+
+        /********** 2、根据订单查询顾客名字，订单1:1顾客 *********/
+        //查询1号订单的顾客资料
+        $order = Order::find()->where(['order_id' => 1])->one();
+        $customer = $order->getCustomer();
+        print_r($customer);
+
+       /**** $customer = $orders->customer;
+        * 3、当访问不存在的属性时$orders->customer，php会自动调用__get()
+        * 即$orders->customer相当于调用$orders->getCustomer()
+        * 同时还会在末尾自动补上one()方法，即$orders->getCustomer()->one()
+        * 因此，当你使用$orders->customer时，要在getCustomer()方法末尾要去掉one() *****/
+
+        /********************* 关联查询问题1：关联查询结果会被缓存 **********************/
+     /* 当你执行 $order=Order::find()->where(['order_id' => 1])->one() 时，往数据表进行了查询
+      * 第二次执行 $order=Order::find()->where(['order_id' => 1])->one() 时则不会从数据表中进行查询，会直接从缓存中读取
+      * 所以当你更新数据表的时候，你查询到的结果却没有更新，此时你需要先unset($order)删除缓存再从数据表中查询 */
+
+        /********************* 关联查询问题2：关联查询的多次查询 **********************/
+        $customers=Customer::find()->all(); //1次sql语句select * from customer
+        foreach($customers as $customer){
+            //如果Customer表中有100条记录，则会执行100次sql语句select * from order where customer_id=...
+            print_r($customer->order);
+        }
+        /*解决方法：加上with('order')
+         * select * from customer，select * from order where customer_id in(...),这时的...表示所有顾客customer_id的集合
+         * 选取所有顾客的customer_id塞到各自的order属性，执行下面foreach时不会再有sql语句，这里只执行了2次sql语句*/
+        $customers=Customer::find()->with('order')->all();
+        foreach($customers as $customer){
+            print_r($customer->order);
+        }
     }
 }
