@@ -52,7 +52,6 @@ $config = [
             'translations' => [
                 'user' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'sourceLanguage' => 'zh-CH',
                     'basePath' => '@app/modules/user/messages',
                 ],
             ],

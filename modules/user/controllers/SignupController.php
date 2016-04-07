@@ -43,7 +43,6 @@ class SignupController extends \yii\web\Controller
             if ($user = $model->signup()) {
                 \Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请前去完成验证');
                 return $this->goHome();
-//                 return $this->goHome();
                 //登录操作
                 /* if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();

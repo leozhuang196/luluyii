@@ -22,7 +22,6 @@ class ConfigController extends Controller
             ],
         ];
     }
-    
     public function actionBasic()
     {
         $model = new BasicConfig();
