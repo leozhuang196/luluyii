@@ -145,9 +145,9 @@ class TestController extends Controller
         /*解决方法：加上with('order')
          * select * from customer，select * from order where customer_id in(...),这时的...表示所有顾客customer_id的集合
          * 选取所有顾客的customer_id塞到各自的order属性，执行下面foreach时不会再有sql语句，这里只执行了2次sql语句*/
-        $customers=Customer::find()->with('order')->all();
+        /*$customers=Customer::find()->with('order')->all();
         foreach($customers as $customer){
             print_r($customer->order);
-        }
+        }*/
     }
 }
