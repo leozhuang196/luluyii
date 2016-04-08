@@ -9,4 +9,3 @@
 3. 在项目根目录下运行 init 初始化项目(生成入口脚本、创建runtime目录等)
 4. 创建数据库 luluyii 编码 utf8-unicode-ci
 5. 运行 luluyii.sql 导入相关表，具体可以在 config/luluyii.sql 下面看到
-6. 运行 yii migrate --migrationPath=@yii/rbac/migrations/ 导入Yii官方提供的权限控制表
