@@ -6,7 +6,8 @@
 
 1. 直接运行
 ```
-#!htmlgit clone https://lulubin@bitbucket.org/lulubin/luluyii.git克隆到工作目录，或者直接下载zip包
+#!html
+git clone https://lulubin@bitbucket.org/lulubin/luluyii.git克隆到工作目录，或者直接下载zip包
 2. 运行composer install --prefer-dist 安装yii2核心文件
 3. 在项目根目录下运行init 初始化项目(生成入口脚本、创建runtime目录等)
 4. 创建数据库 luluyii 编码 utf8-unicode-ci
