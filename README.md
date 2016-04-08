@@ -4,11 +4,11 @@
 
 ### 安装 ###
 
-1. 直接运行git clone 
+1. 直接运行
 ```
-#!php
+#!html
 
-https://lulubin@bitbucket.org/lulubin/luluyii.git
+git clone https://lulubin@bitbucket.org/lulubin/luluyii.git
 ```
 克隆到工作目录，或者直接下载zip包
 2. 运行composer install --prefer-dist 安装yii2核心文件
