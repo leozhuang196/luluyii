@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50547
 Source Host           : localhost:3306
-Source Database       : lulublog
+Source Database       : luluyii
 
 Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-04-01 17:35:03
+Date: 2016-04-08 10:48:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -109,7 +109,7 @@ CREATE TABLE `lulu_config` (
 -- ----------------------------
 -- Records of lulu_config
 -- ----------------------------
-INSERT INTO `lulu_config` VALUES ('1', 'lulublog', 'sys_site_name');
+INSERT INTO `lulu_config` VALUES ('1', 'luluyii', 'sys_site_name');
 INSERT INTO `lulu_config` VALUES ('2', 'lulubin的第一个项目', 'sys_site_description');
 INSERT INTO `lulu_config` VALUES ('3', '主题一', 'sys_site_theme');
 
@@ -152,11 +152,63 @@ CREATE TABLE `lulu_content` (
   `excerpt` varchar(255) NOT NULL,
   `alias` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lulu_content
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for lulu_customer
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_customer`;
+CREATE TABLE `lulu_customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lulu_customer
+-- ----------------------------
+INSERT INTO `lulu_customer` VALUES ('1', 'zhangsan');
+INSERT INTO `lulu_customer` VALUES ('2', 'lisi');
+
+-- ----------------------------
+-- Table structure for lulu_migration
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_migration`;
+CREATE TABLE `lulu_migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lulu_migration
+-- ----------------------------
+INSERT INTO `lulu_migration` VALUES ('m000000_000000_base', '1460083699');
+INSERT INTO `lulu_migration` VALUES ('m160308_030054_create_table_news', '1460083701');
+INSERT INTO `lulu_migration` VALUES ('m160406_034253_create_table_customer', '1460083702');
+INSERT INTO `lulu_migration` VALUES ('m160406_034457_create_table_order', '1460083702');
+
+-- ----------------------------
+-- Table structure for lulu_order
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_order`;
+CREATE TABLE `lulu_order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` smallint(1) NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lulu_order
+-- ----------------------------
+INSERT INTO `lulu_order` VALUES ('1', '1', '10');
+INSERT INTO `lulu_order` VALUES ('2', '1', '20');
+INSERT INTO `lulu_order` VALUES ('3', '2', '30');
 
 -- ----------------------------
 -- Table structure for lulu_user
