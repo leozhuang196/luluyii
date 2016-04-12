@@ -7,4 +7,6 @@ return [
     'smtpPassword' => 'mhba15018359644',
     'smtpPort' => '587',
     'user.passwordResetTokenExpire' => 3600,
+
+    'title' => 'lulublog',
 ];
