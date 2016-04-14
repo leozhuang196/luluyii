@@ -9,9 +9,9 @@ class Test extends Model
 {
 /***********************************************二、属性********************************************************/
 //2.1、属性的定义：一般情况下，在模型里面定义的属性是公共的并且是非静态的。
-    public $username;
+    /* public $username;
     public $password;
-    public $email;
+    public $email; */
     //另外还可以用其它的方式来声明属性：通过覆盖的attributes()方法。例如,yii\db\ActiveRecord里面定义的属性是使用的相关联的数据表的列名称
 
 //2.4、属性标签
@@ -32,13 +32,13 @@ class Test extends Model
     //而企业用户除了这些外还需要提供企业名称、法人名称、营业执照号什么的，这就是两个不同的场景。
 //3.1为了让一个模型能使用在不同的场景下面，Yii里面提供了scenarios()方法，返回的也是name-value数组，
     //name为每个不同 的场景，value是一个数组，为对应场景的所用到的属性。
-    public function scenarios()
+    /* public function scenarios()
     {
         return [
             'login' => ['username', 'password'],
             'register' => ['username', 'email', 'password'],
         ];
-    }
+    } */
     //如上所示，用户模型里面有 username,password,email三个属性，在登录的场景下只需要username和password，而在注册的场景中还需要email。
     //如果没有在模型中定义场景scenarios()，那么将会使用默认的场景，即所有的属性都将使用。
 
@@ -87,7 +87,7 @@ class Test extends Model
     } */
 
     //验证密码的正确性
-    public function validatePassword($attribute, $params)
+  /*   public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
@@ -96,7 +96,7 @@ class Test extends Model
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
-    }
+    } */
 
 //4.3、条件验证
     //可以在满员某些条件的情况下才验证属性，例如一个属性的验证需要另外一个属性值（确认密码等），这个时候可以用when关键字来定义
@@ -117,7 +117,7 @@ class Test extends Model
         ];
     } */
 
-
+/* 
     //验证码
     public $verifyCode;
     public function rules()
@@ -130,6 +130,15 @@ class Test extends Model
     {
         return [
             'verifyCode' => '验证码',
+        ];
+    } */
+    
+    //上传文件
+    public $file;
+    public function rules()
+    {
+        return [
+            [['file'],'file'],
         ];
     }
 }

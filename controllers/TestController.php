@@ -5,6 +5,7 @@ use app\models\Test;
 use yii\web\Controller;
 use app\models\Customer;
 use app\models\Order;
+use yii\web\UploadedFile;
 
 class TestController extends Controller
 {
@@ -149,5 +150,18 @@ class TestController extends Controller
         foreach($customers as $customer){
             print_r($customer->order);
         }*/
+    }
+    
+    public function actionUpload()
+    {
+        $model = new Test();
+        if(\Yii::$app->request->isPost){
+            $model->file = UploadedFile::getInstance($model, 'file');
+            
+            if ($model->file && $model->validators) {
+                $model->file->saveAs('images/' . $model->file->baseName . '.' . $model->file->extension);
+            }
+        }
+        return $this->render('test', ['model' => $model]);
     }
 }
