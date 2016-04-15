@@ -5,6 +5,7 @@ use Yii;
 use yii\base\Model;
 use app\modules\user\models\User;
 use yii\base\InvalidParamException;
+use app\modules\admin\models\config\Config;
 
 class SignupForm extends Model
 {
@@ -87,9 +88,9 @@ class SignupForm extends Model
 
             if($user->save()){
                 return  yii::$app->mailer->compose('ActivateAccountToken',['user'=>$user])
-                ->setFrom([yii::$app->params['smtpUser'] => yii::$app->name])
+                ->setFrom([yii::$app->params['smtpUser'] => Config::findOne(['`key`'=>'sys_site_name'])->value])
                 ->setTo($this->email)
-                ->setSubject(yii::$app->name.'激活账号')
+                ->setSubject(Config::findOne(['`key`'=>'sys_site_name'])->value.'激活账号')
                 ->send();
             }
         }
