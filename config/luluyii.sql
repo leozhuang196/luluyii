@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-04-08 10:48:43
+Date: 2016-04-15 16:53:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,17 +20,15 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `lulu_auth_assignment`;
 CREATE TABLE `lulu_auth_assignment` (
-  `user` varchar(64) NOT NULL,
-  `role` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `item_name` varchar(64) NOT NULL,
   `created_at` int(11) NOT NULL,
-  `note` text,
-  PRIMARY KEY (`user`,`role`)
+  PRIMARY KEY (`user_id`,`item_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lulu_auth_assignment
 -- ----------------------------
-INSERT INTO `lulu_auth_assignment` VALUES ('admin111', 'administrator', '1427599963', null);
 
 -- ----------------------------
 -- Table structure for lulu_auth_item
@@ -53,13 +51,6 @@ CREATE TABLE `lulu_auth_item` (
 -- ----------------------------
 -- Records of lulu_auth_item
 -- ----------------------------
-INSERT INTO `lulu_auth_item` VALUES ('A_BASIC_OPERATION_WEIXIN', '2', '微信基本操作', null, null, '1435547821', '1435547821');
-INSERT INTO `lulu_auth_item` VALUES ('A_BASIC_SITE_WEIXIN', '2', '微站基本操作', null, null, '1435547821', '1435547821');
-INSERT INTO `lulu_auth_item` VALUES ('A_MODIFY_PASSWORD', '2', '密码管理', null, null, '1435547821', '1435547821');
-INSERT INTO `lulu_auth_item` VALUES ('A_MODIFY_ROLE', '2', '角色组管理', null, null, '1435547821', '1435547821');
-INSERT INTO `lulu_auth_item` VALUES ('A_MODIFY_USER', '2', '用户组管理', null, null, '1435547821', '1435547821');
-INSERT INTO `lulu_auth_item` VALUES ('A_MODIFY_WEIXIN', '2', '微信账号管理', null, null, '1435547821', '1435547821');
-INSERT INTO `lulu_auth_item` VALUES ('A_VIEW_WEIXIN', '2', '微信账号查询', null, null, '1435547821', '1435547821');
 
 -- ----------------------------
 -- Table structure for lulu_auth_item_child
