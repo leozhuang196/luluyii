@@ -8,5 +8,5 @@ return [
     'smtpPort' => '587',
     'user.passwordResetTokenExpire' => 3600,
 
-    'title' => 'lulublog',
+    'title' => 'luluyii',
 ];
