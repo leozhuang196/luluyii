@@ -85,7 +85,7 @@ $config = [
         'urlManager' => [
             //用于URL路径化
             'enablePrettyUrl' => true,
-            //'suffix'=>'.html',
+            'suffix'=>'.html',
             //指定是否在URL在保留入口脚本 index.php
             'showScriptName' => false,
             //同时还要在index.php同级目录下新建.htaccess文件
