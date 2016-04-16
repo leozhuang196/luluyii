@@ -43,7 +43,7 @@ AppAsset::register($this);
             ['label' => $identity->username,
                 'items' => [
                     ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/modify-password']],
-                    //['label' => '<span class="glyphicon glyphicon-user"></span> 后台管理','url' => ['/admin']],
+                    ['label' => '<span class="glyphicon glyphicon-user"></span> 后台管理','url' => ['/admin']],
                     '<li class="divider"></li>',
                     ['label' => '<span class="glyphicon glyphicon-log-out"></span> 退出登录',
                         'url' => ['/user/logout'],'linkOptions' => ['data-method' => 'post']],
