@@ -2,6 +2,7 @@
 namespace app\modules\user\models;
 use yii;
 use yii\base\Model;
+use app\modules\admin\models\config\Config;
 
 class FindPasswordForm extends Model
 {
@@ -63,9 +64,9 @@ class FindPasswordForm extends Model
             //$user->save()保存密码令牌
             if($user->save()){
                 return  \Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
-                    ->setFrom([yii::$app->params['smtpUser'] => \Yii::$app->name])
+                    ->setFrom([yii::$app->params['smtpUser'] => Config::findOne(['`key`'=>'sys_site_name'])->value])
                     ->setTo($this->email)
-                    ->setSubject(\Yii::$app->name.'重置密码 ' )
+                    ->setSubject(Config::findOne(['`key`'=>'sys_site_name'])->value.'重置密码 ' )
                     ->send();
             }
         }
