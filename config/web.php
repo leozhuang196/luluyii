@@ -43,7 +43,12 @@ $config = [
             //在当前的主题文件夹下面找不到相应的view的时候 就会去第二个主题文件夹里面找。
             'theme' => [
                 //pathMap设置替换映射关系
-                'pathMap' => ['@app/views'=>'@app/themes/basic'],
+                'pathMap' => [
+                    '@app/views'=>'@app/themes/basic',
+                    '@app/modules/user/views'=>'@app/themes/modules/user',
+                    '@app/modules/admin/views'=>'@app/themes/modules/admin',
+                    '@app/modules/admin/modules/rbac/views'=>'@app/themes/modules/rbac',
+                ],
                 //baseUrl设置要访问的资源的url（结尾不加“/”）
                 //basePath设置资源所在的文件目录
             ],
