@@ -194,4 +194,12 @@ class TestController extends Controller
         $auth->assign($author, 6);        
         $auth->assign($admin, 5);
     }
+    
+    public function actionResponse()
+    {
+        //设置返回的是JSON数据类型
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $items = ['some', 'array', 'of', 'data' => ['associative', 'array']];
+        return $items;
+    }
 }
