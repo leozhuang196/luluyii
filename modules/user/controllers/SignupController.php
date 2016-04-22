@@ -1,9 +1,10 @@
 <?php
 
 namespace app\modules\user\controllers;
-use Yii;
+use yii;
 use yii\filters\AccessControl;
 use app\modules\user\models\SignupForm;
+use yii\web\Response;
 
 class SignupController extends \yii\web\Controller
 {
@@ -39,9 +40,12 @@ class SignupController extends \yii\web\Controller
     public function actionIndex()
     {
         $model = new SignupForm();
+        
+        $this->performAjaxValidation($model);
+        
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                \Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请前去完成验证');
+                Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请前去完成验证');
                 return $this->goHome();
                 //登录操作
                 /* if (Yii::$app->getUser()->login($user)) {
@@ -62,5 +66,17 @@ class SignupController extends \yii\web\Controller
             return $this->goHome();
         }
         return $this->render('activate-account');
+    }
+    
+    protected function performAjaxValidation($model)
+    {
+        //判断是否是ajax请求Yii::$app->request->isAjax
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            //设置返回的数据类型是JSON格式
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            echo json_encode(\yii\widgets\ActiveForm::validate($model));
+            //相当于die()
+            Yii::$app->end();
+        }
     }
 }
