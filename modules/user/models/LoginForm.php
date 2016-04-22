@@ -36,13 +36,13 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user){
-                $this->addError($attribute, '用户不存在');
+                $this->addError('username', '用户不存在');
             //由于注册的时候是通过生成token进行邮箱验证才可以登陆的，邮箱验证后token被删除，
             //所以当token存在时表名用户还未进行邮箱验证
             }else if($user['password_reset_token']!==null){
-                $this->addError($attribute,'请验证邮箱后再登录');
+                $this->addError('email','请验证邮箱后再登录');
             }else if (!$user->validatePassword($this->password)){
-                $this->addError($attribute, '密码错误');
+                $this->addError('password', '密码错误');
             }
         }
     }
@@ -51,8 +51,11 @@ class LoginForm extends Model
     {
         //验证输入的是否满足规则，包含验证密码的正确性
         if ($this->validate()) {
-            //把登录之后的状态设置到session中
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            if(User::isSuperAdmin($this->username)){
+                //把登录之后的状态设置到session中
+                return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            }
+            $this->addError('username','抱歉，你没有权限登陆');
         }
         return false;
     }
