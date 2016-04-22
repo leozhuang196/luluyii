@@ -24,6 +24,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    
+    const ROLE_USER = 10;
+    const ROLE_ADMIN = 20;
+    const ROLE_SUPER_ADMIN = 30;
 
     public static function tableName()
     {
@@ -153,5 +157,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    
+    //判断用户是否为超级用户
+    public static function isSuperAdmin($username)
+    {
+        if(strpos($username, '@')){   
+            if(static::findOne(['email'=>$username,'role'=>self::ROLE_SUPER_ADMIN])){
+                return true;
+            }
+        }else{
+            if(static::findOne(['username'=>$username,'role'=>self::ROLE_SUPER_ADMIN])){
+                return true;
+            }
+        }
+        return false;
     }
 }
