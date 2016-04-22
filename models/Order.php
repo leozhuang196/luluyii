@@ -1,7 +1,6 @@
 <?php
 namespace app\models;
 use yii\db\ActiveRecord;
-use app\models\Customer;
 
 class Order extends ActiveRecord
 {
