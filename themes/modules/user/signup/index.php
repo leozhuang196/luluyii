@@ -12,7 +12,11 @@ $this->title = '注册';
 			     <h3 class='panel-title'><?= Html::encode($this->title);?></h3>
 			</div>
 			<div class='panel-body'>
-			     <?php $form = ActiveForm::begin(['id'=>'login-form']);?>
+			     <?php $form = ActiveForm::begin([
+			         'id'=>'signup-form',
+		             'enableAjaxValidation'=>true,//启用ajax数据验证
+			         'enableClientValidation'=>false,//由于启用了服务端ajax验证数据，关闭客户端数据验证
+			     ]);?>
                     <?=$form->field($model,'username')->textInput()?>
                     <?=$form->field($model,'email')->textInput()?>
                     <?=$form->field($model,'password')->passwordInput()?>
