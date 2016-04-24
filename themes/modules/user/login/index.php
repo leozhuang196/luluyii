@@ -10,7 +10,11 @@ $this->title = '登录';
 			     <h3 class='panel-title'><?= Html::encode($this->title);?></h3>
 			</div>
 			<div class='panel-body'>
-			     <?php $form = ActiveForm::begin(['id'=>'login-form']);?>
+			     <?php $form = ActiveForm::begin([
+			         'id'=>'login-form',
+		             'enableAjaxValidation'=>true,//启用ajax数据验证
+			         'enableClientValidation'=>false,//由于启用了服务端ajax验证数据，关闭客户端数据验证
+			     ]);?>
                     <?=$form->field($model,'username')->textInput(['placeholder'=>$model->getAttributeLabel('username')])?>
                     <?=$form->field($model,'password')->passwordInput(['placeholder'=>$model->getAttributeLabel('password')])?>
                     <?=$form->field($model,'rememberMe')->checkbox(['template'=>
