@@ -41,7 +41,10 @@ class SignupForm extends Model
             [['password','repassword'], 'string', 'min' => 6],
             ['repassword','compare','compareAttribute'=>'password','message' => '两次输入的密码不一致'],
             //这里也需要添加captchaAction进行验证码的验证
-            ['verifyCode', 'captcha','captchaAction'=>'/user/signup/captcha'],
+            //但是开启ajax验证的时候需要关闭，不知道为什么？初步解释是进行了两次验证，第一次是ajax验证，第二次是客户端提交的时候去全部
+            //验证每次验证的时候验证码刷新导致不正确，是否可以经过ajxa验证之后不再需要进行验证呢？
+            //而用户名、邮箱、密码那些是不会变的，所以不会报错
+            //['verifyCode', 'captcha','captchaAction'=>'/user/signup/captcha'],
         ];
     }
 
