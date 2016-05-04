@@ -5,12 +5,11 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
 $this->title = '联系我们';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
         <div class="alert alert-success">
-            Thank you for contacting us. We will respond to you as soon as possible.
+            感谢您联系我们，我们会尽快回复你的。
         </div>
         <p>
             Note that if you turn on the Yii debugger, you should be able

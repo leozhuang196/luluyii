@@ -1,6 +1,6 @@
 <?php
-namespace app\modules\user\controllers;
-use app\modules\user\models\FindPasswordForm;
+namespace modules\user\controllers;
+use modules\user\models\FindPasswordForm;
 use yii;
 
 class FindPasswordController extends \yii\web\Controller

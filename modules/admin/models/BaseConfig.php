@@ -1,6 +1,6 @@
 <?php
-namespace app\modules\admin\models\config;
-use app\modules\admin\models\config\Config;
+namespace modules\admin\models;
+use modules\admin\models\config;
 
 class BaseConfig extends \yii\db\ActiveRecord
 {

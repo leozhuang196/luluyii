@@ -1,8 +1,8 @@
 <?php
-namespace app\modules\user\models;
+namespace modules\user\models;
 use yii;
 use yii\base\Model;
-use app\modules\admin\models\config\Config;
+use modules\admin\models\Config;
 
 class FindPasswordForm extends Model
 {

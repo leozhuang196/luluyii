@@ -1,11 +1,11 @@
 <?php
-namespace app\modules\user\models;
+namespace modules\user\models;
 
 use Yii;
 use yii\base\Model;
-use app\modules\user\models\User;
+use modules\user\models\User;
 use yii\base\InvalidParamException;
-use app\modules\admin\models\config\Config;
+use modules\admin\models\Config;
 
 class SignupForm extends Model
 {

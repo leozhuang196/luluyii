@@ -8,6 +8,8 @@ require(__DIR__ . '/../vendor/autoload.php');
 //包含 Yii 类文件
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
+require(__DIR__ . '/../config/bootstrap.php');
+
 //加载应该配置
 $config = require(__DIR__ . '/../config/web.php');
 

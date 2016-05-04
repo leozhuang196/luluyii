@@ -1,6 +1,6 @@
 <?php
-namespace app\modules\user\controllers;
-use app\modules\user\models\InformationForm;
+namespace modules\user\controllers;
+use modules\user\models\InformationForm;
 use yii;
 
 class InformationController extends \yii\web\Controller

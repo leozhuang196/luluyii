@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\user\models;
+namespace modules\user\models;
 
 use Yii;
 use yii\base\NotSupportedException;
@@ -52,15 +52,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('user', 'Id'),
+            'username' => Yii::t('user', 'Username'),
+            'email' => Yii::t('user', 'Email'),
+            'created_at' => Yii::t('user', 'Created At'),
         ];
     }
 

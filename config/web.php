@@ -16,7 +16,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\modules\user\models\User',
+            'identityClass' => 'modules\user\models\User',
             //如果开启自动登录 yii\web\User::enableAutoLogin 则基于 cookie 登录（如：记住登录状态），
             //它将使用 cookie 保存用户身份，这样 只要 cookie 有效就可以恢复登录状态
             'enableAutoLogin' => true,
@@ -44,10 +44,10 @@ $config = [
             'theme' => [
                 //pathMap设置替换映射关系
                 'pathMap' => [
-                    '@app/views'=>'@app/themes/basic',
-                    '@app/modules/user/views'=>'@app/themes/modules/user',
-                    '@app/modules/admin/views'=>'@app/themes/modules/admin',
-                    '@app/modules/admin/modules/rbac/views'=>'@app/themes/modules/rbac',
+                    '@app/views'=>'@themes/basic',
+                    '@app/modules/user/views'=>'@themes/modules/user',
+                    '@app/modules/admin/views'=>'@themes/modules/admin',
+                    '@app/modules/rbac/views'=>'@themes/modules/rbac',
                 ],
                 //baseUrl设置要访问的资源的url（结尾不加“/”）
                 //basePath设置资源所在的文件目录
@@ -57,7 +57,7 @@ $config = [
             'translations' => [
                 'user' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/modules/user/messages',
+                    'basePath' => '@modules/user/messages',
                 ],
             ],
         ],
@@ -90,7 +90,7 @@ $config = [
         'urlManager' => [
             //用于URL路径化
             'enablePrettyUrl' => true,
-            'suffix'=>'.html',
+            //'suffix'=>'.html',
             //指定是否在URL在保留入口脚本 index.php
             'showScriptName' => false,
             //同时还要在index.php同级目录下新建.htaccess文件
@@ -110,15 +110,10 @@ RewriteRule . index.php */
     'params' => $params,
      'modules' => [
         'admin' => [
-            'class' => 'app\modules\admin\AdminModule',
-            'modules' => [
-                'rbac' => [
-                    'class' => 'app\modules\admin\modules\rbac\RbacModule',
-                ],
-            ],
+            'class' => 'modules\admin\Module',
         ],
         'user' => [
-            'class' => 'app\modules\user\UserModule',
+            'class' => 'modules\user\Module',
         ],
     ],
 ];

@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\admin\modules\rbac\models\PermissionForm */
+/* @var $model app\modules\user\models\User */
 
-$this->title = 'Create Permission Form';
-$this->params['breadcrumbs'][] = ['label' => 'Permission Forms', 'url' => ['index']];
+$this->title = 'Create User';
+$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="permission-form-create">
+<div class="user-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

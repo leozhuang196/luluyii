@@ -1,6 +1,6 @@
 <?php
-namespace app\modules\user\controllers;
-use app\modules\user\models\ResetPasswordForm;
+namespace modules\user\controllers;
+use modules\user\models\ResetPasswordForm;
 
 class ResetPasswordController extends \yii\web\Controller
 {

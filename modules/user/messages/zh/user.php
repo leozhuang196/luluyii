@@ -1,5 +1,6 @@
 <?php
 return [
+    'Id' => '用户id',
     'Username' => '用户名',
     'Password' => '密码',
     'RePassword' => '重复密码',
@@ -9,4 +10,5 @@ return [
     'New Password' => '新密码',
     'Renew Password' => '重复新密码',
     'VerifyCode'=> '验证码',
+    'Created At' => '注册时间',
 ];

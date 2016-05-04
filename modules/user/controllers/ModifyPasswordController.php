@@ -1,6 +1,6 @@
 <?php
-namespace app\modules\user\controllers;
-use app\modules\user\models\ModifyPasswordForm;
+namespace modules\user\controllers;
+use modules\user\models\ModifyPasswordForm;
 use yii;
 
 class ModifyPasswordController extends \yii\web\Controller

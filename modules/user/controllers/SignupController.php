@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\user\controllers;
+namespace modules\user\controllers;
 use yii;
 use yii\filters\AccessControl;
-use app\modules\user\models\SignupForm;
+use modules\user\models\SignupForm;
 use yii\web\Response;
 
 class SignupController extends \yii\web\Controller

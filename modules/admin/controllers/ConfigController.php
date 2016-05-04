@@ -1,8 +1,8 @@
 <?php
-namespace app\modules\admin\controllers;
+namespace modules\admin\controllers;
 use Yii;
-use app\modules\admin\models\config\BasicConfig;
-use app\modules\admin\models\config\ThemeConfig;
+use modules\admin\models\BasicConfig;
+use modules\admin\models\ThemeConfig;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 

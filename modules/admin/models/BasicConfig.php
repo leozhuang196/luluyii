@@ -1,6 +1,6 @@
 <?php
-namespace app\modules\admin\models\config;
-use app\modules\admin\models\config\BaseConfig;
+namespace modules\admin\models;
+use modules\admin\models\BaseConfig;
 
 class BasicConfig extends BaseConfig
 {

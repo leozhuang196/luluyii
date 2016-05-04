@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\user\controllers;
+namespace modules\user\controllers;
 use Yii;
 use yii\filters\AccessControl;
-use app\modules\user\models\LoginForm;
+use modules\user\models\LoginForm;
 use yii\web\Response;
 
 class LoginController extends \yii\web\Controller

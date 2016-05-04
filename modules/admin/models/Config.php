@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\admin\models\config;
+namespace modules\admin\models;
 
 class Config extends \yii\db\ActiveRecord
 {
