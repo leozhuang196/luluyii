@@ -32,9 +32,3 @@ CREATE TABLE `lulu_user` (
   `registration_ip` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of lulu_user
--- ----------------------------
-INSERT INTO `lulu_user` VALUES ('1', 'admin', 'J573Z_0Y8_6LMentBd1easgnsSScBQXC', '$2y$13$LMTc/mbbPqGdAVHSdkeYd.UCPB.b/KR2XYZAmJQ02o8WCDD07.U5a', null, '452936616@qq.com', '10', '1462430000', '1462432169', '127.0.0.1');
-INSERT INTO `lulu_user` VALUES ('2', 'lulubin', 'YheVCoikf4ksLIryW6Niwot4Xpwko3Td', '$2y$13$YQwQgDzpTmgsrGju30nbneBmfB8.l6MOY5Q/Q.pz/S8BATVgBsf9S', null, '1363236681@qq.com', '10', '1462430049', '1462430055', '127.0.0.1');

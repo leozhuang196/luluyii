@@ -12,4 +12,7 @@ return [
     'VerifyCode'=> '验证码',
     'Registration Ip' => '注册IP地址',
     'Created At' => '注册时间',
+    'Sex' => '性别',
+    'Location' => '所在城市',
+    'Qq' => 'QQ账号',
 ];

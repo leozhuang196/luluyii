@@ -8,6 +8,7 @@ use yii\web\Response;
 use modules\user\models\FindPasswordForm;
 use modules\user\models\ResetPasswordForm;
 use modules\user\models\ModifyPasswordForm;
+use modules\user\models\UserInfo;
 
 class DefaultController extends Controller
 {
@@ -18,7 +19,7 @@ class DefaultController extends Controller
                 'class' => 'yii\filters\AccessControl',
                 'rules' => [
                     ['actions' => ['login','signup','activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
-                    ['actions' => ['logout','modify-password'],'allow' => true,'roles'=>['@']],
+                    ['actions' => ['logout','modify-password','modify-info'],'allow' => true,'roles'=>['@']],
                 ],
             ],
             'verbs' => [
@@ -98,7 +99,8 @@ class DefaultController extends Controller
     }
     
     //知道密码的情况下修改密码
-    public function actionModifyPassword() {
+    public function actionModifyPassword()
+    {
         $model = new ModifyPasswordForm();
         if ($model->load(\Yii::$app->request->post())){
             if($model->modifyPassword()){
@@ -107,6 +109,16 @@ class DefaultController extends Controller
             }
         }
         return $this->render('modifyPassword',['model'=>$model]);
+    }
+    
+    public function actionModifyInfo()
+    {
+        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()){
+            Yii::$app->getSession()->setFlash('success','个人信息修改成功');
+            return $this->refresh();
+        }
+        return $this->render('ModifyInfo',['model'=>$model]);
     }
     
     protected function performAjaxValidation($model)
