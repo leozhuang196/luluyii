@@ -1,9 +1,7 @@
 <?php
 namespace app\controllers;
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -11,44 +9,27 @@ class SiteController extends Controller
    public function init()
    {
        parent::init();
-       $this->layout='@themes/modules/layouts/main.php';
+       $this->layout='@themes/basic/layouts/main.php';
    }
         
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['login', 'logout', 'signup'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['login', 'signup'],
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['logout'],
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     public function actions()
     {
         return [
+            //因为你在components组件中配置了报错信息页面是site/error，所以这里需要写'error'
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'height' => 50,
+                'width' => 80,
+                'maxLength' =>5,
+                'minLength' =>4,
+                'testLimit'=>5,
+                //fixedVerifyCode通常用在自动化测试 方便复制验证码的场景下使用
+                //'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+                
         ];
     }
 
@@ -64,9 +45,7 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('contactFormSubmitted');
             return $this->refresh();
         }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
+        return $this->render('contact', ['model' => $model]);
     }
 
     public function actionAbout()

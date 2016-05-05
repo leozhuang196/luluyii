@@ -1,11 +1,8 @@
 <?php
-
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-
 $this->title = '找回密码';
 ?>
-
 <div class='row'>
     <div class='col-md-4 col-md-offset-4'>
         <div class='panel panel-default'>

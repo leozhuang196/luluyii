@@ -5,7 +5,7 @@ $this->title = '修改密码';
 ?>
 <div class='row'>
     <div class='col-md-3'>
-        <?= $this->render('/default/index')?>
+        <?= $this->render('/default/nav')?>
     </div>
     <div class='col-md-9'>
         <div class='panel panel-default'>

@@ -1,11 +1,8 @@
 <?php
-
 namespace app\models;
-
 use Yii;
-use yii\base\Model;
 
-class ContactForm extends Model
+class ContactForm extends \yii\base\Model
 {
     public $name;
     public $email;
@@ -33,6 +30,13 @@ class ContactForm extends Model
         ];
     }
 
+    public function init()
+    {
+        parent::init();
+        //使用文件传输，将发送的邮件设置在@runtime/mail文件夹中
+        Yii::$app->set('mailer', ['class' => 'yii\swiftmailer\Mailer','useFileTransport' => true]);
+    }
+    
     public function contact($email)
     {
         if ($this->validate()) {
@@ -42,7 +46,6 @@ class ContactForm extends Model
                 ->setSubject($this->subject)
                 ->setTextBody($this->body)
                 ->send();
-
             return true;
         }
         return false;

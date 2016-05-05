@@ -35,7 +35,7 @@ class ModifyPasswordForm extends Model
             $user = $this->getUser();
         }
         if(!$user || !$user->validatePassword($this->old_password)){
-            $this->addError($attribute,'密码错误');
+            $this->addError('old_password','密码错误');
         }
     }
 
@@ -48,14 +48,11 @@ class ModifyPasswordForm extends Model
         }
     }
 
-    //获取当前登录用户的信息
     public function getUser()
     {
         if($this->_user===false){
-            $this->_user = \Yii::$app->user->identity;
+            $this->_user = Yii::$app->user->identity;
         }
         return $this->_user;
     }
-
 }
-?>

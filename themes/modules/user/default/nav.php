@@ -13,8 +13,7 @@ $user = Yii::$app->user->identity;
             /* 垂直堆叠的导航 nav nav-pills nav-stacked*/
             'options' => ['class'=>'nav nav-pills nav-stacked'],
             'items' => [
-                ['label' => '个人信息','url'=>'information.html'],
-                ['label' => '修改密码','url'=>'modify-password.html'],
+                ['label' => '修改密码','url'=>'modify-password'],
             ],
         ])?>
     </div>

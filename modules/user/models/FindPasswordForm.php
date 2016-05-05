@@ -1,8 +1,7 @@
 <?php
 namespace modules\user\models;
-use yii;
+use Yii;
 use yii\base\Model;
-use modules\admin\models\Config;
 
 class FindPasswordForm extends Model
 {
@@ -33,7 +32,7 @@ class FindPasswordForm extends Model
             //用户是服务器验证，需要在控制器中添加$model->validate()进行服务器验证
             //当然，如果在客户端先验证了，最好也在服务器端再一次进行验证
             ['email','exist',
-                'targetClass' => 'app\modules\user\models\User',
+                'targetClass' => 'modules\user\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
                 'message' => '用户不存在',
             ],
@@ -53,24 +52,20 @@ class FindPasswordForm extends Model
             'status'=>User::STATUS_ACTIVE,
             'email'=>$this->email
         ]);
-
         if($user){
             //如果重置密码的令牌过期了，就重新生成令牌
             //一开始令牌为空，是过期的，所以一开始会生成令牌
             if(!User::isPasswordResetTokenValid($user->password_reset_token)){
                 $user->generatePasswordResetToken();
             }
-
-            //$user->save()保存密码令牌
             if($user->save()){
-                return  \Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
-                    ->setFrom([yii::$app->params['smtpUser'] => Config::findOne(['`key`'=>'sys_site_name'])->value])
+                return  Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
+                    ->setFrom([yii::$app->params['smtpUser'] => Yii::$app->params['siteName']])
                     ->setTo($this->email)
-                    ->setSubject(Config::findOne(['`key`'=>'sys_site_name'])->value.'重置密码 ' )
+                    ->setSubject(Yii::$app->params['siteName'].'重置密码 ' )
                     ->send();
             }
         }
         return false;
     }
 }
-?>

@@ -10,5 +10,6 @@ return [
     'New Password' => '新密码',
     'Renew Password' => '重复新密码',
     'VerifyCode'=> '验证码',
+    'Registration Ip' => '注册IP地址',
     'Created At' => '注册时间',
 ];

@@ -1,34 +1,15 @@
 <?php
-
 namespace modules\user\models;
-
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\web\IdentityInterface;
 
-/**
- * This is the model class for table "{{%user}}".
- *
- * @property integer $id
- * @property string $username
- * @property string $auth_key
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
     
-    const ROLE_USER = 10;
-    const ROLE_ADMIN = 20;
-    const ROLE_SUPER_ADMIN = 30;
-
     public static function tableName()
     {
         return '{{%user}}';
@@ -55,6 +36,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => Yii::t('user', 'Id'),
             'username' => Yii::t('user', 'Username'),
             'email' => Yii::t('user', 'Email'),
+            'registration_ip' => Yii::t('user', 'Registration Ip'),
             'created_at' => Yii::t('user', 'Created At'),
         ];
     }
@@ -98,13 +80,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
         //substr() 函数返回字符串的一部分
         //strrpos() 函数查找字符串在另一字符串中最后一次出现的位置
-
         //由于传入的$token是Bfe5gCKLvTVxjjPr5QgnZNgXhgRFqsBQ_1456996433这种形式的，截取_后面的unix时间戳
-
         $timestamp = (int) substr($token, strrpos($token, '_') + 1);
         //表示保存的时间，user.passwordResetTokenExpire定义在params.php文件中
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-
         //如果$token是之前的unix时间戳+保存的时间 >= 当前Unix时间，则表示重置密码的令牌还未过期
         //如果令牌过期了，则返回flase
         return $timestamp + $expire >= time();
@@ -152,20 +131,5 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
-    }
-    
-    //判断用户是否为超级用户
-    public static function isSuperAdmin($username)
-    {
-        if(strpos($username, '@')){   
-            if(static::findOne(['email'=>$username,'role'=>self::ROLE_SUPER_ADMIN])){
-                return true;
-            }
-        }else{
-            if(static::findOne(['username'=>$username,'role'=>self::ROLE_SUPER_ADMIN])){
-                return true;
-            }
-        }
-        return false;
     }
 }

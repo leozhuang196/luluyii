@@ -1,11 +1,8 @@
 <?php
 namespace modules\user\models;
-
 use Yii;
 use yii\base\Model;
-use modules\user\models\User;
-use yii\base\InvalidParamException;
-use modules\admin\models\Config;
+use yii\web\ForbiddenHttpException;
 
 class SignupForm extends Model
 {
@@ -28,14 +25,14 @@ class SignupForm extends Model
             //[(\x{4E00}-\x{9FA5})\w]*表示以汉字字母数字下划线组成，出现0-n次
             //^是开始符号  $是结尾符号        / /是界定符
             ['username', 'match','pattern'=>'/^[(\x{4E00}-\x{9FA5})a-zA-Z]+[(\x{4E00}-\x{9FA5})\w]*$/u','message'=>'用户名由字母，汉字，数字，下划线组成，且不能以数字和下划线开头。'],
-            ['username', 'unique', 'targetClass' => 'app\modules\user\models\User', 'message' => '用户名已经被注册过.'],
+            ['username', 'unique', 'targetClass' => 'modules\user\models\User', 'message' => '用户名已经被注册过.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => 'app\modules\user\models\User', 'message' => '邮箱已经被使用过.'],
+            ['email', 'unique', 'targetClass' => 'modules\user\models\User', 'message' => '邮箱已经被使用过.'],
 
             [['password','repassword'],'required'],
             [['password','repassword'], 'string', 'min' => 6],
@@ -44,7 +41,7 @@ class SignupForm extends Model
             //但是开启ajax验证的时候需要关闭，不知道为什么？初步解释是进行了两次验证，第一次是ajax验证，第二次是客户端提交的时候去全部
             //验证每次验证的时候验证码刷新导致不正确，是否可以经过ajxa验证之后不再需要进行验证呢？
             //而用户名、邮箱、密码那些是不会变的，所以不会报错
-            //['verifyCode', 'captcha','captchaAction'=>'/user/signup/captcha'],
+            //['verifyCode', 'captcha','captchaAction'=>'/site/captcha'],
         ];
     }
 
@@ -63,7 +60,7 @@ class SignupForm extends Model
     public function init()
     {
         parent::init();
-        \Yii::$app->set('mailer', [
+        Yii::$app->set('mailer', [
             'class' => 'yii\swiftmailer\Mailer',
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
@@ -82,34 +79,31 @@ class SignupForm extends Model
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);
+            $user->registration_ip = Yii::$app->request->userIP;
             $user->generateAuthKey();
-
             //通过生成token进行邮箱的验证
             if(!User::isPasswordResetTokenValid($user->password_reset_token)){
                 $user->generatePasswordResetToken();
             }
-
             if($user->save()){
                 return  yii::$app->mailer->compose('ActivateAccountToken',['user'=>$user])
-                ->setFrom([yii::$app->params['smtpUser'] => Config::findOne(['`key`'=>'sys_site_name'])->value])
+                ->setFrom([yii::$app->params['smtpUser'] => Yii::$app->params['siteName']])
                 ->setTo($this->email)
-                ->setSubject(Config::findOne(['`key`'=>'sys_site_name'])->value.'激活账号')
+                ->setSubject(Yii::$app->params['siteName'].'激活账号')
                 ->send();
             }
         }
-
         return null;
     }
 
-    //用户进行邮箱验证时删除token
     public function removeToken($token)
     {
         if(empty($token) || !is_string($token)){
-            throw new InvalidParamException('激活账号的令牌不能为空');
+           throw new ForbiddenHttpException('激活账号的令牌不能为空，请到邮箱再次点击链接激活您的账号');
         }
         $user = User::findByPasswordResetToken($token);
         if(!$user){
-            throw new InvalidParamException('激活账号的令牌已经过期');
+            throw new ForbiddenHttpException('您的账号已经激活，请到登陆页面进行登陆');
         }
         $user->removePasswordResetToken();
         return $user->save();
