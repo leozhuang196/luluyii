@@ -1,6 +1,7 @@
 <?php
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+//日期组件：composer require kartik-v/yii2-widget-datepicker "@dev"
 use kartik\date\DatePicker;
 $this->title = '修改个人信息';
 ?>

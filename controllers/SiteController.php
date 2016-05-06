@@ -27,6 +27,7 @@ class SiteController extends Controller
                 'minLength' =>4,
                 'testLimit'=>5,
                 //fixedVerifyCode通常用在自动化测试 方便复制验证码的场景下使用
+                //每次都固定显示一个验证码，方便测试，方便开发
                 //'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
                 
