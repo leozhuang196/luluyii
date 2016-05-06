@@ -17,7 +17,7 @@ class UserInfo extends \yii\db\ActiveRecord
             [['location','birthday'], 'string', 'max' => 255]
         ];
     }
-
+    
     public function attributeLabels()
     {
         return [

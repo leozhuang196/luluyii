@@ -9,6 +9,7 @@ use modules\user\models\FindPasswordForm;
 use modules\user\models\ResetPasswordForm;
 use modules\user\models\ModifyPasswordForm;
 use modules\user\models\UserInfo;
+use modules\user\models\User;
 
 class DefaultController extends Controller
 {
@@ -17,6 +18,7 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
+                'only' => ['logout', 'signup', 'activate-account','find-password','reset-password','logout','modify-password','modify-info'],
                 'rules' => [
                     ['actions' => ['login','signup','activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
                     ['actions' => ['logout','modify-password','modify-info'],'allow' => true,'roles'=>['@']],
@@ -119,6 +121,20 @@ class DefaultController extends Controller
             return $this->refresh();
         }
         return $this->render('ModifyInfo',['model'=>$model]);
+    }
+    
+    public function actionUsers()
+    {
+        $count = User::find()->where(['status' => 10])->count();
+        $model = User::find()->where(['status' => 10])->limit(10)->all();
+        return $this->render('users', ['count' => $count,'model' => $model]);
+    }
+    
+    public function actionShow($user_id)
+    {
+        $user = User::findOne(['id' => $user_id]);
+        $user_info = UserInfo::findOne(['user_id' => $user_id]);
+        return $this->render('show',['user'=>$user,'user_info'=>$user_info]);
     }
     
     protected function performAjaxValidation($model)

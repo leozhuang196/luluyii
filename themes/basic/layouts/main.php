@@ -28,6 +28,13 @@ AppAsset::register($this);
             'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
+    echo Nav::widget([
+        'options' => ['class' => 'nav navbar-nav '],
+        'items' => [
+             ['label' => '<span class="glyphicon glyphicon-user"></span> 会员','url' => ['/user/default/users']],
+        ],
+        'encodeLabels' => false
+    ]);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '注册', 'url' => ['/user/default/signup']];
         $menuItems[] = ['label' => '登录', 'url' => ['/user/default/login']];
@@ -49,7 +56,7 @@ AppAsset::register($this);
         ];
     }
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'nav navbar-nav navbar-right'],
         'encodeLabels' => false,
         'items' => $menuItems,
     ]);
