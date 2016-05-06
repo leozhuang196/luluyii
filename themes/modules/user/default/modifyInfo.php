@@ -1,6 +1,7 @@
 <?php
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use kartik\date\DatePicker;
 $this->title = '修改个人信息';
 ?>
 <div class='row'>
@@ -17,6 +18,7 @@ $this->title = '修改个人信息';
                     <?=$form->field($model,'sex')->inline()->radioList((['男','女','保密']))?>
                     <?=$form->field($model,'qq')->textInput()?>
                     <?=$form->field($model,'location')->textInput()?>
+                    <?= $form->field($model, 'birthday')->widget(DatePicker::classname())?>
                     <?=Html::submitButton('修改',['class'=>'btn btn-primary'])?>
                 <?php ActiveForm::end();?>
             </div>

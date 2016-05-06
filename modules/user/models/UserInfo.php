@@ -12,9 +12,9 @@ class UserInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sex'], 'integer'],
-            [['qq'], 'string', 'max' => 100],
-            [['location'], 'string', 'max' => 10]
+            [['user_id'], 'required'],
+            [['user_id', 'sex', 'qq'], 'integer'],
+            [['location','birthday'], 'string', 'max' => 255]
         ];
     }
 
@@ -24,6 +24,7 @@ class UserInfo extends \yii\db\ActiveRecord
             'sex' => Yii::t('user', 'Sex'),
             'qq' => Yii::t('user', 'Qq'),
             'location' => Yii::t('user', 'Location'),
+            'birthday' => Yii::t('user','Birthday'),
         ];
     }
 }

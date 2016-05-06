@@ -86,6 +86,9 @@ class SignupForm extends Model
                 $user->generatePasswordResetToken();
             }
             if($user->save()){
+                $userInfo = new UserInfo();
+                $userInfo->user_id = $user->id;
+                $userInfo->save();
                 return  yii::$app->mailer->compose('ActivateAccountToken',['user'=>$user])
                 ->setFrom([yii::$app->params['smtpUser'] => Yii::$app->params['siteName']])
                 ->setTo($this->email)

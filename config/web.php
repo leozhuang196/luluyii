@@ -69,6 +69,9 @@ $config = [
         'user' => [
             'class' => 'modules\user\Module',
         ],
+        'test' => [
+         'class' => 'modules\test\Module',
+        ],
     ],
 ];
 if (YII_ENV_DEV) {

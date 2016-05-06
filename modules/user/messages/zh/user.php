@@ -15,4 +15,5 @@ return [
     'Sex' => '性别',
     'Location' => '所在城市',
     'Qq' => 'QQ账号',
+    'Birthday' => '生日',
 ];
