@@ -7,4 +7,5 @@ return [
     'smtpPort' => '587',
     'user.passwordResetTokenExpire' => 3600,
     'siteName' => 'luluyii',
+    'icon-framework' => 'fa',
 ];

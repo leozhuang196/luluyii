@@ -1,10 +1,9 @@
 <?php
 use yii\helpers\Html;
-$this->title = 'Create User';
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = '创建用户';
+$this->params['breadcrumbs'][] = ['label' => '管理用户', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-create">
-    <h1><?= Html::encode($this->title) ?></h1>
     <?= $this->render('_form', ['model' => $model]) ?>
 </div>

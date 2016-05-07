@@ -27,4 +27,18 @@ class UserInfo extends \yii\db\ActiveRecord
             'birthday' => Yii::t('user','Birthday'),
         ];
     }
+    
+    public function getSex($sex) {
+        switch ($sex){
+            case '0':
+                return '男';
+            break;
+            case '1':
+                return '女';
+            break;
+            default:
+                return '保密';
+            break;
+        }
+    }
 }

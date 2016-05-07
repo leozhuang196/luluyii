@@ -5,7 +5,9 @@ use yii\bootstrap\NavBar;
 use yii\bootstrap\Alert;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use kartik\icons\Icon;
 AppAsset::register($this);
+Icon::map($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -31,7 +33,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'nav navbar-nav '],
         'items' => [
-             ['label' => '<span class="glyphicon glyphicon-user"></span> 会员','url' => ['/user/default/users']],
+             //['label' => '<span class="glyphicon glyphicon-user"></span> 会员','url' => ['/user/default/users']],
+             ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
         ],
         'encodeLabels' => false
     ]);

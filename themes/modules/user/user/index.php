@@ -1,30 +1,30 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
-$this->title = 'Users';
+$this->title = '管理用户';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <p><?= Html::a('创建用户', ['create'], ['class' => 'btn btn-success']) ?></p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'caption' => $this->title,
+        'captionOptions' => ['style' => 'font-size: 16px; font-weight: bold; color: #000; text-align: center;'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',
             'username',
-            'email:email',
+            'email',
             'registration_ip',
              ['attribute' => 'created_at',
                 'value' => function ($model) {
                  return date('Y-m-d G:i:s', $model->created_at);
             }],
-            
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+             'header' => "操作",
+            ],
         ],
     ]); ?>
 </div>
