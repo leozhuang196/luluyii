@@ -36,8 +36,10 @@ class UserInfo extends \yii\db\ActiveRecord
             case '1':
                 return '女';
             break;
-            default:
+            case '2':
                 return '保密';
+            default:
+                return NUll;
             break;
         }
     }

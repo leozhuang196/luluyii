@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-07 11:06:35
+Date: 2016-05-07 11:12:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS `lulu_user_info`;
 CREATE TABLE `lulu_user_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
-  `sex` tinyint(1) unsigned DEFAULT '2' COMMENT '0=男，1=女，2=保密',
+  `sex` tinyint(1) unsigned DEFAULT NULL COMMENT '0=男，1=女，2=保密',
   `qq` int(11) unsigned DEFAULT NULL,
   `birthday` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
