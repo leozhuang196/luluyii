@@ -1,6 +1,8 @@
 <?php
 namespace modules\user\models;
 use Yii;
+use yii\web\UploadedFile;
+use yii\helpers\Html;
 
 class UserInfo extends \yii\db\ActiveRecord
 {
@@ -22,6 +24,7 @@ class UserInfo extends \yii\db\ActiveRecord
     {
         return [
             'user_id' => Yii::t('user', 'User Id'),
+            'image' => Yii::t('user', 'Image'),
             'sex' => Yii::t('user', 'Sex'),
             'qq' => Yii::t('user', 'Qq'),
             'location' => Yii::t('user', 'Location'),
@@ -43,5 +46,34 @@ class UserInfo extends \yii\db\ActiveRecord
                 return NUll;
             break;
         }
+    }
+    
+    public function saveImage($model)
+    {
+        //getInstance()实力化对象
+        $image = UploadedFile::getInstance($model, 'image');
+        //当用户未选择文件就点击更新按钮的时候，没有获取到文件，然后NUll
+        if($image === NULL){
+            return true;
+        }
+        //随机生成的文件名称
+        $randName = time().'.'.$image->getExtension();
+        //按年份生成的路径
+        $rootPath = 'images/'.date('Y',time()).'/';
+        if (!file_exists($rootPath)) {
+            mkdir($rootPath);
+        }
+        $image->saveAs($rootPath . $randName);
+        //如果不是默认的头像，用户更新头像的时候删除之前更新过的头像，避免默认头像被删除
+        if($model->image !== \Yii::$app->params['defaultUserImage']){
+            unlink($model->image);
+        }
+        //更新用户的头像
+        $model->image = $rootPath . $randName;
+        return $model->save();
+    }
+    
+    public static function showImage($model,$width='30') {
+        return Html::img('@web/'.$model->image,['width'=> $width]);
     }
 }

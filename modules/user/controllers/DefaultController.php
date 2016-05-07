@@ -117,7 +117,7 @@ class DefaultController extends Controller
     public function actionModifyInfo()
     {
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
-        if ($model->load(Yii::$app->request->post()) && $model->save()){
+        if ($model->load(Yii::$app->request->post()) && $model->saveImage($model) && $model->save()){
             Yii::$app->getSession()->setFlash('success','个人信息修改成功');
             return $this->refresh();
         }

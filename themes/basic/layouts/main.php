@@ -6,6 +6,7 @@ use yii\bootstrap\Alert;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use kartik\icons\Icon;
+use modules\user\models\UserInfo;
 AppAsset::register($this);
 Icon::map($this);
 ?>
@@ -44,20 +45,34 @@ Icon::map($this);
     } else {
         $user = Yii::$app->user;
         $identity = $user->identity;
-        $menuItems = [
-            ['label' => $identity->username,
-                'items' => [
-                    ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> 用户管理','url' => ['/user/user']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> 用户信息管理','url' => ['/user/user-info']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> gii','url' => ['/gii']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> debug','url' => ['/debug']],
-                    '<li class="divider"></li>',
-                    ['label' => '<span class="glyphicon glyphicon-log-out"></span> 退出登录',
-                        'url' => ['/user/default/logout'],'linkOptions' => ['data-method' => 'post']],
+        $userInfo = UserInfo::findOne(['user_id' => $identity->id]);
+        if ($identity->username!=='admin'){
+            $menuItems = [
+                ['label' => UserInfo::showImage($userInfo),
+                    'items' => [
+                        ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
+                        '<li class="divider"></li>',
+                        ['label' => '<span class="glyphicon glyphicon-log-out"></span> 退出登录',
+                            'url' => ['/user/default/logout'],'linkOptions' => ['data-method' => 'post']],
+                    ],
                 ],
-            ],
-        ];
+            ];
+        }else{
+            $menuItems = [
+                ['label' => UserInfo::showImage($userInfo),
+                    'items' => [
+                        ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
+                        ['label' => '<span class="glyphicon glyphicon-user"></span> 用户管理','url' => ['/user/user']],
+                        ['label' => '<span class="glyphicon glyphicon-user"></span> 用户信息管理','url' => ['/user/user-info']],
+                        ['label' => '<span class="glyphicon glyphicon-user"></span> gii','url' => ['/gii']],
+                        ['label' => '<span class="glyphicon glyphicon-user"></span> debug','url' => ['/debug']],
+                        '<li class="divider"></li>',
+                        ['label' => '<span class="glyphicon glyphicon-log-out"></span> 退出登录',
+                            'url' => ['/user/default/logout'],'linkOptions' => ['data-method' => 'post']],
+                    ],
+                ],
+            ];
+        }
     }
     echo Nav::widget([
         'options' => ['class' => 'nav navbar-nav navbar-right'],

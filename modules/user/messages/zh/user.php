@@ -13,6 +13,7 @@ return [
     'Registration Ip' => '注册IP地址',
     'User Info' => '用户信息',
     'User Id' => '用户id',
+    'Image' => '用户头像',
     'Created At' => '注册时间',
     'Sex' => '性别',
     'Location' => '所在城市',
