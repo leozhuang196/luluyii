@@ -32,6 +32,7 @@ class SignupForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
+            ['email', 'validateEmail'],
             ['email', 'unique', 'targetClass' => 'modules\user\models\User', 'message' => '邮箱已经被使用过.'],
 
             [['password','repassword'],'required'],
@@ -56,7 +57,15 @@ class SignupForm extends Model
             'verifyCode'=> Yii::t('user', 'VerifyCode'),
         ];
     }
-
+    
+    //这里的邮箱验证仅仅是checkdnsrr()验证邮箱的域名是否存在，但是貌似yii2自带的emailValidate已经验证了，可是验证不了的？
+    public function validateEmail($attribute, $params)
+    {
+        if (!checkdnsrr(substr($this->email, strrpos($this->email, '@') + 1))){
+            $this->addError('email', '邮箱不是有效的邮箱地址');
+        }
+    }
+    
     public function init()
     {
         parent::init();
@@ -82,7 +91,7 @@ class SignupForm extends Model
             $user->registration_ip = Yii::$app->request->userIP;
             $user->generateAuthKey();
             //通过生成token进行邮箱的验证
-            if(!User::isPasswordResetTokenValid($user->password_reset_token)){
+            if(!$user->isPasswordResetTokenValid($user->password_reset_token)){
                 $user->generatePasswordResetToken();
             }
             if($user->save()){
@@ -105,8 +114,7 @@ class SignupForm extends Model
            throw new ForbiddenHttpException('激活账号的令牌不能为空，请到邮箱再次点击链接激活您的账号');
         }
         if (!User::isPasswordResetTokenValid($token)){
-            User::findOne(['password_reset_token'=> $token])->delete();
-            throw new ForbiddenHttpException('激活账号的令牌已经失效，请重新注册您的账号');
+            throw new ForbiddenHttpException('激活账号的令牌已经失效，请重新找回密码的方式重新发送邮件');
         }
         $user = User::findByPasswordResetToken($token);
         if(!$user){

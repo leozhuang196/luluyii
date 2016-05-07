@@ -33,7 +33,6 @@ class FindPasswordForm extends Model
             //当然，如果在客户端先验证了，最好也在服务器端再一次进行验证
             ['email','exist',
                 'targetClass' => 'modules\user\models\User',
-                'filter' => ['status' => User::STATUS_ACTIVE],
                 'message' => '用户不存在',
             ],
         ];
@@ -48,10 +47,7 @@ class FindPasswordForm extends Model
 
     public function sendEmail()
     {
-        $user = User::findOne([
-            'status'=>User::STATUS_ACTIVE,
-            'email'=>$this->email
-        ]);
+        $user = User::findOne(['email'=>$this->email]);
         if($user){
             //如果重置密码的令牌过期了，就重新生成令牌
             //一开始令牌为空，是过期的，所以一开始会生成令牌
