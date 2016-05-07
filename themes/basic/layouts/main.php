@@ -49,6 +49,7 @@ Icon::map($this);
                 'items' => [
                     ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
                     ['label' => '<span class="glyphicon glyphicon-user"></span> 用户管理','url' => ['/user/user']],
+                    ['label' => '<span class="glyphicon glyphicon-user"></span> 用户信息管理','url' => ['/user/user-info']],
                     ['label' => '<span class="glyphicon glyphicon-user"></span> gii','url' => ['/gii']],
                     ['label' => '<span class="glyphicon glyphicon-user"></span> debug','url' => ['/debug']],
                     '<li class="divider"></li>',

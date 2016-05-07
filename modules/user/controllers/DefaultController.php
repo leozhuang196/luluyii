@@ -57,7 +57,7 @@ class DefaultController extends Controller
         $this->performAjaxValidation($model);
         if ($model->load(Yii::$app->request->post())) {
             if ($model->signup()) {
-                Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请前去完成验证');
+                Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请在1小时内完成验证');
                 return $this->goHome();
             }
         }

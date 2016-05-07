@@ -104,6 +104,10 @@ class SignupForm extends Model
         if(empty($token) || !is_string($token)){
            throw new ForbiddenHttpException('激活账号的令牌不能为空，请到邮箱再次点击链接激活您的账号');
         }
+        if (!User::isPasswordResetTokenValid($token)){
+            User::findOne(['password_reset_token'=> $token])->delete();
+            throw new ForbiddenHttpException('激活账号的令牌已经失效，请重新注册您的账号');
+        }
         $user = User::findByPasswordResetToken($token);
         if(!$user){
             throw new ForbiddenHttpException('您的账号已经激活，请到登陆页面进行登陆');

@@ -21,6 +21,7 @@ class UserInfo extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'user_id' => Yii::t('user', 'User Id'),
             'sex' => Yii::t('user', 'Sex'),
             'qq' => Yii::t('user', 'Qq'),
             'location' => Yii::t('user', 'Location'),

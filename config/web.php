@@ -45,7 +45,8 @@ $config = [
             'theme' => [
                 'pathMap' => [
                     '@app/views'=>'@themes/basic',
-                    '@app/modules/user/views'=>'@themes/modules/user',
+                    '@modules/user/views'=>'@themes/modules/user',
+                    '@modules/user/views/userinfo'=>'@themes/modules/user',
                 ],
             ],
         ],
