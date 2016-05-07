@@ -22,14 +22,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
-    public function rules()
-    {
-        return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-        ];
-    }
-
     public function attributeLabels()
     {
         return [
@@ -66,10 +58,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
-
         return static::findOne([
             'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
         ]);
     }
 

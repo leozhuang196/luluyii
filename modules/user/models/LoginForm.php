@@ -35,7 +35,7 @@ class LoginForm extends Model
             $user = $this->getUser();
             if (!$user){
                 $this->addError('username', '用户不存在');
-            }else if($user['password_reset_token']!==null){
+            }else if($user['password_reset_token']!==null || $user->status!==User::STATUS_ACTIVE){
                 $this->addError('username','请验证邮箱后再登录');
             }else if(!$user->validatePassword($this->password)){
                 $this->addError('password', '密码错误');

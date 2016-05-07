@@ -113,6 +113,7 @@ class DefaultController extends Controller
         return $this->render('modifyPassword',['model'=>$model]);
     }
     
+    //修改个人信息
     public function actionModifyInfo()
     {
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
@@ -123,6 +124,7 @@ class DefaultController extends Controller
         return $this->render('ModifyInfo',['model'=>$model]);
     }
     
+    //展示有多少个用户和前十个用户的用户名
     public function actionUsers()
     {
         $count = User::find()->where(['status' => 10])->count();
@@ -130,6 +132,7 @@ class DefaultController extends Controller
         return $this->render('users', ['count' => $count,'model' => $model]);
     }
     
+    //展示用户的个人信息
     public function actionShow($user_id)
     {
         $user = User::findOne(['id' => $user_id]);

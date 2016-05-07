@@ -109,6 +109,8 @@ class SignupForm extends Model
             throw new ForbiddenHttpException('您的账号已经激活，请到登陆页面进行登陆');
         }
         $user->removePasswordResetToken();
+        //注册的时候status字段默认为0，现在把它设置为10，即激活状态
+        $user->status = User::STATUS_ACTIVE;
         return $user->save();
     }
 }
