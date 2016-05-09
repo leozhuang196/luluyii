@@ -124,7 +124,7 @@ class DefaultController extends Controller
             Yii::$app->getSession()->setFlash('success','个人信息修改成功');
             return $this->refresh();
         }
-        return $this->render('ModifyInfo',['model'=>$model]);
+        return $this->render('modifyInfo',['model'=>$model]);
     }
     
     //展示有多少个用户和前十个用户的用户名
