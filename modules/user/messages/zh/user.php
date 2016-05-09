@@ -14,6 +14,8 @@ return [
     'User Info' => '用户信息',
     'User Id' => '用户id',
     'Image' => '用户头像',
+    'Score' => '积分',
+    'Signin Time' => '签到',
     'Created At' => '注册时间',
     'Sex' => '性别',
     'Location' => '所在城市',

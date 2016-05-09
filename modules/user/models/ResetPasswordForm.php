@@ -50,6 +50,7 @@ class ResetPasswordForm extends Model
         $user->setPassword($this->new_password);
         //移除重置密码的令牌
         $user->removePasswordResetToken();
+        $user->status = User::STATUS_ACTIVE;
         return $user->save();
     }
 }

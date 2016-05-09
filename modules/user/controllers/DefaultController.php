@@ -18,10 +18,10 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
-                'only' => ['logout', 'signup', 'activate-account','find-password','reset-password','logout','modify-password','modify-info'],
+                'only' => ['logout', 'signup','signin', 'activate-account','find-password','reset-password','logout','modify-password','modify-info'],
                 'rules' => [
                     ['actions' => ['login','signup','activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
-                    ['actions' => ['logout','modify-password','modify-info'],'allow' => true,'roles'=>['@']],
+                    ['actions' => ['logout','modify-password','modify-info','signin'],'allow' => true,'roles'=>['@']],
                 ],
             ],
             'verbs' => [
@@ -71,6 +71,9 @@ class DefaultController extends Controller
         if($model->removeToken($token)){
             Yii::$app->getSession()->setFlash('success','邮件已经验证，请登录您的帐号');
             return $this->goHome();
+        }else{
+            Yii::$app->getSession()->setFlash('error','激活账号的令牌已经失效，请重新发送邮件激活您的账号');
+            return $this->redirect('find-password');
         }
     }
     
@@ -138,6 +141,24 @@ class DefaultController extends Controller
         $user = User::findOne(['id' => $user_id]);
         $user_info = UserInfo::findOne(['user_id' => $user_id]);
         return $this->render('show',['user'=>$user,'user_info'=>$user_info]);
+    }
+    
+    //签到，未实现
+    public function actionSignin()
+    {
+        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
+        if (!$model->signin_time){
+            if ($model->load(Yii::$app->request->post())){
+                $model->score ++;
+                $model->save();
+                Yii::$app->getSession()->setFlash('success','签到成功');
+                return $this->refresh();
+            }
+        }else if($model->signin_time < mktime(0,0,0,date('m'),date('d'),date('Y'))){
+            $model->signin_time = NUll;
+            die('您已签到');
+        }
+        return $this->render('signin',['model'=>$model]);
     }
     
     protected function performAjaxValidation($model)

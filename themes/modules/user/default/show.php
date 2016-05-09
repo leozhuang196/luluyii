@@ -16,6 +16,7 @@ $this->title = $user->username.'的个人信息';
                         "height"=>"84"
                         ]],
                 'value' => '../../'.$user_info->image],
+                'score',
                 ['attribute' => 'sex',
                 'value' => $user_info->getSex($user_info->sex),
                 //当$user_info->sex不为空的时候才会显示

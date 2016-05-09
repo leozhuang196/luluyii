@@ -28,4 +28,12 @@ class DefaultController extends Controller
     {
         return $this->render('datePicker');
     }
+    
+    public function actionGetZeroTime()
+    {
+        //mktime() 函数返回一个日期的 Unix 时间戳
+        $a =mktime(0,0,0,date('m'),date('d'),date('Y'));
+        //返回的是00:05:00？？
+        return date('Y-m-d H:m:s',$a);
+    }
 }

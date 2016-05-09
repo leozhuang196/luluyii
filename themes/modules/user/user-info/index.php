@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'user_id',
             'sex',
+            'score',
             'qq',
             'birthday',
             'location',

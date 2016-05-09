@@ -106,6 +106,8 @@ class SignupForm extends Model
                  $userInfo = new UserInfo();
                  $userInfo->user_id = $user->id;
                  return  $userInfo->save();
+             }else{
+                 $this->addError('email','请提供有效的邮箱地址');
              }
         }
         return null;
@@ -117,7 +119,8 @@ class SignupForm extends Model
            throw new ForbiddenHttpException('激活账号的令牌不能为空，请到邮箱再次点击链接激活您的账号');
         }
         if (!User::isPasswordResetTokenValid($token)){
-            throw new ForbiddenHttpException('激活账号的令牌已经失效，请重新找回密码的方式重新发送邮件');
+            return NULL;
+            //throw new ForbiddenHttpException('激活账号的令牌已经失效，请通过重新找回密码的方式重新发送邮件');
         }
         $user = User::findByPasswordResetToken($token);
         if(!$user){

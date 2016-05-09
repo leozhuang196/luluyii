@@ -15,7 +15,7 @@ class UserInfo extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'sex', 'qq'], 'integer'],
+            [['user_id', 'sex', 'qq','score','signin_time'], 'integer'],
             [['location','birthday'], 'string', 'max' => 255]
         ];
     }
@@ -24,7 +24,9 @@ class UserInfo extends \yii\db\ActiveRecord
     {
         return [
             'user_id' => Yii::t('user', 'User Id'),
+            'signin_time' => Yii::t('user','Signin Time'),
             'image' => Yii::t('user', 'Image'),
+            'score' => Yii::t('user', 'Score'),
             'sex' => Yii::t('user', 'Sex'),
             'qq' => Yii::t('user', 'Qq'),
             'location' => Yii::t('user', 'Location'),
