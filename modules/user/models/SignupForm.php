@@ -26,7 +26,7 @@ class SignupForm extends Model
             //^是开始符号  $是结尾符号        / /是界定符
             ['username', 'match','pattern'=>'/^[(\x{4E00}-\x{9FA5})a-zA-Z]+[(\x{4E00}-\x{9FA5})\w]*$/u','message'=>'用户名由字母，汉字，数字，下划线组成，且不能以数字和下划线开头。'],
             ['username', 'unique', 'targetClass' => 'modules\user\models\User', 'message' => '用户名已经被注册过.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 2, 'max' => 12],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -94,16 +94,19 @@ class SignupForm extends Model
             if(!$user->isPasswordResetTokenValid($user->password_reset_token)){
                 $user->generatePasswordResetToken();
             }
-            if($user->save()){
-                $userInfo = new UserInfo();
-                $userInfo->user_id = $user->id;
-                $userInfo->save();
-                return  yii::$app->mailer->compose('ActivateAccountToken',['user'=>$user])
-                ->setFrom([yii::$app->params['smtpUser'] => Yii::$app->params['siteName']])
-                ->setTo($this->email)
-                ->setSubject(Yii::$app->params['siteName'].'激活账号')
-                ->send();
-            }
+            $sendEmailSuccess = yii::$app->mailer->compose('ActivateAccountToken',['user'=>$user])
+                 ->setFrom([yii::$app->params['smtpUser'] => Yii::$app->params['siteName']])
+                 ->setTo($this->email)
+                 ->setSubject(Yii::$app->params['siteName'].'激活账号')
+                 ->send();
+            //当发送邮件成功时才进行保存用户
+            if($sendEmailSuccess){
+                 $user->save();
+                 //保存用户的个人信息
+                 $userInfo = new UserInfo();
+                 $userInfo->user_id = $user->id;
+                 return  $userInfo->save();
+             }
         }
         return null;
     }

@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use modules\user\models\UserInfo;
 $this->title = '活跃用户';
 ?>
 <div id="active-users" class="panel panel-default">
@@ -10,6 +11,7 @@ $this->title = '活跃用户';
     <div class="panel-body">
         <?php foreach ($model as $key => $value): ?>
             <div class="col-md-1">
+            	<?= UserInfo::showImage(UserInfo::findOne(['user_id'=>$value['id']]),$width=50)?>
                 <?= Html::a($value['username'], ['/user/default/show', 'user_id' => $value['id']]) ?>
             </div>
         <?php endforeach ?>

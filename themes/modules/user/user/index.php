@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
+use modules\user\models\User;
 $this->title = Yii::t('user', 'Manager');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'registration_ip',
              ['attribute' => 'created_at',
                 'value' => function ($model) {
-                 return date('Y-m-d G:i:s', $model->created_at);
+                 return User::getCreatdTime($model->created_at);
             }],
             ['class' => 'yii\grid\ActionColumn',
              'header' => "操作",

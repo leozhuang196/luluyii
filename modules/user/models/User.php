@@ -53,6 +53,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
     }
 
+    public static function getCreatdTime($created_at)
+    {
+        return date('Y-m-d H:m:s',$created_at);
+    }
+    
     public static function findByPasswordResetToken($token)
     {
         if (!static::isPasswordResetTokenValid($token)) {

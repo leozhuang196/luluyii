@@ -56,8 +56,12 @@ class UserInfo extends \yii\db\ActiveRecord
         if($image === NULL){
             return true;
         }
+        $extensionName = $image->getExtension();
+        if(!in_array($extensionName, ['jpg','png','jpeg'])){
+            return false;
+        }
         //随机生成的文件名称
-        $randName = time().'.'.$image->getExtension();
+        $randName = time().'.'.$extensionName;
         //按年份生成的路径
         $rootPath = 'images/'.date('Y',time()).'/';
         if (!file_exists($rootPath)) {

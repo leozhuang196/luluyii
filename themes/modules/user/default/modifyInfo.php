@@ -17,7 +17,7 @@ $this->title = '修改个人信息';
             </div>
             <div class='panel-body'>
                 <?php $form = ActiveForm::begin(['id'=>'modifyInfoForm','options' => ['enctype'=>'multipart/form-data']]);?>
-                	<?=UserInfo::showImage($model,'150');?>
+                	<?=UserInfo::showImage($model,'150');?>  <?=UserInfo::showImage($model,'100');?>  <?=UserInfo::showImage($model,'50');?>
                 	<?=$form->field($model,'image')->fileInput()?>
                     <?=$form->field($model,'sex')->inline()->radioList((['0'=>'男','女','保密']))?>
                     <?=$form->field($model,'qq')->textInput()?>
