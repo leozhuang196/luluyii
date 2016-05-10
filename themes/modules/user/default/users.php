@@ -11,7 +11,7 @@ $this->title = '活跃用户';
     <div class="panel-body">
         <?php foreach ($model as $key => $value): ?>
             <div class="col-md-1">
-            	<?= UserInfo::showImage(UserInfo::findOne(['user_id'=>$value['id']]),$width=50)?>
+            	<?= UserInfo::showImage(UserInfo::findOne(['user_id'=>$value['id']]))?>
                 <?= Html::a($value['username'], ['/user/default/show', 'user_id' => $value['id']]) ?>
             </div>
         <?php endforeach ?>

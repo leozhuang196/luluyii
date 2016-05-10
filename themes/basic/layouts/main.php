@@ -49,7 +49,7 @@ Icon::map($this);
         $userInfo = UserInfo::findOne(['user_id' => $identity->id]);
         if ($identity->username!=='admin'){
             $menuItems = [
-                ['label' => UserInfo::showImage($userInfo),
+                ['label' => UserInfo::showImage($userInfo,['width'=>30,'height'=>30]),
                     'items' => [
                         ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
                         '<li class="divider"></li>',

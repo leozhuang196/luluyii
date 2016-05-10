@@ -11,6 +11,7 @@ use modules\user\models\ModifyPasswordForm;
 use modules\user\models\UserInfo;
 use modules\user\models\User;
 use modules\user\models\SigninForm;
+use modules\user\models\SendMessageForm;
 
 class DefaultController extends Controller
 {
@@ -19,10 +20,10 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
-                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','modify-image'],
+                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','modify-image','send-message'],
                 'rules' => [
                     ['actions' => ['activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
-                    ['actions' => ['logout','modify-password','modify-info','modify-image','signin'],'allow' => true,'roles'=>['@']],
+                    ['actions' => ['logout','modify-password','modify-info','modify-image','signin','send-message'],'allow' => true,'roles'=>['@']],
                 ],
             ],
             'verbs' => [
@@ -167,6 +168,16 @@ class DefaultController extends Controller
             Yii::$app->getSession()->setFlash('error','您今天已签到，明天再来签到');
         }
         return $this->goHome();
+    }
+    
+    public function actionSendMessage()
+    {
+        $model = new SendMessageForm();
+        if (Yii::$app->request->post() && $model->sendMessage()){
+            Yii::$app->getSession()->setFlash('success','邮件发送成功');
+            return $this->refresh();
+        }
+        return $this->render('sendMessage',['modle'=>$model]);
     }
     
     protected function performAjaxValidation($model)

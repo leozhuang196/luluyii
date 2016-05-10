@@ -79,7 +79,7 @@ class UserInfo extends \yii\db\ActiveRecord
         return $model->save();
     }
     
-    public static function showImage($model,$width='30') {
-        return Html::img('@web/'.$model->image,['width'=> $width]);
+    public static function showImage($model,$option=['width'=>40,'height'=>40]) {
+        return Html::img('@web/'.$model->image,['width'=> $option['width'],'height'=>$option['height']]);
     }
 }
