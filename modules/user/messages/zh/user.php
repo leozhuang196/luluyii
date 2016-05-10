@@ -15,6 +15,7 @@ return [
     'User Id' => '用户id',
     'Image' => '用户头像',
     'Score' => '个人积分',
+    'Signature' => '个性签名',
     'Signin' => '签到',
     'Signin Time' => '签到时间',
     'Created At' => '注册时间',

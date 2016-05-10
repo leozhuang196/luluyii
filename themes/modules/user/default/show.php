@@ -25,6 +25,7 @@ $this->title = $user->username.'的个人信息';
                 'location',
                 'qq',
                 'birthday',
+                'signature',
                 ['attribute' => '注册时间',
                  'value' => User::getCreatdTime($user->created_at),]
             ],

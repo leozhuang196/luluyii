@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'user_id')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'score')->textInput(['maxlength' => true]) ?>
+     <?= $form->field($model, 'signature')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'sex')->textInput() ?>
     <?= $form->field($model, 'qq')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'birthday')->textInput(['maxlength' => true]) ?>

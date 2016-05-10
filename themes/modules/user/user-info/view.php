@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'user_id',
             'score',
+            'signature',
             ['attribute' => 'sex',
                 'value' => $model->getSex($model->sex),
             ],

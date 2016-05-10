@@ -1,5 +1,4 @@
 <?php
-use yii\helpers\Html;
 use yii\grid\GridView;
 $this->title = Yii::t('user', 'User Info');
 $this->params['breadcrumbs'][] = $this->title;
@@ -12,9 +11,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'sex',
             'score',
+            'signature',
             'qq',
             'birthday',
             'location',
+            'image',
             ['class' => 'yii\grid\ActionColumn',
              'template' => '{view} {update} ',
             ],

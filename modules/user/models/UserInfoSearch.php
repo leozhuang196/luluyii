@@ -9,8 +9,8 @@ class UserInfoSearch extends UserInfo
     public function rules()
     {
         return [
-            [['id', 'user_id', 'sex', 'qq'], 'integer'],
-            [['birthday', 'location'], 'safe'],
+            [['id', 'user_id', 'sex', 'qq','score'], 'integer'],
+            [['birthday', 'location','signature'], 'safe'],
         ];
     }
 
@@ -22,7 +22,6 @@ class UserInfoSearch extends UserInfo
     public function search($params)
     {
         $query = UserInfo::find();
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -36,6 +35,7 @@ class UserInfoSearch extends UserInfo
             'id' => $this->id,
             'user_id' => $this->user_id,
             'sex' => $this->sex,
+            'score' => $this->score,
             'qq' => $this->qq,
         ]);
         $query->andFilterWhere(['like', 'birthday', $this->birthday])
