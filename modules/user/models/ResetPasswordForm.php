@@ -44,13 +44,15 @@ class ResetPasswordForm extends Model
     public function resetPassword()
     {
         $user = $this->_user;
-        //$user->password =  $this->password使用的是php的魔术方法，当调用不存在的属性/方法时，会调用__set()方法
-        //由于User::setPassword()的基类中BaseActiveRecord有__set()方法
-        //当$user->password其实访问的就是User::setPassword()方法
-        $user->setPassword($this->new_password);
-        //移除重置密码的令牌
-        $user->removePasswordResetToken();
-        $user->status = User::STATUS_ACTIVE;
-        return $user->save();
+        if($this->validate()){
+            //$user->password =  $this->password使用的是php的魔术方法，当调用不存在的属性/方法时，会调用__set()方法
+            //由于User::setPassword()的基类中BaseActiveRecord有__set()方法
+            //当$user->password其实访问的就是User::setPassword()方法
+            $user->setPassword($this->new_password);
+            //移除重置密码的令牌
+            $user->removePasswordResetToken();
+            $user->status = 10;
+            return $user->save();
+        }
     }
 }

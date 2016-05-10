@@ -18,9 +18,9 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
-                'only' => ['logout', 'signup','signin', 'activate-account','find-password','reset-password','logout','modify-password','modify-info'],
+                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','signin'],
                 'rules' => [
-                    ['actions' => ['login','signup','activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
+                    ['actions' => ['activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
                     ['actions' => ['logout','modify-password','modify-info','signin'],'allow' => true,'roles'=>['@']],
                 ],
             ],
@@ -35,7 +35,7 @@ class DefaultController extends Controller
     
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
         $model = new LoginForm();
@@ -53,13 +53,14 @@ class DefaultController extends Controller
     
     public function actionSignup()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new SignupForm();
         $this->performAjaxValidation($model);
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->signup()) {
-                Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请在1小时内完成验证');
-                return $this->goHome();
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请在1小时内完成验证');
+            return $this->goHome();
         }
         return $this->render('signup', ['model' => $model]);
     }
@@ -81,7 +82,7 @@ class DefaultController extends Controller
     public function actionFindPassword()
     {
         $model = new FindPasswordForm();
-        if($model->load(Yii::$app->request->post()) && $model->validate()){
+        if($model->load(Yii::$app->request->post())){
             if($model->sendEmail()){
                 Yii::$app->getSession()->setFlash('success', '邮件发送成功！请检查您的电子邮箱获得进一步操作说明。');
                 return $this->goHome();
@@ -96,7 +97,7 @@ class DefaultController extends Controller
     public function actionResetPassword($token)
     {
         $model = new ResetPasswordForm($token);
-        if($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()){
+        if($model->load(Yii::$app->request->post()) && $model->resetPassword()){
             Yii::$app->getSession()->setFlash('success','新的密码已经生效，请重新登录您的帐号。');
             return $this->goHome();
         }
@@ -107,11 +108,9 @@ class DefaultController extends Controller
     public function actionModifyPassword()
     {
         $model = new ModifyPasswordForm();
-        if ($model->load(\Yii::$app->request->post())){
-            if($model->modifyPassword()){
-                Yii::$app->getSession()->setFlash('success','密码修改成功');
-                return $this->refresh();
-            }
+        if ($model->load(\Yii::$app->request->post()) && $model->modifyPassword()){
+            Yii::$app->getSession()->setFlash('success','密码修改成功');
+            return $this->refresh();
         }
         return $this->render('modifyPassword',['model'=>$model]);
     }

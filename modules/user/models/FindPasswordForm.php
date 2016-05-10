@@ -47,19 +47,21 @@ class FindPasswordForm extends Model
 
     public function sendEmail()
     {
-        $user = User::findOne(['email'=>$this->email]);
-        if($user){
-            //如果重置密码的令牌过期了，就重新生成令牌
-            //一开始令牌为空，是过期的，所以一开始会生成令牌
-            if(!User::isPasswordResetTokenValid($user->password_reset_token)){
-                $user->generatePasswordResetToken();
-            }
-            if($user->save()){
-                return  Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
+        if ($this->validate()){
+            $user = User::findOne(['email'=>$this->email]);
+            if($user){
+                //如果重置密码的令牌过期了，就重新生成令牌
+                //一开始令牌为空，是过期的，所以一开始会生成令牌
+                if(!User::isPasswordResetTokenValid($user->password_reset_token)){
+                    $user->generatePasswordResetToken();
+                }
+                if($user->save()){
+                    return  Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
                     ->setFrom([yii::$app->params['smtpUser'] => Yii::$app->params['siteName']])
                     ->setTo($this->email)
                     ->setSubject(Yii::$app->params['siteName'].'重置密码 ' )
                     ->send();
+                }
             }
         }
         return false;
