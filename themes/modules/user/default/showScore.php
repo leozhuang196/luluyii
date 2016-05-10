@@ -1,7 +1,6 @@
 <?php
 use yii\widgets\DetailView;
 use yii\helpers\Html;
-use yii\base\Widget;
 $this->title = '个人积分';
 ?>
 <div class='row'>

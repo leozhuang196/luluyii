@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use yii\captcha\Captcha;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Url;
 $this->title = '注册';
 ?>
 <div class='row'>
