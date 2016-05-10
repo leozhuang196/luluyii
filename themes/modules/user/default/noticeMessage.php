@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use modules\user\models\User;
 $this->title = '我的私信';
 ?>
 <div class='row'>
@@ -16,8 +17,13 @@ $this->title = '我的私信';
             <div class='panel-body'>
             	<?= DetailView::widget([
             	    'model' => $model,
-            	    'attributes'=>['message_from','message']
-        	    ])?>
+            	    'attributes'=>[
+            	       ['attribute'=>'message_from',
+            	        'value' => Html::a($model->message_from,
+            	            ['default/show','user_id'=>User::findOne(['username'=>$model->message_from])->id]),
+            	        "format" => "raw"],
+            	       'message',
+        	    ]])?>
             </div>
         </div>
     </div>
