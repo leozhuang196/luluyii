@@ -3,7 +3,8 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 //日期组件：composer require kartik-v/yii2-widget-datepicker "@dev"
 use kartik\date\DatePicker;
-$this->title = '修改个人信息';
+use modules\user\models\UserInfo;
+$this->title = '更换头像';
 ?>
 <div class='row'>
     <div class='col-md-3'>
@@ -15,11 +16,9 @@ $this->title = '修改个人信息';
                 <h3 class='panel-title'><?=Html::encode($this->title)?></h3>
             </div>
             <div class='panel-body'>
-                <?php $form = ActiveForm::begin(['id'=>'modifyInfoForm']);?>
-                    <?=$form->field($model,'sex')->inline()->radioList((['0'=>'男','女','保密']))?>
-                    <?=$form->field($model,'qq')->textInput()?>
-                    <?=$form->field($model,'location')->textInput()?>
-                    <?= $form->field($model, 'birthday')->widget(DatePicker::classname())?>
+                <?php $form = ActiveForm::begin(['id'=>'modifyInfoForm','options' => ['enctype'=>'multipart/form-data']]);?>
+                	<?=UserInfo::showImage($model,'150');?>  <?=UserInfo::showImage($model,'100');?>  <?=UserInfo::showImage($model,'50');?>
+                	<?=$form->field($model,'image')->fileInput()?>
                     <?=Html::submitButton('修改',['class'=>'btn btn-primary'])?>
                 <?php ActiveForm::end();?>
             </div>

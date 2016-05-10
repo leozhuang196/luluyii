@@ -1,11 +1,13 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\Menu;
+use modules\user\models\UserInfo;
 $user = Yii::$app->user->identity;
+$userInfo = UserInfo::findOne(['user_id' => $user->id]);
 ?>
 <div class='panel panel-default'>
     <div class='panel-heading'>
-        <h3 class='panel-title'><?=Html::encode($user->username)?></h3>
+        <h3 class='panel-title'><?= UserInfo::showImage($userInfo)?>  <?=Html::encode($user->username)?></h3>
     </div>
     <div class='panel-body'>
         <?=Menu::widget([
@@ -13,7 +15,9 @@ $user = Yii::$app->user->identity;
             /* 垂直堆叠的导航 nav nav-pills nav-stacked*/
             'options' => ['class'=>'nav nav-pills nav-stacked'],
             'items' => [
-                ['label' => '个人信息','url'=>'modify-info'],
+                ['label' => '个人资料','url'=>'modify-info'],
+                ['label' => '个人积分','url'=>'show-score'],
+                ['label' => '更换头像','url'=>'modify-image'],
                 ['label' => '修改密码','url'=>'modify-password'],
             ],
         ])?>

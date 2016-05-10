@@ -10,6 +10,7 @@ use modules\user\models\ResetPasswordForm;
 use modules\user\models\ModifyPasswordForm;
 use modules\user\models\UserInfo;
 use modules\user\models\User;
+use modules\user\models\SigninForm;
 
 class DefaultController extends Controller
 {
@@ -18,10 +19,10 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
-                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','signin'],
+                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','modify-image'],
                 'rules' => [
                     ['actions' => ['activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
-                    ['actions' => ['logout','modify-password','modify-info','signin'],'allow' => true,'roles'=>['@']],
+                    ['actions' => ['logout','modify-password','modify-info','modify-image','signin'],'allow' => true,'roles'=>['@']],
                 ],
             ],
             'verbs' => [
@@ -35,9 +36,7 @@ class DefaultController extends Controller
     
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+        $this->isNotGuest();
         $model = new LoginForm();
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
             return $this->goHome();
@@ -53,9 +52,7 @@ class DefaultController extends Controller
     
     public function actionSignup()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+        $this->isNotGuest();
         $model = new SignupForm();
         $this->performAjaxValidation($model);
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
@@ -119,11 +116,22 @@ class DefaultController extends Controller
     public function actionModifyInfo()
     {
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
-        if ($model->load(Yii::$app->request->post()) && $model->saveImage($model) && $model->save()){
+        if ($model->load(Yii::$app->request->post()) && $model->save()){
             Yii::$app->getSession()->setFlash('success','个人信息修改成功');
             return $this->refresh();
         }
         return $this->render('modifyInfo',['model'=>$model]);
+    }
+    
+    //更换头像
+    public function actionModifyImage()
+    {
+        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->saveImage($model)){
+            Yii::$app->getSession()->setFlash('success','成功更换头像');
+            return $this->refresh();
+        }
+        return $this->render('modifyImage',['model'=>$model]);
     }
     
     //展示有多少个用户和前十个用户的用户名
@@ -142,22 +150,23 @@ class DefaultController extends Controller
         return $this->render('show',['user'=>$user,'user_info'=>$user_info]);
     }
     
-    //签到，未实现
-    public function actionSignin()
+    //展示用户的个人积分
+    public function actionShowScore()
     {
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
-        if (!$model->signin_time){
-            if ($model->load(Yii::$app->request->post())){
-                $model->score ++;
-                $model->save();
-                Yii::$app->getSession()->setFlash('success','签到成功');
-                return $this->refresh();
-            }
-        }else if($model->signin_time < mktime(0,0,0,date('m'),date('d'),date('Y'))){
-            $model->signin_time = NUll;
-            die('您已签到');
+        return $this->render('showScore',['model'=> $model]);
+    }
+    
+    //签到
+    public function actionSignin()
+    {
+        $model = new SigninForm();
+        if($model->signin()){
+            Yii::$app->getSession()->setFlash('success','签到成功，获得1个积分');
+        }else{
+            Yii::$app->getSession()->setFlash('error','您今天已签到，明天再来签到');
         }
-        return $this->render('signin',['model'=>$model]);
+        return $this->goHome();
     }
     
     protected function performAjaxValidation($model)
@@ -169,6 +178,13 @@ class DefaultController extends Controller
             echo json_encode(\yii\widgets\ActiveForm::validate($model));
             //相当于die()
             Yii::$app->end();
+        }
+    }
+    
+    protected function isNotGuest()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
         }
     }
 }
