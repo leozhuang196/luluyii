@@ -139,8 +139,9 @@ class DefaultController extends Controller
     public function actionUsers()
     {
         $count = User::find()->where(['status' => 10])->count();
-        $model = User::find()->where(['status' => 10])->limit(10)->all();
-        return $this->render('users', ['count' => $count,'model' => $model]);
+        $user_info = UserInfo::find()->limit(10)->orderBy(['score'=>SORT_DESC])->all();
+        //var_dump($user_info);exit();
+        return $this->render('users', ['count' => $count,'user_info' => $user_info]);
     }
     
     //展示用户的个人信息
