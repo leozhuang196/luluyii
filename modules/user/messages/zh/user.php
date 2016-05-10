@@ -21,6 +21,8 @@ return [
     'Created At' => '注册时间',
     'Sex' => '性别',
     'Location' => '所在城市',
+    'Message' => '私信内容',
+    'Message From' => '发信人',
     'Qq' => 'QQ账号',
     'Birthday' => '生日',
     'Manager' => '管理用户',

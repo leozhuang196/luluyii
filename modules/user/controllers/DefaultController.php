@@ -140,7 +140,6 @@ class DefaultController extends Controller
     {
         $count = User::find()->where(['status' => 10])->count();
         $user_info = UserInfo::find()->limit(10)->orderBy(['score'=>SORT_DESC])->all();
-        //var_dump($user_info);exit();
         return $this->render('users', ['count' => $count,'user_info' => $user_info]);
     }
     
@@ -174,11 +173,17 @@ class DefaultController extends Controller
     public function actionSendMessage()
     {
         $model = new SendMessageForm();
-        if (Yii::$app->request->post() && $model->sendMessage()){
-            Yii::$app->getSession()->setFlash('success','邮件发送成功');
+        if ($model->load(Yii::$app->request->post()) && $model->sendMessage()){
+            Yii::$app->getSession()->setFlash('success','私信发送成功');
             return $this->refresh();
         }
-        return $this->render('sendMessage',['modle'=>$model]);
+        return $this->render('sendMessage',['model'=>$model]);
+    }
+    
+    public function actionNoticeMessage()
+    {
+        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
+        return $this->render('noticeMessage',['model'=>$model]);
     }
     
     protected function performAjaxValidation($model)

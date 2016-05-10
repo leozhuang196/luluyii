@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-10 14:11:06
+Date: 2016-05-10 16:55:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,6 +48,8 @@ CREATE TABLE `lulu_user_info` (
   `score` int(11) DEFAULT '0' COMMENT '积分',
   `signin_time` int(11) DEFAULT NULL COMMENT '签到时间',
   `signature` varchar(255) DEFAULT NULL COMMENT '个性签名',
+  `message` varchar(255) DEFAULT NULL COMMENT '私信',
+  `message_from` varchar(12) DEFAULT NULL COMMENT '发信人',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;

@@ -19,6 +19,7 @@ $userInfo = UserInfo::findOne(['user_id' => $user->id]);
                 ['label' => '个人积分','url'=>'show-score'],
                 ['label' => '更换头像','url'=>'modify-image'],
                 ['label' => '修改密码','url'=>'modify-password'],
+                ['label' => '我的私信','url'=>'notice-message'],
             ],
         ])?>
     </div>

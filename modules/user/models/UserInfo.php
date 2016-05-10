@@ -32,6 +32,8 @@ class UserInfo extends \yii\db\ActiveRecord
             'qq' => Yii::t('user', 'Qq'),
             'location' => Yii::t('user', 'Location'),
             'birthday' => Yii::t('user','Birthday'),
+            'message' => Yii::t('user', 'Message'),
+            'message_from' => Yii::t('user', 'Message From'),
         ];
     }
     
@@ -80,7 +82,7 @@ class UserInfo extends \yii\db\ActiveRecord
         return $model->save();
     }
     
-    public static function showImage($model,$width='35',$height='35') {
-        return Html::img('@web/'.$model->image,['width'=> $width,'height'=>$height]);
+    public static function showImage($model,$option=['width'=>'35','height'=>'35']) {
+        return Html::img('@web/'.$model->image,['width'=> $option['width'],'height'=>$option['height']]);
     }
 }

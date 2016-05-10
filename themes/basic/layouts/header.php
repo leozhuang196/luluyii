@@ -29,7 +29,7 @@ if (Yii::$app->user->isGuest) {
     $userInfo = UserInfo::findOne(['user_id' => $identity->id]);
     if ($identity->username!=='admin'){
         $menuItems = [
-            ['label' => UserInfo::showImage($userInfo,'20'),
+            ['label' => UserInfo::showImage($userInfo,['width'=>20,'height'=>20]),
                 'items' => [
                     ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
                     '<li class="divider"></li>',

@@ -12,7 +12,7 @@ $this->title = '活跃用户';
         <?php foreach ($user_info as $key => $value): ?>
         	<?php $user = User::findOne(['id'=>$value['user_id']]);?>
             <div class="col-md-1">
-            	<?= Html::a($value->showImage($value,'60','60'),['default/show','user_id'=>$value['user_id']])?>
+            	<?= Html::a($value->showImage($value,['width'=>'60','height'=>'60']),['default/show','user_id'=>$value['user_id']])?>
             	<?= Html::a($user['username'],['default/show','user_id'=>$value['user_id']])?></br>
             	<?= '积分:'.$value['score']?>
             </div>
