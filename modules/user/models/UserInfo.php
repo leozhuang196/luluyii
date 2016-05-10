@@ -73,13 +73,14 @@ class UserInfo extends \yii\db\ActiveRecord
             mkdir($rootPath);
         }
         $image->saveAs($rootPath . $randName);
+        $user_info = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
         //如果不是默认的头像，用户更新头像的时候删除之前更新过的头像，避免默认头像被删除
-        if($model->image !== \Yii::$app->params['defaultUserImage']){
-            unlink($model->image);
+        if($user_info->image !== \Yii::$app->params['defaultUserImage']){
+            unlink($user_info->image);
         }
         //更新用户的头像
-        $model->image = $rootPath . $randName;
-        return $model->save();
+        $user_info->image = $rootPath . $randName;
+        return $user_info->save();
     }
     
     public static function showImage($model,$option=['width'=>'35','height'=>'35']) {
