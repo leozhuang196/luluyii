@@ -57,13 +57,16 @@ class UserInfo extends \yii\db\ActiveRecord
     {
         //getInstance()实力化对象
         $image = UploadedFile::getInstance($model, 'image');
+        if ($image->size > 200000){
+            
+        }
         //当用户未选择文件就点击更新按钮的时候，没有获取到文件，然后NUll
         if($image === NULL){
             return true;
         }
         $extensionName = $image->getExtension();
         if(!in_array($extensionName, ['jpg','png','jpeg'])){
-            return false;
+            $this->addError('image','文件名错误');
         }
         //随机生成的文件名称
         $randName = time().'.'.$extensionName;

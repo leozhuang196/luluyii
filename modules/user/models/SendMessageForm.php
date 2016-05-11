@@ -2,7 +2,6 @@
 namespace modules\user\models;
 use Yii;
 use yii\base\Model;
-use yii\web\Response;
 
 class SendMessageForm extends Model
 {
@@ -31,12 +30,17 @@ class SendMessageForm extends Model
     public function sendMessage()
     {
         if ($this->validate()){
-            $user_info = UserInfo::findOne(['user_id' => User::findOne(['username'=>$this->username])['id']]);
-            $user_info->message = $this->message;
-            $user_info->message_from = $this->getUser()->username;
-            return $user_info->save();
+            $user_message = new UserMessage();
+            $user_message->from = $this->getUser()->username;
+            $user_message->to = $this->username;
+            $user_message->content = $this->message;
+            if($user_message->save()){
+                die('诚');
+            }else{
+                die('失败');
+            }
         }
-        return null;
+        //return null;
     }
 
     public function getUser()

@@ -7,7 +7,7 @@ $this->title = '个人积分';
     <div class='col-md-3'>
         <?= $this->render('/default/nav')?>
     </div>
-    <div class='col-md-3'>
+    <div class='col-md-6'>
         <div class='panel panel-default'>
             <div class='panel-heading'>
                 <h3 class='panel-title'><?=Html::encode($this->title)?></h3>

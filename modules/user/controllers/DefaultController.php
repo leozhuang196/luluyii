@@ -12,6 +12,7 @@ use modules\user\models\UserInfo;
 use modules\user\models\User;
 use modules\user\models\SigninForm;
 use modules\user\models\SendMessageForm;
+use modules\user\models\SendcontentForm;
 
 class DefaultController extends Controller
 {

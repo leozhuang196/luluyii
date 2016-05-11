@@ -16,7 +16,7 @@ $this->title = '登录';
                     <?=$form->field($model,'rememberMe')->checkbox(['template'=>
                         "<div class=\"checkbox\">\n".Html::a('忘记密码?',['/user/default/find-password'],['class'=>'pull-right']).
                         "{beginLabel}\n{input}\n{labelTitle}\n{endLabel}\n{error}\n{hint}\n</div>"])?>
-                    <?=Html::submitButton('提交',['class'=>'btn btn-block btn-primary'])?>
+                    <?=Html::submitButton('登录',['class'=>'btn btn-block btn-primary'])?>
 			     <?php ActiveForm::end();?>
 			</div>
 		</div>

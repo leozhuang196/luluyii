@@ -63,9 +63,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
-        return static::findOne([
-            'password_reset_token' => $token,
-        ]);
+        return static::findOne(['password_reset_token' => $token]);
     }
 
     public static function isPasswordResetTokenValid($token)
