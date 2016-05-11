@@ -1,7 +1,10 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use app\assets\AppAsset;
 use modules\user\models\User;
+use modules\user\models\UserInfo;
+AppAsset::register($this);
+AppAsset::addCss($this, 'css/media.css');
 $this->title = '我的私信';
 ?>
 <div class='row'>
@@ -12,18 +15,30 @@ $this->title = '我的私信';
         <div class='panel panel-default'>
             <div class='panel-heading'>
                 <?=Html::encode($this->title)?>
-                <span class='pull-right'><?= Html::a('发送私信',['default/send-message'])?></span>
+                <?= Html::a('<i class="fa fa-plus"></i> 发送私信',['default/send-message'],['class'=>"btn btn-success btn-xs pull-right"])?>
             </div>
             <div class='panel-body'>
-            	<?= DetailView::widget([
-            	    'model' => $model,
-            	    'attributes'=>[
-            	       ['attribute'=>'message_from',
-            	        'value' => Html::a($model->message_from,
-            	            ['default/show','user_id'=>User::findOne(['username'=>$model->message_from])->id]),
-            	        "format" => "raw"],
-            	       'message',
-        	    ]])?>
+            	<ul class='media-list'>
+            	<?php foreach ($message as $key=>$value):?>
+        			<li class='media'>
+        				<div class='media-left'>
+        					<!-- 代码查询效率低，考虑优化 -->
+        					<?php $user_id = User::findOne(['username'=>$value->from])->id?>
+        					<?= Html::a(UserInfo::showImage(UserInfo::findOne(['user_id'=>$user_id]),['width'=>'60','height'=>'60']),['default/show','user_id'=>$user_id])?>
+    					</div>
+        				<div class='media-body'>
+        					<div class='media-heading'><?= Html::a($value->from,['default/show','user_id'=>$user_id])?></div>
+        					<p><?= $value->content?></p>
+        					<div class='media-action'>
+        						<?= date('Y-m-d H:s',$value->send_time)?>
+        						<span class='pull-right'>
+        							<?= Html::a('回复',['default/send-message','username' => $value->from])?>
+								</span>
+        					</div>
+        				</div>
+        			</li>
+            	<?php endforeach;?>
+            	</ul>
             </div>
         </div>
     </div>

@@ -9,27 +9,33 @@
 .media-body {
   zoom: 1;
   overflow: hidden;
+  border-bottom: #eee solid 1px;
 }
 
 .media-body {
   width: 10000px;
 }
 
-.media-object {
-  display: block;
-  &.img-thumbnail {
-    max-width: none;
-  }
+.media-list {
+  padding-left: 0;
+  list-style: none;
+	border-bottom: #eee solid 1px;
 }
 
-.media-right,
-.media > .pull-right {
-  padding-left: 10px;
+.media-action {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
 }
 
 .media-left,
 .media > .pull-left {
   padding-right: 10px;
+}
+
+.media-right,
+.media > .pull-right {
+  padding-left: 10px;
 }
 
 .media-left,
@@ -52,7 +58,9 @@
   margin-bottom: 5px;
 }
 
-.media-list {
-  padding-left: 0;
-  list-style: none;
+.media-object {
+  display: block;
+  &.img-thumbnail {
+    max-width: none;
+  }
 }

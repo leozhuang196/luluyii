@@ -13,6 +13,8 @@ use modules\user\models\User;
 use modules\user\models\SigninForm;
 use modules\user\models\SendMessageForm;
 use modules\user\models\SendcontentForm;
+use modules\user\models\UserMessage;
+use modules\user\models\UserFans;
 
 class DefaultController extends Controller
 {
@@ -175,20 +177,40 @@ class DefaultController extends Controller
         return $this->goHome();
     }
     
-    public function actionSendMessage()
+    //发送私信
+    public function actionSendMessage($username='')
     {
         $model = new SendMessageForm();
         if ($model->load(Yii::$app->request->post()) && $model->sendMessage()){
             Yii::$app->getSession()->setFlash('success','私信发送成功');
             return $this->refresh();
         }
-        return $this->render('sendMessage',['model'=>$model]);
+        return $this->render('sendMessage',['model'=>$model,'username'=>$username]);
     }
     
+    //邮件提醒
     public function actionNoticeMessage()
     {
-        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
-        return $this->render('noticeMessage',['model'=>$model]);
+        $message = UserMessage::findAll(['to' => Yii::$app->user->identity->username]);
+        return $this->render('noticeMessage',['message'=>$message]);
+    }
+    
+    //关注
+    public function actionFocus($focus_who)
+    {
+        $user_fans = new UserFans();
+        if($user_fans->focus($focus_who)){
+            return $this->goHome();
+        }
+    }
+    
+    //取消关注
+    public function actionNoFocus($nofocus_who)
+    {
+        $user_fans = UserFans::exitFocus($nofocus_who);
+        if($user_fans->nofocus($user_fans)){
+            return $this->goHome();
+        }
     }
     
     protected function performAjaxValidation($model)
