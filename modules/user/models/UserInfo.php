@@ -55,22 +55,11 @@ class UserInfo extends \yii\db\ActiveRecord
     
     public function saveImage($model)
     {
-        //getInstance()实力化对象
         $image = UploadedFile::getInstance($model, 'image');
-        if ($image->size > 200000){
-            
+        if($image === NULL || !in_array($image->getExtension(), ['jpg','png','jpeg']) || $image->size > 200000){
+            return false;
         }
-        //当用户未选择文件就点击更新按钮的时候，没有获取到文件，然后NUll
-        if($image === NULL){
-            return true;
-        }
-        $extensionName = $image->getExtension();
-        if(!in_array($extensionName, ['jpg','png','jpeg'])){
-            $this->addError('image','文件名错误');
-        }
-        //随机生成的文件名称
-        $randName = time().'.'.$extensionName;
-        //按年份生成的路径
+        $randName = time().'.'.$image->getExtension();
         $rootPath = 'images/'.date('Y',time()).'/';
         if (!file_exists($rootPath)) {
             mkdir($rootPath);
@@ -81,7 +70,6 @@ class UserInfo extends \yii\db\ActiveRecord
         if($user_info->image !== \Yii::$app->params['defaultUserImage']){
             unlink($user_info->image);
         }
-        //更新用户的头像
         $user_info->image = $rootPath . $randName;
         return $user_info->save();
     }

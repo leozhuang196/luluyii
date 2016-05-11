@@ -1,7 +1,6 @@
 <?php
 namespace modules\user\models;
 use Yii;
-use yii\behaviors\TimestampBehavior;
 
 class UserMessage extends \yii\db\ActiveRecord
 {
@@ -10,13 +9,6 @@ class UserMessage extends \yii\db\ActiveRecord
         return '{{%user_message}}';
     }
     
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
-    }
-
     public function attributeLabels()
     {
         return [
@@ -24,7 +16,7 @@ class UserMessage extends \yii\db\ActiveRecord
             'from' => Yii::t('user', 'From'),
             'to' => Yii::t('user', 'To'),
             'content' => Yii::t('user', 'Content'),
-            'created_time' => Yii::t('user', 'Created Time'),
+            'send_time' => Yii::t('user', 'Created Time'),
         ];
     }
 }

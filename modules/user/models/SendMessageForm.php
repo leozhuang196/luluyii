@@ -30,17 +30,17 @@ class SendMessageForm extends Model
     public function sendMessage()
     {
         if ($this->validate()){
+            if ($this->username == $this->getUser()->username){
+                return $this->addError('username','不能发给自己');    
+            }
             $user_message = new UserMessage();
             $user_message->from = $this->getUser()->username;
             $user_message->to = $this->username;
             $user_message->content = $this->message;
-            if($user_message->save()){
-                die('诚');
-            }else{
-                die('失败');
-            }
+            $user_message->send_time = time();
+            return $user_message->save();
         }
-        //return null;
+        return null;
     }
 
     public function getUser()

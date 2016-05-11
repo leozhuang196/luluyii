@@ -129,8 +129,12 @@ class DefaultController extends Controller
     public function actionModifyImage()
     {
         $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
-        if ($model->load(Yii::$app->request->post()) && $model->saveImage($model)){
-            Yii::$app->getSession()->setFlash('success','成功更换头像');
+        if ($model->load(Yii::$app->request->post())){
+            if ($model->saveImage($model)){
+                Yii::$app->getSession()->setFlash('success','成功更换头像');
+            }else {
+                Yii::$app->getSession()->setFlash('error','图片格式必须为jpg/png/jpeg，且大小不能超过2M');
+            }
             return $this->refresh();
         }
         return $this->render('modifyImage',['model'=>$model]);
