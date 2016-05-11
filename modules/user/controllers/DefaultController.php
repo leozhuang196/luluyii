@@ -202,7 +202,8 @@ class DefaultController extends Controller
     {
         $user_fans = new UserFans();
         if($user_fans->focus($focus_who)){
-            return $this->goHome();
+            $user_id = User::findOne(['username'=>$focus_who])->id;
+            return $this->redirect(['show','user_id'=>$user_id]);
         }
     }
     
@@ -211,7 +212,8 @@ class DefaultController extends Controller
     {
         $user_fans = UserFans::exitFocus($nofocus_who);
         if($user_fans->nofocus($user_fans)){
-            return $this->goHome();
+            $user_id = User::findOne(['username'=>$nofocus_who])->id;
+            return $this->redirect(['show','user_id'=>$user_id]);
         }
     }
     
