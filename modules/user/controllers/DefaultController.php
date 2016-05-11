@@ -15,6 +15,7 @@ use modules\user\models\SendMessageForm;
 use modules\user\models\SendcontentForm;
 use modules\user\models\UserMessage;
 use modules\user\models\UserFans;
+use yii\helpers\Url;
 
 class DefaultController extends Controller
 {
