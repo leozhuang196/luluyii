@@ -10,10 +10,20 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-10 16:55:47
+Date: 2016-05-11 17:51:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for lulu_migration
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_migration`;
+CREATE TABLE `lulu_migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user
@@ -34,6 +44,17 @@ CREATE TABLE `lulu_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
+-- Table structure for lulu_user_fans
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_user_fans`;
+CREATE TABLE `lulu_user_fans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` varchar(12) NOT NULL,
+  `to` varchar(12) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Table structure for lulu_user_info
 -- ----------------------------
 DROP TABLE IF EXISTS `lulu_user_info`;
@@ -48,8 +69,19 @@ CREATE TABLE `lulu_user_info` (
   `score` int(11) DEFAULT '0' COMMENT '积分',
   `signin_time` int(11) DEFAULT NULL COMMENT '签到时间',
   `signature` varchar(255) DEFAULT NULL COMMENT '个性签名',
-  `message` varchar(255) DEFAULT NULL COMMENT '私信',
-  `message_from` varchar(12) DEFAULT NULL COMMENT '发信人',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for lulu_user_message
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_user_message`;
+CREATE TABLE `lulu_user_message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` varchar(12) NOT NULL,
+  `to` varchar(12) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `send_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
