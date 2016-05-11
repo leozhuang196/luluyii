@@ -82,6 +82,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $timestamp + $expire >= time();
     }
 
+    public static function isGuest()
+    {
+        return Yii::$app->user->isGuest;
+    }
+
+    public static function getUser()
+    {
+        return Yii::$app->user->identity;
+    }
+
     public function getId()
     {
         return $this->getPrimaryKey();

@@ -6,9 +6,12 @@ use modules\user\models\UserInfo;
 
 class SigninForm extends Model
 {
-    public function signin()
+    public static function signin()
     {
-        $userInfo = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
+        if(User::isGuest()){
+            return true;
+        }
+        $userInfo = UserInfo::findOne(['user_id' => User::getUser()->id]);
         $todayZeroTime = mktime(0,0,0,date('m'),date('d'),date('Y'));
         $tomorrowZeroTime = mktime(0,0,0,date('m'),date('d')+1,date('Y'));
         if ($todayZeroTime<$userInfo->signin_time && $userInfo->signin_time<$tomorrowZeroTime){

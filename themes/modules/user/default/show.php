@@ -8,15 +8,15 @@ $this->title = $user->username.'的个人信息';
 <div class='col-md-4'>
 	<div class="panel panel-default">
 		<div class="panel-heading"><?=$this->title?>
-		<?php if (Yii::$app->user->identity->username !== $user->username):?>
+		<?php if (User::isGuest() || User::getUser()->username !== $user->username):?>
 			<?= Html::a('<i class="fa fa-envelope"></i> 私信',['default/send-message','username' => $user->username],['class'=>"btn btn-primary btn-xs pull-right"])?>
-    		<?php if (!UserFans::exitFocus($user->username)):?>
+    		<?php if (User::isGuest() || !UserFans::exitFocus($user->username)):?>
     			<?= Html::a('<i class="fa fa-plus"></i> 关注',['default/focus','focus_who' => $user->username],['class'=>"btn btn-success btn-xs pull-right"])?>
     		<?php else:?>
     			<?= Html::a('<i class="fa fa-plus"></i> 取消关注',['default/no-focus','nofocus_who' => $user->username],['class'=>"btn btn-danger btn-xs pull-right"])?>
     		<?php endif;?>
 		<?php else:?>
-			<?= Html::a('<i class="fa fa-envelope"></i> 私信',null,['class'=>"btn btn-primary btn-xs pull-right disabled"])?>
+			<?= Html::a('<i class="fa fa-envelope"></i> 私信',null,['class'=>"btn btn-primary btn-xs pull-right"])?>
 			<?= Html::a('<i class="fa fa-plus"></i> 关注',null,['class'=>"btn btn-success btn-xs pull-right disabled"])?>
 		<?php endif;?>
 		</div>

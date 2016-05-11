@@ -23,10 +23,10 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
-                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','modify-image','send-message'],
+                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','modify-image','send-message','focus','nofocus'],
                 'rules' => [
                     ['actions' => ['activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
-                    ['actions' => ['logout','modify-password','modify-info','modify-image','signin','send-message'],'allow' => true,'roles'=>['@']],
+                    ['actions' => ['logout','modify-password','modify-info','modify-image','signin','send-message','focus','nofocus'],'allow' => true,'roles'=>['@']],
                 ],
             ],
             'verbs' => [
@@ -40,7 +40,9 @@ class DefaultController extends Controller
     
     public function actionLogin()
     {
-        $this->isNotGuest();
+        if(!User::isGuest()){
+            return $this->goHome();    
+        }
         $model = new LoginForm();
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
             return $this->goHome();
@@ -56,7 +58,9 @@ class DefaultController extends Controller
     
     public function actionSignup()
     {
-        $this->isNotGuest();
+        if(!User::isGuest()){
+            return $this->goHome();    
+        }
         $model = new SignupForm();
         $this->performAjaxValidation($model);
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
@@ -109,7 +113,7 @@ class DefaultController extends Controller
     public function actionModifyPassword()
     {
         $model = new ModifyPasswordForm();
-        if ($model->load(\Yii::$app->request->post()) && $model->modifyPassword()){
+        if ($model->load(Yii::$app->request->post()) && $model->modifyPassword()){
             Yii::$app->getSession()->setFlash('success','密码修改成功');
             return $this->refresh();
         }
@@ -119,7 +123,7 @@ class DefaultController extends Controller
     //修改个人信息
     public function actionModifyInfo()
     {
-        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
+        $model = UserInfo::findOne(['user_id' => User::getUser()->id]);
         if ($model->load(Yii::$app->request->post()) && $model->save()){
             Yii::$app->getSession()->setFlash('success','个人信息修改成功');
             return $this->refresh();
@@ -130,7 +134,7 @@ class DefaultController extends Controller
     //更换头像
     public function actionModifyImage()
     {
-        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
+        $model = UserInfo::findOne(['user_id' => User::getUser()->id]);
         if ($model->load(Yii::$app->request->post())){
             if ($model->saveImage($model)){
                 Yii::$app->getSession()->setFlash('success','成功更换头像');
@@ -171,8 +175,6 @@ class DefaultController extends Controller
         $model = new SigninForm();
         if($model->signin()){
             Yii::$app->getSession()->setFlash('success','签到成功，获得1个积分');
-        }else{
-            Yii::$app->getSession()->setFlash('error','您今天已签到，明天再来签到');
         }
         return $this->goHome();
     }
@@ -225,10 +227,4 @@ class DefaultController extends Controller
         }
     }
     
-    protected function isNotGuest()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-    }
 }
