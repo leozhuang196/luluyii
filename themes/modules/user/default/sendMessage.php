@@ -14,7 +14,7 @@ $this->title = '发送私信';
             </div>
             <div class='panel-body'>
                 <?php $form = ActiveForm::begin(['id'=>'sendMessageForm']);?>
-                    <?=$form->field($model,'username')->textInput(['value'=>$username])?>
+                    <?=$form->field($model,'username')->textInput(['placeholder'=>'发送给管理员的名字是admin','value'=>$username])?>
                     <?=$form->field($model,'message')->textInput()?>
                     <?=Html::submitButton('发送',['class'=>'btn btn-primary'])?>
                 <?php ActiveForm::end();?>
