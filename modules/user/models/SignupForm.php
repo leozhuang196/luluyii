@@ -100,11 +100,7 @@ class SignupForm extends Model
                  ->send();
             //当发送邮件成功时才进行保存用户
             if($sendEmailSuccess){
-                 $user->save();
-                 //保存用户的个人信息
-                 $userInfo = new UserInfo();
-                 $userInfo->user_id = $user->id;
-                 return  $userInfo->save();
+                 return $user->save();
              }else{
                  $this->addError('email','请提供有效的邮箱地址');
              }
@@ -128,6 +124,10 @@ class SignupForm extends Model
         $user->removePasswordResetToken();
         //注册的时候status字段默认为0，现在把它设置为10，即激活状态
         $user->status = User::STATUS_ACTIVE;
-        return $user->save();
+        $user->save();
+        //保存用户的个人信息
+        $userInfo = new UserInfo();
+        $userInfo->user_id = $user->id;
+        return  $userInfo->save();
     }
 }
