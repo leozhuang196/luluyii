@@ -18,10 +18,10 @@ $this->title = '积分、粉丝、关注';
     	       'score',
 	            ['attribute' => '粉丝数量',
 	            'format' => 'raw',
-	            'value' => UserFans::fansNums($user->username).Html::a('全部粉丝',['show-fans2','username'=>$user->username],['class'=>'pull-right'])],
+	            'value' => '<span class="badge">'.UserFans::fansNums($user->username).'</span>'.Html::a('全部粉丝',['show-fans2','username'=>$user->username],['class'=>'pull-right'])],
 	            ['attribute' => '关注数量',
 	                'format' => 'raw',
-	                'value' => UserFans::focusNums($user->username).Html::a('全部关注',['show-focus2','username'=>$user->username],['class'=>'pull-right'])],
+	                'value' => '<span class="badge">'.UserFans::focusNums($user->username).'</span>'.Html::a('全部关注',['show-focus2','username'=>$user->username],['class'=>'pull-right'])],
     	]])?>
     </div>
 </div>

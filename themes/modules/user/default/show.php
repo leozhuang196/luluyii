@@ -33,10 +33,10 @@ $this->title = $user->username.'的个人信息';
                 'score',
                 ['attribute' => '粉丝数量',
                  'format' => 'raw',
-                 'value' => UserFans::fansNums($user->username).Html::a('全部粉丝',['show-fans','username'=>$user->username],['class'=>'pull-right'])],
+                 'value' => '<span class="badge">'.UserFans::fansNums($user->username).'</span>'.Html::a('全部粉丝',['show-fans','username'=>$user->username],['class'=>'pull-right'])],
                 ['attribute' => '关注数量',
                  'format' => 'raw',
-                 'value' => UserFans::focusNums($user->username).Html::a('全部关注',['show-focus','username'=>$user->username],['class'=>'pull-right'])],
+                 'value' => '<span class="badge">'.UserFans::focusNums($user->username).'</span>'.Html::a('全部关注',['show-focus','username'=>$user->username],['class'=>'pull-right'])],
                 ['attribute' => 'sex',
                  'value' => $user_info->getSex($user_info->sex),
                 //当$user_info->sex不为空的时候才会显示
