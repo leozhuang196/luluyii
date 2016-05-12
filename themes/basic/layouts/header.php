@@ -26,7 +26,6 @@ if(!SigninForm::signin()){
     echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
     'items' => [
-         //['label' => '<span class="glyphicon glyphicon-user"></span> 会员','url' => ['/user/default/users']],
         ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
         ['label' => '<span class="glyphicon glyphicon-check"></span> 签到','url' => ['/user/default/signin']],
     ],

@@ -24,10 +24,10 @@ $this->title = '我的私信';
         				<div class='media-left'>
         					<!-- 代码查询效率低，考虑优化 -->
         					<?php $user_id = User::findOne(['username'=>$value->from])->id?>
-        					<?= Html::a(UserInfo::showImage(UserInfo::findOne(['user_id'=>$user_id]),['width'=>'60','height'=>'60']),['default/show','user_id'=>$user_id])?>
+        					<?= Html::a(UserInfo::showImage(UserInfo::findOne(['user_id'=>$user_id]),['width'=>'60','height'=>'60']),['default/show','username'=>$value->from])?>
     					</div>
         				<div class='media-body'>
-        					<div class='media-heading'><?= Html::a($value->from,['default/show','user_id'=>$user_id])?></div>
+        					<div class='media-heading'><?= Html::a($value->from,['default/show','username'=>$value->from])?></div>
         					<p><?= $value->content?></p>
         					<div class='media-action'>
         						<?= date('Y-m-d H:s',$value->send_time)?>

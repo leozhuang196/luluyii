@@ -1,6 +1,5 @@
 <?php
 namespace modules\user\models;
-use Yii;
 use yii\base\Model;
 use modules\user\models\UserInfo;
 

@@ -214,9 +214,9 @@ class DefaultController extends Controller
     {
         $model = new SigninForm();
         if($model->signin()){
-            Yii::$app->getSession()->setFlash('success','签到成功，获得1个积分');
+            //Yii::$app->getSession()->setFlash('success','签到成功，获得1个积分');
+            return $this->goHome();
         }
-        return $this->goHome();
     }
     
     //发送私信
