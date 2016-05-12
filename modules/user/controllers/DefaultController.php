@@ -233,8 +233,15 @@ class DefaultController extends Controller
     //邮件提醒
     public function actionNoticeMessage()
     {
-        $message = UserMessage::findAll(['to' => Yii::$app->user->identity->username]);
+        $message = UserMessage::findAll(['to' => User::getUser()->username]);
         return $this->render('noticeMessage',['message'=>$message]);
+    }
+    
+    //已发送邮件
+    public function actionHasSendMessage()
+    {
+        $message = UserMessage::findAll(['from' => User::getUser()->username]);
+        return $this->render('hasSendMessage',['message'=>$message]);
     }
     
     //关注

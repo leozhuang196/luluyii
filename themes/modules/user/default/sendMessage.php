@@ -1,11 +1,14 @@
 <?php
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-$this->title = '发送私信';
+$this->title = '写私信';
 ?>
 <div class='row'>
     <div class='col-md-3'>
         <?= $this->render('/default/nav')?>
+    </div>
+    <div class='col-md-3'>
+        <?= $this->render('/default/navMessage')?>
     </div>
     <div class='col-md-6'>
         <div class='panel panel-default'>
