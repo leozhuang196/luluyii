@@ -36,7 +36,7 @@ AppAsset::register($this);
             if( Yii::$app->getSession()->hasFlash('error') ) {
                 echo Alert::widget([
                     'options' => [
-                        'class' => 'alert alert-danger',
+                        'class' => 'alert alert-error',
                     ],
                     'body' => Yii::$app->getSession()->getFlash('error'),
                 ]);

@@ -22,10 +22,13 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
-                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','modify-image','send-message','focus','nofocus'],
+                'only' => ['logout','signin','activate-account','find-password','reset-password','modify-password','modify-info','modify-image','send-message',
+                           'focus','nofocus','show-fans','show-fans2','show-focus','show-focus2'],
                 'rules' => [
                     ['actions' => ['activate-account','find-password','reset-password'],'allow' => true,'roles'=>['?']],
-                    ['actions' => ['logout','modify-password','modify-info','modify-image','signin','send-message','focus','nofocus'],'allow' => true,'roles'=>['@']],
+                    ['actions' => ['logout','modify-password','modify-info','modify-image','signin','send-message','focus','nofocus','show-fans','show-fans2','show-focus','show-focus2'],
+                                    'allow' => true,'roles'=>['@']
+                    ],
                 ],
             ],
             'verbs' => [
@@ -39,7 +42,7 @@ class DefaultController extends Controller
     
     public function actionLogin()
     {
-        if(!User::isGuest()){
+        if(!Yii::$app->user->isGuest){
             return $this->goHome();    
         }
         $model = new LoginForm();
@@ -57,7 +60,7 @@ class DefaultController extends Controller
     
     public function actionSignup()
     {
-        if(!User::isGuest()){
+        if(!Yii::$app->user->isGuest){
             return $this->goHome();    
         }
         $model = new SignupForm();

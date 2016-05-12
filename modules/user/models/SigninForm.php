@@ -7,7 +7,7 @@ class SigninForm extends Model
 {
     public static function signin()
     {
-        if(User::isGuest()){
+        if(\Yii::$app->user->isGuest){
             return true;
         }
         $userInfo = UserInfo::findOne(['user_id' => User::getUser()->id]);

@@ -86,7 +86,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return Yii::$app->user->isGuest;
     }
-
+    
     public static function getUser()
     {
         return Yii::$app->user->identity;
