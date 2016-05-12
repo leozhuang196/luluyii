@@ -212,11 +212,8 @@ class DefaultController extends Controller
     //签到
     public function actionSignin()
     {
-        $model = new SigninForm();
-        if($model->signin()){
-            //Yii::$app->getSession()->setFlash('success','签到成功，获得1个积分');
-            return $this->goHome();
-        }
+        SigninForm::signin();
+        return $this->goHome();
     }
     
     //发送私信

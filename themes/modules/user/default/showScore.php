@@ -4,9 +4,7 @@ use yii\helpers\Html;
 use modules\user\models\UserFans;
 $this->title = '积分、粉丝、关注';
 ?>
-<div class='col-md-4'>
-    <?= $this->render('/default/nav')?>
-</div>
+<div class='col-md-4'><?= $this->render('/default/nav')?></div>
 <div class='col-md-4'>
     <div class='panel panel-default'>
         <div class='panel-heading'>

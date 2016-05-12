@@ -8,7 +8,7 @@ class SigninForm extends Model
     public static function signin()
     {
         if(User::isGuest()){
-            return true;
+            return null;
         }
         $userInfo = UserInfo::findOne(['user_id' => User::getUser()->id]);
         $todayZeroTime = mktime(0,0,0,date('m'),date('d'),date('Y'));
