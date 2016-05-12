@@ -12,10 +12,8 @@ use modules\user\models\UserInfo;
 use modules\user\models\User;
 use modules\user\models\SigninForm;
 use modules\user\models\SendMessageForm;
-use modules\user\models\SendcontentForm;
 use modules\user\models\UserMessage;
 use modules\user\models\UserFans;
-use yii\helpers\Url;
 
 class DefaultController extends Controller
 {
@@ -156,18 +154,59 @@ class DefaultController extends Controller
     }
     
     //展示用户的个人信息
-    public function actionShow($user_id)
+    public function actionShow($username)
     {
-        $user = User::findOne(['id' => $user_id]);
-        $user_info = UserInfo::findOne(['user_id' => $user_id]);
+        $user = User::findOne(['username' => $username]);
+        $user_info = UserInfo::findOne(['user_id' => $user->id]);
         return $this->render('show',['user'=>$user,'user_info'=>$user_info]);
     }
     
-    //展示用户的个人积分
+    //展示用户的个人积分、粉丝数量、关注数量
     public function actionShowScore()
     {
-        $model = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
-        return $this->render('showScore',['model'=> $model]);
+        $user = User::getUser();
+        $user_info = UserInfo::findOne(['user_id' => User::getUser()->id]);
+        return $this->render('showScore',['user'=>$user,'user_info'=> $user_info]);
+    }
+    
+    //展示全部粉丝列表，用在show页面
+    public function actionShowFans($username)
+    {
+        //传递$user和$user_info是为了展示show页面
+        $user = User::findOne(['username' => $username]);
+        $user_info = UserInfo::findOne(['user_id' => $user->id]);
+        $user_fans = UserFans::showFans($username);
+        return $this->render('showFans',['user_fans'=> $user_fans,'user'=>$user,'user_info'=>$user_info]);
+    }
+    
+    //展示全部粉丝列表，用在showScore页面，这里必须优化代码，增加代码的重复利用率
+    public function actionShowFans2($username)
+    {
+        //传递$user和$user_info是为了展示show页面
+        $user = User::findOne(['username' => $username]);
+        $user_info = UserInfo::findOne(['user_id' => $user->id]);
+        $user_fans = UserFans::showFans($username);
+        return $this->render('showFans2',['user_fans'=> $user_fans,'user'=>$user,'user_info'=>$user_info]);
+    }
+    
+    //展示全部关注列表
+    public function actionShowFocus($username)
+    {
+        //传递$user和$user_info是为了展示show页面
+        $user = User::findOne(['username' => $username]);
+        $user_info = UserInfo::findOne(['user_id' => $user->id]);
+        $user_focus = UserFans::showFocus($username);
+        return $this->render('showFocus',['user_focus'=> $user_focus,'user'=>$user,'user_info'=>$user_info]);
+    }
+    
+    //展示全部关注列表
+    public function actionShowFocus2($username)
+    {
+        //传递$user和$user_info是为了展示show页面
+        $user = User::findOne(['username' => $username]);
+        $user_info = UserInfo::findOne(['user_id' => $user->id]);
+        $user_focus = UserFans::showFocus($username);
+        return $this->render('showFocus2',['user_focus'=> $user_focus,'user'=>$user,'user_info'=>$user_info]);
     }
     
     //签到
@@ -203,8 +242,7 @@ class DefaultController extends Controller
     {
         $user_fans = new UserFans();
         if($user_fans->focus($focus_who)){
-            $user_id = User::findOne(['username'=>$focus_who])->id;
-            return $this->redirect(['show','user_id'=>$user_id]);
+            return $this->redirect(['show','username'=>$focus_who]);
         }
     }
     
@@ -213,8 +251,7 @@ class DefaultController extends Controller
     {
         $user_fans = UserFans::exitFocus($nofocus_who);
         if($user_fans->nofocus($user_fans)){
-            $user_id = User::findOne(['username'=>$nofocus_who])->id;
-            return $this->redirect(['show','user_id'=>$user_id]);
+            return $this->redirect(['show','username'=>$nofocus_who]);
         }
     }
     

@@ -17,10 +17,10 @@ $this->title = '活跃用户';
             <div class="col-md-2">
             	<div class='media user-card'>
             		<div class='media-left'>
-            			<?= Html::a($value->showImage($value,['width'=>'60','height'=>'60']),['default/show','user_id'=>$value['user_id']])?>
+            			<?= Html::a($value->showImage($value,['width'=>'60','height'=>'60']),['default/show','user_id'=>$user['username']])?>
             		</div>
             		<div class='media-body'>
-            			<div class='media-heading'><?= Html::a($user['username'],['default/show','user_id'=>$value['user_id']])?></div>
+            			<div class='media-heading'><?= Html::a($user['username'],['default/show','username'=>$user['username']])?></div>
             			<div><?= '积分:'.$value['score']?></div>
             		</div>
             	</div>

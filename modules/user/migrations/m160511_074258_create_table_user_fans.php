@@ -9,6 +9,7 @@ class m160511_074258_create_table_user_fans extends Migration
             'id' => Schema::TYPE_PK,
             'from' => Schema::TYPE_STRING.'(12) NOT NULL',
             'to' => Schema::TYPE_STRING.'(12) NOT NULL',
+            'focus_time' => Schema::TYPE_INTEGER.'(11) NOT NULL',
         ]);
     }
 

@@ -2,7 +2,8 @@
 use yii\helpers\Html;
 use yii\widgets\Menu;
 use modules\user\models\UserInfo;
-$user = Yii::$app->user->identity;
+use modules\user\models\User;
+$user = User::getUser();
 $userInfo = UserInfo::findOne(['user_id' => $user->id]);
 ?>
 <div class='panel panel-default'>
@@ -16,7 +17,7 @@ $userInfo = UserInfo::findOne(['user_id' => $user->id]);
             'options' => ['class'=>'nav nav-pills nav-stacked'],
             'items' => [
                 ['label' => '个人资料','url'=>'modify-info'],
-                ['label' => '个人积分','url'=>'show-score'],
+                ['label' => '积分、关注、粉丝','url'=>'show-score'],
                 ['label' => '更换头像','url'=>'modify-image'],
                 ['label' => '修改密码','url'=>'modify-password'],
                 ['label' => '我的私信','url'=>'notice-message'],

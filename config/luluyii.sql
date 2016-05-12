@@ -10,20 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-11 17:51:17
+Date: 2016-05-12 11:40:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for lulu_migration
--- ----------------------------
-DROP TABLE IF EXISTS `lulu_migration`;
-CREATE TABLE `lulu_migration` (
-  `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user
@@ -49,10 +39,11 @@ CREATE TABLE `lulu_user` (
 DROP TABLE IF EXISTS `lulu_user_fans`;
 CREATE TABLE `lulu_user_fans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `from` varchar(12) NOT NULL,
-  `to` varchar(12) NOT NULL,
+  `from` varchar(12) NOT NULL COMMENT '关注者',
+  `to` varchar(12) NOT NULL COMMENT '被关注者',
+  `focus_time` int(11) NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user_info

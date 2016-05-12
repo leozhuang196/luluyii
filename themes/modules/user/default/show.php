@@ -16,7 +16,7 @@ $this->title = $user->username.'的个人信息';
     			<?= Html::a('<i class="fa fa-plus"></i> 取消关注',['default/no-focus','nofocus_who' => $user->username],['class'=>"btn btn-danger btn-xs pull-right"])?>
     		<?php endif;?>
 		<?php else:?>
-			<?= Html::a('<i class="fa fa-envelope"></i> 私信',null,['class'=>"btn btn-primary btn-xs pull-right"])?>
+			<?= Html::a('<i class="fa fa-envelope"></i> 私信',null,['class'=>"btn btn-primary btn-xs pull-right disabled"])?>
 			<?= Html::a('<i class="fa fa-plus"></i> 关注',null,['class'=>"btn btn-success btn-xs pull-right disabled"])?>
 		<?php endif;?>
 		</div>
@@ -31,8 +31,14 @@ $this->title = $user->username.'的个人信息';
                         ]],
                 'value' => '../../'.$user_info->image],
                 'score',
+                ['attribute' => '粉丝数量',
+                 'format' => 'raw',
+                 'value' => UserFans::fansNums($user->username).Html::a('全部粉丝',['show-fans','username'=>$user->username],['class'=>'pull-right'])],
+                ['attribute' => '关注数量',
+                 'format' => 'raw',
+                 'value' => UserFans::focusNums($user->username).Html::a('全部关注',['show-focus','username'=>$user->username],['class'=>'pull-right'])],
                 ['attribute' => 'sex',
-                'value' => $user_info->getSex($user_info->sex),
+                 'value' => $user_info->getSex($user_info->sex),
                 //当$user_info->sex不为空的时候才会显示
                 //"visible" => $user_info->sex !== NUll,
                 ],
@@ -41,7 +47,7 @@ $this->title = $user->username.'的个人信息';
                 'birthday',
                 'signature',
                 ['attribute' => '注册时间',
-                 'value' => User::getCreatdTime($user->created_at),]
+                 'value' => User::getCreatdTime($user->created_at)]
             ],
          ]) ?>
     </div>
