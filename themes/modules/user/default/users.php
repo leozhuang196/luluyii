@@ -21,7 +21,7 @@ $this->title = '活跃用户';
             		</div>
             		<div class='media-body'>
             			<div class='media-heading'><?= Html::a($user['username'],['default/show','username'=>$user['username']])?></div>
-            			<div><?= '积分:'.$value['score']?></div>
+            			<div class='media-action'><?= '积分:'.$value['score']?></div>
             		</div>
             	</div>
             </div>

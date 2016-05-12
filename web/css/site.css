@@ -104,3 +104,7 @@ a.desc:after {
     background-color: #777;
     border-radius: 10px;
 }
+
+.user-card {
+    margin-bottom: 15px;
+}
