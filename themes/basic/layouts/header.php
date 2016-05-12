@@ -12,24 +12,24 @@ NavBar::begin([
         'class' => 'navbar-default navbar-fixed-top',
     ],
 ]);
-if(!SigninForm::signin()){
+if(SigninForm::signin()){
     echo Nav::widget([
-    'options' => ['class' => 'nav navbar-nav '],
-    'items' => [
-         //['label' => '<span class="glyphicon glyphicon-user"></span> 会员','url' => ['/user/default/users']],
-        ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
-        ['label' => '<span class="glyphicon glyphicon-check"></span> 今天已签到',null,'options'=>['class'=>'disabled']],
-    ],
-    'encodeLabels' => false
+        'options' => ['class' => 'nav navbar-nav '],
+        'items' => [
+            ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
+            ['label' => '<span class="glyphicon glyphicon-check"></span> 签到','url' => ['/user/default/signin']],
+        ],
+        'encodeLabels' => false
     ]);
 }else{
     echo Nav::widget([
-    'options' => ['class' => 'nav navbar-nav '],
-    'items' => [
-        ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
-        ['label' => '<span class="glyphicon glyphicon-check"></span> 签到','url' => ['/user/default/signin']],
-    ],
-    'encodeLabels' => false
+        'options' => ['class' => 'nav navbar-nav '],
+        'items' => [
+            //['label' => '<span class="glyphicon glyphicon-user"></span> 会员','url' => ['/user/default/users']],
+            ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
+            ['label' => '<span class="glyphicon glyphicon-check"></span> 今天已签到',null,'options'=>['class'=>'disabled']],
+        ],
+        'encodeLabels' => false
     ]);
 }
 
