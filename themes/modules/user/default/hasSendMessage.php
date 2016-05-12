@@ -22,7 +22,7 @@ $this->title = '已发送';
         					<?= Html::a(UserInfo::showImage(UserInfo::findOne(['user_id'=>$user_id]),['width'=>'60','height'=>'60']),['default/show','username'=>$value->to])?>
     					</div>
         				<div class='media-body'>
-        					<div class='media-heading'><?= Html::a($value->to,['default/show','username'=>$value->to])?></div>
+        					<div class='media-heading media-action'><?= '收件人'.Html::a($value->to,['default/show','username'=>$value->to])?></div>
         					<p><?= $value->content?></p>
         					<div class='media-action'>
         						<?= date('Y-m-d H:s',$value->send_time)?>

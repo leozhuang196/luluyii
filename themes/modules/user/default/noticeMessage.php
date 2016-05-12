@@ -27,7 +27,7 @@ $this->title = '收件箱';
         					<?= Html::a(UserInfo::showImage(UserInfo::findOne(['user_id'=>$user_id]),['width'=>'60','height'=>'60']),['default/show','username'=>$value->from])?>
     					</div>
         				<div class='media-body'>
-        					<div class='media-heading'><?= Html::a($value->from,['default/show','username'=>$value->from])?></div>
+        					<div class='media-heading media-action'><?= '发件人'.Html::a($value->from,['default/show','username'=>$value->from])?></div>
         					<p><?= $value->content?></p>
         					<div class='media-action'>
         						<?= date('Y-m-d H:s',$value->send_time)?>
