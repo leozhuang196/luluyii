@@ -26,7 +26,7 @@ class UserController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function () {
-                            return in_array(Yii::$app->user->identity->username, ['admin']);
+                            return in_array(Yii::$app->user->identity->username, \Yii::$app->params['adminName']);
                         },
                     ]
                 ],

@@ -1,5 +1,6 @@
 <?php
 return [
+    'adminName' => ['admin'],
     'adminEmail' => '452936616@qq.com',
     'smtpHost' => 'smtp.qq.com',
     'smtpUser' => '452936616@qq.com',

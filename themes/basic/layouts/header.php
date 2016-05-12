@@ -13,26 +13,17 @@ NavBar::begin([
     ],
 ]);
 if(SigninForm::signin()){
-    echo Nav::widget([
-        'options' => ['class' => 'nav navbar-nav '],
-        'items' => [
-            ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
-            ['label' => '<span class="glyphicon glyphicon-check"></span> 签到','url' => ['/user/default/signin']],
-        ],
-        'encodeLabels' => false
-    ]);
+    $items = [['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
+              ['label' => '<span class="glyphicon glyphicon-check"></span> 签到','url' => ['/user/default/signin']]];
 }else{
-    echo Nav::widget([
-        'options' => ['class' => 'nav navbar-nav '],
-        'items' => [
-            //['label' => '<span class="glyphicon glyphicon-user"></span> 会员','url' => ['/user/default/users']],
-            ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
-            ['label' => '<span class="glyphicon glyphicon-check"></span> 今天已签到',null,'options'=>['class'=>'disabled']],
-        ],
-        'encodeLabels' => false
-    ]);
+    $items = [['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
+            ['label' => '<span class="glyphicon glyphicon-check"></span> 今天已签到',null,'options'=>['class'=>'disabled']]];
 }
-
+echo Nav::widget([
+    'options' => ['class' => 'nav navbar-nav '],
+    'items' => $items,
+    'encodeLabels' => false
+]);
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => '注册', 'url' => ['/user/default/signup']];
     $menuItems[] = ['label' => '登录', 'url' => ['/user/default/login']];
@@ -40,7 +31,7 @@ if (Yii::$app->user->isGuest) {
     $user = Yii::$app->user;
     $identity = $user->identity;
     $userInfo = UserInfo::findOne(['user_id' => $identity->id]);
-    if ($identity->username!=='admin'){
+    if (!in_array($identity->username, Yii::$app->params['adminName'])){
         $menuItems = [
             ['label' => '<span class="glyphicon glyphicon-bell"></span>','url' => ['/user/default/notice-message']],
             ['label' => UserInfo::showImage($userInfo,['width'=>20,'height'=>20]),
