@@ -19,7 +19,7 @@ $config = [
             //如果开启自动登录 yii\web\User::enableAutoLogin 则基于 cookie 登录（如：记住登录状态），
             //它将使用 cookie 保存用户身份，这样 只要 cookie 有效就可以恢复登录状态
             'enableAutoLogin' => true,
-            //修改默认的登陆地址
+            //修改默认的登录地址
             'loginUrl' => ['user/default/login'],
         ],
         'errorHandler' => [
