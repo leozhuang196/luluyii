@@ -29,3 +29,6 @@ list($assetPath,$assetUrl) = Yii::$app->getAssetManager()->publish('images');?>
         $view->registerCssFile($cssfile, [AppAsset::className(), "depends" => "app\assets\AppAsset"]);}} */
 //在视图页面引入CSS
 use app\assets\AppAsset; AppAsset::register($this); AppAsset::register($this,'css/media.css');?> 
+
+<!-- **************************** 制作ico网站图标 ****************************** -->
+<?php //利用http://www.bitbug.net/网站制作图标替换web/favicon.ico?>
