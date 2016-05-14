@@ -1,7 +1,7 @@
 <?php
 $config = [
     'language' => 'zh-CN',
-    'defaultRoute' => 'post',
+    //'defaultRoute' => 'post',
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
