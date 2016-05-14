@@ -1,10 +1,7 @@
 <?php
 use yii\helpers\Html;
-use app\assets\AppAsset;
 use modules\user\models\User;
 use modules\user\models\UserInfo;
-AppAsset::register($this);
-AppAsset::addCss($this, 'css/media.css');
 ?>
 <div class='row'>
 	<?= $this->render('/default/showScore',['user'=>$user,'user_info'=> $user_info])?>

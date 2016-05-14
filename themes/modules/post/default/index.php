@@ -1,15 +1,15 @@
 <?php
 use yii\helpers\Html;
-use app\assets\AppAsset;
 use modules\user\models\UserInfo;
-AppAsset::register($this);
-AppAsset::addCss($this, 'css/media.css');
-$this->title = '文章';
+$this->title = Yii::$app->params['siteName'];
 ?>
 <div class='row'>
     <div class='col-md-10'>
         <div class='panel panel-default'>
-            <div class='panel-heading'><?=Html::encode($this->title)?></div>
+            <div class='panel-heading'>
+            	<?=Html::encode('所有文章')?>
+            	<?= Html::a('<i class="fa fa-plus"></i> 发表文章',['default/create-post'],['class'=>"btn btn-success btn-xs pull-right"])?>
+            </div>
             <div class='panel-body'>
             	<ul class='media-list'>
             	<?php foreach ($post as $key=>$value):?>

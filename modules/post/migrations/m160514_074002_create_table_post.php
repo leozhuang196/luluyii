@@ -10,6 +10,7 @@ public function up()
             'id' => Schema::TYPE_PK,
             'user_id' => Schema::TYPE_INTEGER.'(11) NOT NULL',
             'author' => Schema::TYPE_STRING.'(12) NOT NULL',
+            'title' => Schema::TYPE_STRING.'(20) NOT NULL',
             'love_num' => Schema::TYPE_INTEGER.'(11) NOT NULL',
             'hate_num' => Schema::TYPE_INTEGER.'(11) NOT NULL',
             'view_num' => Schema::TYPE_INTEGER.'(11) NOT NULL',

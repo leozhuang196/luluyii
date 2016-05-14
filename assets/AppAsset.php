@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     //全局CSS
     public $css = [
         'css/site.css',
+        'css/media.css',
     ];
     public $js = [
     ];

@@ -20,6 +20,13 @@ class Post extends \yii\db\ActiveRecord
             [['description'], 'string', 'max' => 100]
         ];
     }
+    
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['author', 'content'];
+        return $scenarios;
+    }
 
     public function attributeLabels()
     {

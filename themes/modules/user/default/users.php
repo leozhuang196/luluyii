@@ -1,9 +1,6 @@
 <?php
 use modules\user\models\User;
 use yii\helpers\Html;
-use app\assets\AppAsset;
-AppAsset::register($this);
-AppAsset::addCss($this, 'css/midia.css');
 $this->title = '活跃用户';
 ?>
 <div id="active-users" class="panel panel-default">

@@ -1,11 +1,7 @@
 <?php
 use yii\helpers\Html;
-use app\assets\AppAsset;
 use modules\user\models\User;
 use modules\user\models\UserInfo;
-use modules\user\models\UserFans;
-AppAsset::register($this);
-AppAsset::addCss($this, 'css/media.css');
 ?>
 <div class='row'>
     <?php if (strpos(\Yii::$app->request->referrer, 'show-score')):?>
