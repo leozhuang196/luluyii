@@ -1,6 +1,7 @@
 <?php
 $config = [
     'language' => 'zh-CN',
+    'defaultRoute' => 'post',
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -44,18 +45,23 @@ $config = [
                 'pathMap' => [
                     '@app/views'=>'@themes/basic',
                     '@modules/user/views'=>'@themes/modules/user',
+                    '@modules/post/views'=>'@themes/modules/post',
                 ],
             ],
         ],
         'i18n' => [
             'translations' => [
+                'common' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
                 'user' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@modules/user/messages',
                 ],
-                'common' => [
+                'post' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
+                    'basePath' => '@modules/post/messages',
                 ],
             ],
         ],

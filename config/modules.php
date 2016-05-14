@@ -7,5 +7,8 @@ return
     'test' => [
         'class' => 'modules\test\Module',
     ],
+    'post' => [
+        'class' => 'modules\post\Module',
+    ],
 ];
 ?>
