@@ -1,7 +1,4 @@
 <?php
-$params = require(__DIR__ . '/params.php');
-$rules = require(__DIR__.'/rules.php');
-$modules = require(__DIR__.'/modules.php');
 $config = [
     'language' => 'zh-CN',
     'id' => 'basic',
@@ -71,11 +68,11 @@ $config = [
             //'suffix'=>'.html',
             //指定是否在URL在保留入口脚本 index.php,同时还要在index.php同级目录下新建.htaccess文件
             'showScriptName' => false,
-            'rules' => $rules['rules'],
+            'rules' => require(__DIR__.'/rules.php'),
         ],
     ],
-    'params' => $params,
-    'modules' => $modules['modules'],
+    'params' => require(__DIR__ . '/params.php'),
+    'modules' => require(__DIR__.'/modules.php'),
 ];
 if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
