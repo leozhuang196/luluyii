@@ -13,6 +13,7 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            'cachePath' => '@runtime/cache',
         ],
         'user' => [
             'identityClass' => 'modules\user\models\User',
@@ -55,6 +56,10 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@modules/user/messages',
                 ],
+                'common' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
             ],
         ],
         'authManager' => [
@@ -70,7 +75,7 @@ $config = [
         ],
     ],
     'params' => $params,
-     'modules' => $modules['modules'],
+    'modules' => $modules['modules'],
 ];
 if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';

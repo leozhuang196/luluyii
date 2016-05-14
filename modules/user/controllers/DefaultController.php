@@ -1,6 +1,7 @@
 <?php
 namespace modules\user\controllers;
 use Yii;
+use yii\helpers\Html;
 use yii\web\Controller;
 use modules\user\models\LoginForm;
 use modules\user\models\SignupForm;
@@ -66,7 +67,7 @@ class DefaultController extends Controller
         $model = new SignupForm();
         $this->performAjaxValidation($model);
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->getSession()->setFlash('success','已经发送一封邮件到你的邮箱 '.$model->email.'，请在1小时内完成验证');
+            Yii::$app->getSession()->setFlash('success','注册成功，请检查你的邮箱 '.$model->email.'，请在1小时内完成验证'.Html::a('没收到邮件？',['find-password']));
             return $this->goHome();
         }
         return $this->render('signup', ['model' => $model]);
@@ -152,7 +153,13 @@ class DefaultController extends Controller
     public function actionUsers()
     {
         $count = User::find()->where(['status' => 10])->count();
-        $user_info = UserInfo::find()->limit(10)->orderBy(['score'=>SORT_DESC])->all();
+        $cache = Yii::$app->cache;
+        if($cache->get('user_info') == false){
+            $cacheData = UserInfo::find()->limit(10)->orderBy(['score'=>SORT_DESC])->all();
+            //设置缓存的时间为1个小时
+            $cache->set('user_info', $cacheData,60*60);
+        }
+        $user_info = $cache->get('user_info');
         return $this->render('users', ['count' => $count,'user_info' => $user_info]);
     }
     

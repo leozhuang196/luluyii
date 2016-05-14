@@ -3,7 +3,9 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 $this->title = '登录';
 ?>
-<div class='row'>
+<!-- 缓存Get请求的div -->
+<?php if ($this->beginCache('login',['enabled'=>Yii::$app->request->isGet])){?>
+<div id='login' class='row'>
 	<div class='col-md-4 col-md-offset-4'>
 		<div class='panel panel-default'>
 			<div class='panel-heading'>
@@ -22,3 +24,4 @@ $this->title = '登录';
 		</div>
 	</div>
 </div>
+<?php $this->endCache();}?>

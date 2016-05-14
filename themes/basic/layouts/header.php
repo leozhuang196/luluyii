@@ -7,6 +7,7 @@ use kartik\icons\Icon;
 Icon::map($this);
 NavBar::begin([
     'brandLabel' => Yii::$app->params['siteName'],
+    //'brandLabel' => Yii::t('common', 'Site Name'),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-default navbar-fixed-top',

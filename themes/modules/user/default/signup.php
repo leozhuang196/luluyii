@@ -4,7 +4,8 @@ use yii\captcha\Captcha;
 use yii\bootstrap\ActiveForm;
 $this->title = '注册';
 ?>
-<div class='row'>
+<?php if ($this->beginCache('signup',['enabled'=>Yii::$app->request->isGet])){?>
+<div id='signup' class='row'>
 	<div class='col-md-4 col-md-offset-4'>
 		<div class='panel panel-default'>
 		    <div class='panel-heading'>
@@ -31,3 +32,4 @@ $this->title = '注册';
 		</div>
 	</div>
 </div>
+<?php $this->endCache();}?>

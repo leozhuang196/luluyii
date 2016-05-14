@@ -22,6 +22,7 @@ $this->title = $user->username.'的个人信息';
 		</div>
 		<?= DetailView::widget([
             'model' => $user_info,
+		    'id' => 'a',
             'attributes' => [
                 ['attribute' => 'image',
                     'format' => [
