@@ -10,10 +10,30 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-12 11:40:00
+Date: 2016-05-14 17:04:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for lulu_post
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_post`;
+CREATE TABLE `lulu_post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `author` varchar(12) NOT NULL,
+  `love_num` int(11) DEFAULT '0',
+  `hate_num` int(11) DEFAULT '0',
+  `comment_num` int(11) DEFAULT '0',
+  `view_num` int(11) DEFAULT '0',
+  `collection` int(11) DEFAULT '0',
+  `content` varchar(255) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `created_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user
@@ -31,7 +51,7 @@ CREATE TABLE `lulu_user` (
   `updated_at` int(11) NOT NULL,
   `registration_ip` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for lulu_user_fans
@@ -43,7 +63,7 @@ CREATE TABLE `lulu_user_fans` (
   `to` varchar(12) NOT NULL COMMENT '被关注者',
   `focus_time` int(11) NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user_info
@@ -62,7 +82,7 @@ CREATE TABLE `lulu_user_info` (
   `signature` varchar(255) DEFAULT NULL COMMENT '个性签名',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user_message
@@ -75,4 +95,4 @@ CREATE TABLE `lulu_user_message` (
   `content` varchar(255) NOT NULL,
   `send_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
