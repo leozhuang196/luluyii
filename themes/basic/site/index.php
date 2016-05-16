@@ -1,7 +1,8 @@
 <?php
-use yii\helpers\Html;
 $this->title = \Yii::$app->params['siteName'];
 ?>
-<div align="center">
-<?= Html::img('images/01.jpg')?>
+<div class='row'>
+    <div class='col-md-9'>
+    <?= $this->render('@themes/modules/post/default/index',['tutorial'=>$tutorial,'question'=>$question,'chat'=>$chat])?>
+    </div>
 </div>

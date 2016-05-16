@@ -10,11 +10,11 @@ return [
     'Collection' => '收藏',
     'Content' => '内容',
     'Type' => '类型',
-    'Description' => '描述',
+    'Title' => '文章标题',
     'Created Time' => '发表时间',
     
     'Posts' => '文章',
-    'Create Post' => '新建文章',
-    'Update' => '更新',
-    'Delete' => '删除',
+    'Create' => '创建文章',
+    'Update' => '修改文章',
+    'Delete' => '删除文章',
 ];

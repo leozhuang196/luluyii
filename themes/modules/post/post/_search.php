@@ -3,10 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
 <div class="post-search">
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['index'],'method' => 'get']); ?>
     <?= $form->field($model, 'id') ?>
     <?= $form->field($model, 'user_id') ?>
     <?= $form->field($model, 'author') ?>

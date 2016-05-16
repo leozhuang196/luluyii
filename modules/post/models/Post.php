@@ -1,9 +1,14 @@
 <?php
 namespace modules\post\models;
 use Yii;
+use modules\user\models\User;
 
 class Post extends \yii\db\ActiveRecord
 {
+    const POST_TYPE_CHAT = 1;
+    const POST_TYPE_TUTORIAL = 2;
+    const POST_TYPE_QUESTION = 3;
+    
     public static function tableName()
     {
         return '{{%post}}';
@@ -12,22 +17,15 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'author', 'content', 'type', 'description', 'created_time'], 'required'],
+            [['user_id', 'title', 'author', 'content', 'created_time'], 'required'],
             [['user_id', 'love_num', 'hate_num', 'comment_num', 'view_num', 'collection', 'created_time'], 'integer'],
+            [['title'], 'string', 'max' => 100],
             [['author'], 'string', 'max' => 12],
-            [['content'], 'string', 'max' => 255],
-            [['type'], 'string', 'max' => 10],
-            [['description'], 'string', 'max' => 100]
+            [['content'], 'string', 'max' => 1000],
+            [['type'], 'string', 'max' => 10]
         ];
     }
     
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        $scenarios['create'] = ['author', 'content'];
-        return $scenarios;
-    }
-
     public function attributeLabels()
     {
         return [
@@ -41,7 +39,7 @@ class Post extends \yii\db\ActiveRecord
             'collection' => Yii::t('post', 'Collection'),
             'content' => Yii::t('post', 'Content'),
             'type' => Yii::t('post', 'Type'),
-            'description' => Yii::t('post', 'Description'),
+            'title' => Yii::t('post', 'Title'),
             'created_time' => Yii::t('post', 'Created Time'),
         ];
     }

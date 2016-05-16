@@ -108,3 +108,14 @@ a.desc:after {
 .user-card {
     margin-bottom: 15px;
 }
+
+.action{
+    border-bottom: #eee solid 1px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #999;
+}
+
+span{
+	margin-right: 15px;
+}

@@ -10,5 +10,8 @@ return
     'post' => [
         'class' => 'modules\post\Module',
     ],
+    'rbac' => [
+        'class' => 'modules\rbac\Module',
+    ],
 ];
 ?>

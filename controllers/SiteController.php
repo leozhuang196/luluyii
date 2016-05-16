@@ -3,7 +3,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\ContactForm;
-use yii\web\UploadedFile;
+use modules\post\models\Post;
 
 class SiteController extends Controller
 {
@@ -37,7 +37,10 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $tutorial = Post::find()->where(['type'=>Post::POST_TYPE_TUTORIAL])->all();
+        $question = Post::find()->where(['type'=>Post::POST_TYPE_QUESTION])->all();
+        $chat = Post::find()->where(['type'=>Post::POST_TYPE_CHAT])->all();
+        return $this->render('index',['tutorial'=>$tutorial,'question'=>$question,'chat'=>$chat]);
     }
 
     public function actionContact()

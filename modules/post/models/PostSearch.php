@@ -1,7 +1,5 @@
 <?php
 namespace modules\post\models;
-use Yii;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use modules\post\models\Post;
 
@@ -11,21 +9,14 @@ class PostSearch extends Post
     {
         return [
             [['id', 'user_id', 'love_num', 'hate_num', 'comment_num', 'view_num', 'collection', 'created_time'], 'integer'],
-            [['author', 'content', 'type', 'description'], 'safe'],
+            [['author', 'content', 'type', 'title'], 'safe'],
         ];
-    }
-
-    public function scenarios()
-    {
-        return Model::scenarios();
     }
 
     public function search($params)
     {
         $query = Post::find();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        $dataProvider = new ActiveDataProvider(['query' => $query]);
         $this->load($params);
         if (!$this->validate()) {
             return $dataProvider;
@@ -43,7 +34,7 @@ class PostSearch extends Post
         $query->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'title', $this->title]);
         return $dataProvider;
     }
 }
