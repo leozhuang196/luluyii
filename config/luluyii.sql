@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-14 17:04:31
+Date: 2016-05-17 17:34:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,18 +22,18 @@ DROP TABLE IF EXISTS `lulu_post`;
 CREATE TABLE `lulu_post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
   `author` varchar(12) NOT NULL,
   `love_num` int(11) DEFAULT '0',
   `hate_num` int(11) DEFAULT '0',
   `comment_num` int(11) DEFAULT '0',
   `view_num` int(11) DEFAULT '0',
   `collection` int(11) DEFAULT '0',
-  `content` varchar(255) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  `description` varchar(100) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `type` varchar(10) NOT NULL DEFAULT '',
   `created_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user
@@ -63,7 +63,7 @@ CREATE TABLE `lulu_user_fans` (
   `to` varchar(12) NOT NULL COMMENT '被关注者',
   `focus_time` int(11) NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user_info
@@ -79,6 +79,7 @@ CREATE TABLE `lulu_user_info` (
   `location` varchar(255) DEFAULT NULL,
   `score` int(11) DEFAULT '0' COMMENT '积分',
   `signin_time` int(11) DEFAULT NULL COMMENT '签到时间',
+  `signin_day` int(11) DEFAULT NULL COMMENT '连续签到记录',
   `signature` varchar(255) DEFAULT NULL COMMENT '个性签名',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
