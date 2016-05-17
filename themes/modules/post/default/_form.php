@@ -10,7 +10,7 @@ use yii\bootstrap\ActiveForm;
             	<?php $form = ActiveForm::begin(['id'=>'UpdatePostForm']);?>
             		<?= $form->field($model,'title')->textInput();?>
             		<?= $form->field($model,'type')->dropDownList([Post::POST_TYPE_QUESTION=>'问答',Post::POST_TYPE_TUTORIAL=>'教程',Post::POST_TYPE_CHAT=>'闲聊']);?>
-            		<?= $form->field($model,'content')->textarea();?>
+            		<?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(),['clientOptions'=>['lang'=>'zh_cn','row'=>50]])?>
             		<div class="form-group">
         				<?= Html::submitButton($model->isNewRecord ? Yii::t('post', 'Create') : Yii::t('post', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     				</div>

@@ -13,5 +13,10 @@ return
     'rbac' => [
         'class' => 'modules\rbac\Module',
     ],
+    //yii2集成富文本编辑器redactor
+    'redactor' => [
+        'class' => 'yii\redactor\RedactorModule',
+        'imageAllowExtensions'=>['jpg','png','gif'],
+    ],
 ];
 ?>

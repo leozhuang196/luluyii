@@ -13,7 +13,7 @@ class DefaultController extends Controller
         return [
             'access' => [
                 'class' => 'yii\filters\AccessControl',
-                'only' => ['create-post','update-post'],
+                'only' => ['index','create-post','update-post'],
                 'rules' => [
                     ['actions' => ['create-post','update-post'],
                         'allow' => true,'roles'=>['@']
