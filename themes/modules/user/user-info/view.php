@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'qq',
             'birthday',
             'location',
+            'signin_day'
         ],
     ]) ?>
 </div>

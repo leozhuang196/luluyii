@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'qq')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'birthday')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'signin_day')->textInput(['maxlength' => true]) ?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('user', 'Update'), ['class' => 'btn btn-primary']) ?>
     </div>

@@ -1,7 +1,6 @@
 <?php
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use modules\user\models\SigninForm;
 use modules\user\models\UserInfo;
 use kartik\icons\Icon;
 Icon::map($this);
@@ -13,18 +12,10 @@ NavBar::begin([
         'class' => 'navbar-default navbar-fixed-top',
     ],
 ]);
-if(SigninForm::signin()){
-    $items = [['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
-              ['label' => '<span class="glyphicon glyphicon-check"></span> 签到','url' => ['/user/default/signin']]];
-}else{
-    $items = [['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
-            ['label' => '<span class="glyphicon glyphicon-check"></span> 今天已签到',null,'options'=>['class'=>'disabled']]];
-}
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
-    'items' => $items,
-    'encodeLabels' => false
-]);
+    'items' => [['label' => Icon::show('user').'会员','url' => ['/user/default/users']]],
+    'encodeLabels' => false]);
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => '注册', 'url' => ['/user/default/signup']];
     $menuItems[] = ['label' => '登录', 'url' => ['/user/default/login']];

@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'birthday',
             'location',
             'image',
+            'signin_day',
             ['class' => 'yii\grid\ActionColumn',
              'template' => '{view} {update} ',
             ],

@@ -222,8 +222,17 @@ class DefaultController extends Controller
     //签到
     public function actionSignin()
     {
-        SigninForm::signin();
+        $model = new SigninForm();
+        $model->signin();
         return $this->goHome();
+    }
+    
+    //今日签到会员
+    public function actionSigninMember()
+    {
+        $model = new SigninForm();
+        $member = $model->siginMembers();
+        return $this->render('signinMember',['member'=>$member]);
     }
     
     //发送私信

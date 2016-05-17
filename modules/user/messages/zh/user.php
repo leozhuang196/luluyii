@@ -18,6 +18,7 @@ return [
     'Signature' => '个性签名',
     'Signin' => '签到',
     'Signin Time' => '签到时间',
+    'Signin Day' => '连续签到次数',
     'Created At' => '注册时间',
     'Sex' => '性别',
     'Location' => '所在城市',

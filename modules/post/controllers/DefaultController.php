@@ -34,12 +34,6 @@ class DefaultController extends Controller
         return $this->render('showPost',['model'=>$model]);
     }
 
-    public function actionShowQuestion($id)
-    {
-        $model = $this->findmodel($id);
-        return $this->render('showPost',['model'=>$model]);
-    }
-
     public function actionCreatePost()
     {
         $model = new Post();
@@ -56,7 +50,7 @@ class DefaultController extends Controller
     public function actionUpdatePost($id)
     {
         $model = $this->findModel($id);
-        //如果当前想要修改的不是作者，之前返回主页面
+        //如果当前想要修改的用户不是作者，返回主页面
         if ($model->author != User::getUser()['username']){
             return $this->goHome();
         }
