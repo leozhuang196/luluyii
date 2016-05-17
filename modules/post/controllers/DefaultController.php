@@ -56,6 +56,10 @@ class DefaultController extends Controller
     public function actionUpdatePost($id)
     {
         $model = $this->findModel($id);
+        //如果当前想要修改的不是作者，之前返回主页面
+        if ($model->author != User::getUser()['username']){
+            return $this->goHome();
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()){
             Yii::$app->getSession()->setFlash('success','修改成功');
             return $this->refresh();

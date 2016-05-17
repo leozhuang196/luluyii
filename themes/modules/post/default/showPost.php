@@ -36,7 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class='col-md-3'>
     <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('post', 'Create'),['create-post'],['class'=>'btn btn-success btn-block'])?>
+    <?php if (User::getUser()['username'] == $model->author):?>
     <?= Html::a('<i class="fa fa-edit"></i> '.Yii::t('post', 'Update'),['update-post','id'=>$model->id],['class'=>'btn btn-primary btn-block'])?>
+    <?php endif;?>
     <p></p>
     <?= $this->render('@themes/modules/user/default/show',
         ['user' => User::findOne(['username'=>$model->author]),
