@@ -1,3 +1,4 @@
 *.html
 /uploads/
 /assets/
+../config/db.php
