@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 namespace modules\post\controllers;
 use Yii;
 use yii\web\Controller;
