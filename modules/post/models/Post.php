@@ -43,4 +43,19 @@ class Post extends \yii\db\ActiveRecord
             'created_time' => Yii::t('post', 'Created Time'),
         ];
     }
+    
+    public static function getPostType($type)
+    {
+        switch ($type){
+            case Post::POST_TYPE_QUESTION: 
+                return '问答';
+            break;
+            case Post::POST_TYPE_CHAT: 
+                return '闲聊';
+            break;
+            default:
+                return '教程';
+            break;
+        }
+    }
 }

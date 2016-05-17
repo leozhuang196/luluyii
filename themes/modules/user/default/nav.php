@@ -8,7 +8,7 @@ $userInfo = UserInfo::findOne(['user_id' => $user->id]);
 ?>
 <div class='panel panel-default'>
     <div class='panel-heading'>
-        <h3 class='panel-title'><?= UserInfo::showImage($userInfo)?>  <?=Html::encode($user->username)?></h3>
+        <h3 class='panel-title'><?= UserInfo::showImage($userInfo)?>  <strong><?=Html::encode($user->username)?></strong></h3>
     </div>
     <div class='panel-body'>
         <?=Menu::widget([

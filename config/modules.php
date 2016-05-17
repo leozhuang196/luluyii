@@ -10,9 +10,6 @@ return
     'post' => [
         'class' => 'modules\post\Module',
     ],
-    'rbac' => [
-        'class' => 'modules\rbac\Module',
-    ],
     //yii2集成富文本编辑器redactor
     'redactor' => [
         'class' => 'yii\redactor\RedactorModule',

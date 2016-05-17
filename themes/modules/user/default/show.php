@@ -4,6 +4,9 @@ use modules\user\models\User;
 use yii\helpers\Html;
 use modules\user\models\UserFans;
 ?>
+<?php if (in_array(Yii::$app->controller->action->id, ['show','show-focus','show-fans'])):?>
+<div class='col-md-3'>
+<?php endif;?>
 	<div class="panel panel-default">
 		<div class="panel-heading"><?=$user->username?>
 		<?php if (User::isGuest() || User::getUser()->username !== $user->username):?>
@@ -49,4 +52,7 @@ use modules\user\models\UserFans;
                  'value' => User::getCreatdTime($user->created_at)]
             ],
          ]) ?>
+	</div>
+<?php if (in_array(Yii::$app->controller->action->id, ['show','show-focus','show-fans'])):?>
 </div>
+<?php endif;?>

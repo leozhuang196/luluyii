@@ -6,6 +6,7 @@ use yii\web\Controller;
 use modules\test\models\Test;
 use yii\web\UploadedFile;
 use modules\user\models\User;
+use modules\post\models\Post;
 
 class DefaultController extends Controller
 {
@@ -51,5 +52,10 @@ class DefaultController extends Controller
             $cache->set('cache_data_key', $cacheData, 60*60);
         }
         var_dump($data->username);
+    }
+    
+    public function actionTest()
+    {
+        echo Post::getPostType(1);
     }
 }

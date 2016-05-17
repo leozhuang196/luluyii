@@ -33,12 +33,19 @@ class DefaultController extends Controller
         $model = $this->findmodel($id);
         return $this->render('showPost',['model'=>$model]);
     }
-
-    public function actionCreatePost()
+    
+    public function actionShowPosts($type)
+    {
+        $model = $this->findType($type);
+        return $this->render('showPosts',['model'=>$model,'type'=>$type]);
+    }
+    
+    public function actionCreatePost($type)
     {
         $model = new Post();
         $model->user_id = User::getUser()->id;
         $model->author = User::getUser()->username;
+        $model->type = $type;
         $model->created_time = time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success','成功发布');
@@ -64,6 +71,15 @@ class DefaultController extends Controller
     protected function findModel($id)
     {
         if (($model = Post::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    protected function findType($type)
+    {
+        if (($model = Post::find($type)->where(['type'=>$type])->all()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

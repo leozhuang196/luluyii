@@ -4,11 +4,7 @@ use modules\user\models\User;
 use modules\user\models\UserInfo;
 ?>
 <div class='row'>
-    <?php if (strpos(\Yii::$app->request->referrer, 'show-score')):?>
-    	<?= $this->render('/default/showScore',['user'=>$user,'user_info'=> $user_info])?>
-    <?php else :?>
-    	<?= $this->render('/default/show',['user'=>$user,'user_info'=>$user_info])?>
-    <?php endif;?>
+	<?= $this->render('/default/show',['user'=>$user,'user_info'=>$user_info])?>
     <div class='col-md-4'>
         <div class='panel panel-default'>
             <div class='panel-heading'>

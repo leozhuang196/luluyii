@@ -37,9 +37,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $tutorial = Post::find()->where(['type'=>Post::POST_TYPE_TUTORIAL])->all();
-        $question = Post::find()->where(['type'=>Post::POST_TYPE_QUESTION])->all();
-        $chat = Post::find()->where(['type'=>Post::POST_TYPE_CHAT])->all();
+        $tutorial = Post::find()->where(['type'=>Post::POST_TYPE_TUTORIAL])->limit(3)->orderBy(['created_time'=>SORT_DESC])->all();
+        $question = Post::find()->where(['type'=>Post::POST_TYPE_QUESTION])->limit(2)->orderBy(['created_time'=>SORT_DESC])->all();
+        $chat = Post::find()->where(['type'=>Post::POST_TYPE_CHAT])->limit(2)->orderBy(['created_time'=>SORT_DESC])->all();
         return $this->render('index',['tutorial'=>$tutorial,'question'=>$question,'chat'=>$chat]);
     }
 
