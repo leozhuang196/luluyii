@@ -53,13 +53,13 @@ class SiteController extends Controller
         return $this->render('contact', ['model' => $model]);
     }
 
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
     public function actionDiary()
     {
         return $this->render('diary');
+    }
+
+    public function actionBug()
+    {
+        return $this->render('bug');
     }
 }
