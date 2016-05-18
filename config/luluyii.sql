@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-17 17:34:13
+Date: 2016-05-18 10:25:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `lulu_post` (
   `comment_num` int(11) DEFAULT '0',
   `view_num` int(11) DEFAULT '0',
   `collection` int(11) DEFAULT '0',
-  `content` varchar(1000) NOT NULL,
+  `content` varchar(10000) NOT NULL,
   `type` varchar(10) NOT NULL DEFAULT '',
   `created_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
