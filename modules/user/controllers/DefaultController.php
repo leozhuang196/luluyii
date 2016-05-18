@@ -222,8 +222,7 @@ class DefaultController extends Controller
     //签到
     public function actionSignin()
     {
-        $model = new SigninForm();
-        $model->signin();
+        SigninForm::signin();
         return $this->goHome();
     }
     

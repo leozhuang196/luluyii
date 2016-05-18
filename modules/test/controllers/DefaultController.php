@@ -56,6 +56,9 @@ class DefaultController extends Controller
     
     public function actionTest()
     {
-        echo Post::getPostType(1);
+        $yesterdayZeroTime = mktime(0,0,0,date('m')-1,date('d'),date('Y'));
+        $todayZeroTime = mktime(0,0,0,date('m'),date('d'),date('Y'));
+        var_dump($todayZeroTime);
+        var_dump($yesterdayZeroTime);exit();
     }
 }
