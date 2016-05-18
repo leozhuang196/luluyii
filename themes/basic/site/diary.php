@@ -19,7 +19,9 @@ $this->title = '成长日记';
 		</ul>
 		<h3>成长日记</h3>
 		<ul>
-			<li>2016-05-18：</li>
+			<li>2016-05-17：文章添加yiidoc/yii2-redactor编辑器</li>
+			<li>2016-05-18：后台用户信息管理添加kartik-v/yii2-grid、kartik-v/yii2-editable扩展实现异步更新用户信息</li>
+			<li>2016-05-18：后台用户信息管理添加kartik-v/yii2-widget-fileinput扩展想实现上传用户头像，但是未实现</li>
 		</ul>
 	</div>
 </div>

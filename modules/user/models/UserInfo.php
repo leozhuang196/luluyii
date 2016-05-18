@@ -38,7 +38,7 @@ class UserInfo extends \yii\db\ActiveRecord
         ];
     }
     
-    public function getSex($sex) {
+    public static function getSex($sex) {
         switch ($sex){
             case '0':
                 return '男';
@@ -69,7 +69,9 @@ class UserInfo extends \yii\db\ActiveRecord
         $user_info = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
         //如果不是默认的头像，用户更新头像的时候删除之前更新过的头像，避免默认头像被删除
         if($user_info->image !== \Yii::$app->params['defaultUserImage']){
-            unlink($user_info->image);
+            if(isset($user_info->image) && $user_info->image!=null){
+                unlink($user_info->image);
+            }
         }
         $user_info->image = $rootPath . $randName;
         return $user_info->save();
@@ -77,5 +79,25 @@ class UserInfo extends \yii\db\ActiveRecord
     
     public static function showImage($model,$option=['width'=>'35','height'=>'35']) {
         return Html::img('@web/'.$model->image,['width'=> $option['width'],'height'=>$option['height']]);
+    }
+    
+    
+    //下拉筛选
+    public static function dropDown ($column, $value = null)
+    {
+        $dropDownList = [
+            "sex"=> [
+                "0"=>"男",
+                "1"=>"女",
+                '2'=>'保密',
+            ],
+        ];
+        //根据具体值显示对应的值
+        if ($value !== null){
+            return array_key_exists($column, $dropDownList) ? $dropDownList[$column][$value] : false;
+            //返回关联数组，用户下拉的filter实现
+        }else{
+            return array_key_exists($column, $dropDownList) ? $dropDownList[$column] : false;
+        }
     }
 }

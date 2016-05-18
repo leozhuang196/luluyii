@@ -33,4 +33,6 @@ use app\assets\AppAsset; AppAsset::register($this); AppAsset::register($this,'cs
 <!-- **************************** 制作ico网站图标 ****************************** -->
 <?php //利用http://www.bitbug.net/网站制作图标替换web/favicon.ico?>
 
-<?= $form->field($model,'title')->textInput()->hint('Please enter your nick name instead of email')->label(Post::getPostType($model->type).Yii::t('post', 'Title'));?>
+<?= $form->field($model,'title')->textInput()->hint('Please enter your nick name instead of email')->label
+
+(Post::getPostType($model->type).Yii::t('post', 'Title'));?>

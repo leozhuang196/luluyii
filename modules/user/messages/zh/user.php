@@ -30,4 +30,5 @@ return [
     'Create' => '创建用户',
     'Update' => '更新用户',
     'Delete' => '删除用户',
+    'BasicInfo' => '基本信息',
 ];

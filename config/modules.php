@@ -15,5 +15,8 @@ return
         'class' => 'yii\redactor\RedactorModule',
         'imageAllowExtensions'=>['jpg','png','gif'],
     ],
+    'gridview' =>  [
+        'class' => '\kartik\grid\Module'
+    ]
 ];
 ?>

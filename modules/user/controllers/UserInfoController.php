@@ -1,6 +1,7 @@
 <?php
 namespace modules\user\controllers;
 use Yii;
+use yii\helpers\Json;
 use modules\user\models\UserInfo;
 use modules\user\models\UserInfoSearch;
 use yii\web\Controller;
@@ -38,6 +39,22 @@ class UserInfoController extends Controller
     {
         $searchModel = new UserInfoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //controller层进行异步操作,http://www.manks.top/yii2_gridview_advanced.html
+        if (Yii::$app->request->post('hasEditable')) {
+            $id = Yii::$app->request->post('editableKey');
+            $model = UserInfo::findOne(['id' => $id]);
+            $out = Json::encode(['output'=>'', 'message'=>'']);
+            $posted = current($_POST['UserInfo']);
+            $post = ['UserInfo' => $posted];
+            if ($model->load($post)) {
+                $model->save();
+                $output = '';
+                isset($posted['qq']) && $output = $model->qq;
+            }
+            $out = Json::encode(['output'=>$output, 'message'=>'']);
+            echo $out;
+            return;
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
