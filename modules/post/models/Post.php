@@ -21,7 +21,7 @@ class Post extends \yii\db\ActiveRecord
             [['user_id', 'love_num', 'hate_num', 'comment_num', 'view_num', 'collection', 'created_time'], 'integer'],
             [['title'], 'string', 'max' => 100],
             [['author'], 'string', 'max' => 12],
-            [['content'], 'string', 'max' => 1000],
+            [['content'], 'string', 'max' => 10000],
             [['type'], 'string', 'max' => 10]
         ];
     }
