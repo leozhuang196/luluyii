@@ -79,7 +79,7 @@ class DefaultController extends Controller
     
     protected function findType($type)
     {
-        if (($model = Post::find($type)->where(['type'=>$type])->all()) !== null) {
+        if (($model = Post::find($type)->where(['type'=>$type])->orderBy(['created_time'=>SORT_DESC])->all()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
