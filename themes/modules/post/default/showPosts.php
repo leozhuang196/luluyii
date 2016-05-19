@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use modules\user\models\UserInfo;
 use modules\post\models\Post;
+use yii\widgets\LinkPager;
 $this->title = Post::getPostType($type);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,4 +30,5 @@ $this->params['breadcrumbs'][] = $this->title;
     	<?php endforeach;?>
     	</ul>
     </div>
+    <?= LinkPager::widget(['pagination' => $pages]);?>
 </div>

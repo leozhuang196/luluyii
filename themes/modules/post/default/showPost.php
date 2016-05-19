@@ -26,15 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             	<?= $model->content?>	
             </div>
         </div>
-        <div class='panel panel-default'>
-            <div class='panel-heading'><?=Html::encode('评论')?></div>
-            <div class='panel-body'>
-            	<?php $form = ActiveForm::begin(['id'=>'commentForm']);?>
-            		<?= $form->field($model,'id')->textarea();?>
-            		<?=Html::submitButton('发表',['class'=>'btn btn-primary'])?>
-            	<?php ActiveForm::end();?>	
-            </div>
-        </div>
     </div>
     <div class='col-md-3'>
     <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('post', 'Create').Post::getPostType($model->type),['create-post','type'=>$model->type],['class'=>'btn btn-success btn-block'])?>

@@ -16,7 +16,13 @@ class PostSearch extends Post
     public function search($params)
     {
         $query = Post::find();
-        $dataProvider = new ActiveDataProvider(['query' => $query]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pagesize' => '5', //如果不定义，默认为20
+            ],
+            //'sort' => ['attributes' => ['id']],//如果定义，则只能按照id来排序，否则所有字段都可以
+        ]);
         $this->load($params);
         if (!$this->validate()) {
             return $dataProvider;

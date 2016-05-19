@@ -5,6 +5,7 @@ use yii\web\Controller;
 use modules\post\models\Post;
 use yii\web\NotFoundHttpException;
 use modules\user\models\User;
+use yii\data\Pagination;
 
 class DefaultController extends Controller
 {
@@ -34,10 +35,12 @@ class DefaultController extends Controller
         return $this->render('showPost',['model'=>$model]);
     }
     
-    public function actionShowPosts($type)
+    public function actionShowPosts($type,$pageSize = 6)
     {
-        $model = $this->findType($type);
-        return $this->render('showPosts',['model'=>$model,'type'=>$type]);
+        $count = Post::find($type)->where(['type'=>$type])->count();//总页数
+        $pages = new Pagination(['totalCount' =>$count, 'pageSize' => $pageSize]);//Pagination对象
+        $model = $this->findType($type)->offset($pages->offset)->limit($pages->limit)->all();//根据点击页码进行查询
+        return $this->render('showPosts',['model'=>$model,'type'=>$type,'pages'=>$pages]);
     }
     
     public function actionCreatePost($type)
@@ -79,7 +82,7 @@ class DefaultController extends Controller
     
     protected function findType($type)
     {
-        if (($model = Post::find($type)->where(['type'=>$type])->orderBy(['created_time'=>SORT_DESC])->all()) !== null) {
+        if (($model = Post::find($type)->where(['type'=>$type])->orderBy(['created_time'=>SORT_DESC])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

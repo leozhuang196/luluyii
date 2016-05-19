@@ -9,6 +9,9 @@ use yii\web\UploadedFile;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use modules\post\models\PostType;
+use yii\data\ActiveDataProvider;  //调用 ActiveDataProvider 类
+use common\models\User;
+use yii\data\Pagination;
 
 class TestController extends Controller
 {
@@ -126,11 +129,22 @@ class TestController extends Controller
     }
     public function actionTest()
     {
-        /* $model = new \app\models\Test();
-        return $this->render('test', [
-            'model' => $model,
-        ]); */
-        return $this->render('test');
+    /* $model = new \modules\user\models\User();     
+    $dataProvider = new ActiveDataProvider([        
+        'query' => $model->find(),        
+        'pagination' => [
+                'pagesize' => '1',
+         ]
+    ]); 
+     return $this->render('test', ['model' => $model, 'dataProvider' => $dataProvider]);
+    */
+    $curPage = Yii::$app->request->get('page',1);  //获取当前页
+    $pageSize = 2;                 //设置每页显示条数
+    $count = \modules\user\models\User::find()->count();
+    $pages = new Pagination(['totalCount' =>$count, 'pageSize' => $pageSize]);
+    
+    $data = \modules\user\models\User::find();
+      return $this->render('test', ['pages'=>$pages,'data'=>$data]);
     }
 
     //邮件发送

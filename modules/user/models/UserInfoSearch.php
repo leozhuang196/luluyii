@@ -24,6 +24,9 @@ class UserInfoSearch extends UserInfo
         $query = UserInfo::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pagesize' => '5',
+            ]
         ]);
         $this->load($params);
         if (!$this->validate()) {
