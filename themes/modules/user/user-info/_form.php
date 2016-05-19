@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Tabs;
 use kartik\file\FileInput;
-use yii\helpers\Url;
 ?>
 <div class="user-info-form">
 	 <?php $form = ActiveForm::begin([

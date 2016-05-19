@@ -1,5 +1,4 @@
 <?php
-//use yii\grid\GridView;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use modules\user\models\User;
@@ -45,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'export' => false,
         'panel' => [
-            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> ' .Yii::t('user', 'User Info') . '</h3>',
+            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> ' .Yii::t('user', 'UserInfo Manager') . '</h3>',
             'type' => 'success',
             'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>' .Yii::t('user', 'Create'), ['create'], ['class' => 'btn btn-success']),
             'footer' => false,

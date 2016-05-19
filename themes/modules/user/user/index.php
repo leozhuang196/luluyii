@@ -1,13 +1,11 @@
 <?php
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use modules\user\models\User;
 $this->title = Yii::t('user', 'Manager');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <p><?= Html::a(Yii::t('user', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -26,6 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn',
              'header' => "操作",
             ],
+        ],
+        'export' => false,
+        'panel' => [
+            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> ' .Yii::t('user', 'User Manager') . '</h3>',
+            'type' => 'success',
+            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>' .Yii::t('user', 'Create'), ['create'], ['class' => 'btn btn-success']),
+            'footer' => false,
+            'after' => false
         ],
     ]); ?>
 </div>

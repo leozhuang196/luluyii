@@ -41,9 +41,9 @@ if (Yii::$app->user->isGuest) {
             ['label' => UserInfo::showImage($userInfo),
                 'items' => [
                     ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> 用户管理','url' => ['/user/user']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> 用户信息管理','url' => ['/user/user-info']],
-                    ['label' => '<span class="glyphicon glyphicon-book"></span> 文章管理','url' => ['/post/post']],
+                    ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'User Manager'),'url' => ['/user/user']],
+                    ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'UserInfo Manager'),'url' => ['/user/user-info']],
+                    ['label' => '<span class="glyphicon glyphicon-book"></span> '.Yii::t('post', 'Post Manager'),'url' => ['/post/post']],
                     ['label' => '<span class="glyphicon glyphicon-remove"></span> gii','url' => ['/gii']],
                     ['label' => '<span class="glyphicon glyphicon-remove"></span> debug','url' => ['/debug']],
                     '<li class="divider"></li>',

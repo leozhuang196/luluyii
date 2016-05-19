@@ -1,14 +1,13 @@
 <?php
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 $this->title = Yii::t('post', 'Posts');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
-    <p><?= Html::a("<i class='fa fa-plus'></i> ".Yii::t('post', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',
@@ -24,6 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'content',
             'created_time:datetime',
             ['class' => 'yii\grid\ActionColumn'],
+        ],
+        'export' => false,
+        'panel' => [
+            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> ' .Yii::t('post', 'Post Manager') . '</h3>',
+            'type' => 'success',
+            'before' => Html::a('<i class="glyphicon glyphicon-book"></i>' .Yii::t('post', 'Create'), ['create'], ['class' => 'btn btn-success']),
+            'footer' => false,
+            'after' => false
         ],
     ]); ?>
 </div>
