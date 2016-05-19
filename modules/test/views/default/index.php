@@ -36,3 +36,7 @@ use app\assets\AppAsset; AppAsset::register($this); AppAsset::register($this,'cs
 <?= $form->field($model,'title')->textInput()->hint('Please enter your nick name instead of email')->label
 
 (Post::getPostType($model->type).Yii::t('post', 'Title'));?>
+
+<!-- **************************** js void(0)****************************** -->
+<a href="javascript:void(alert('Warning!!!'))">点我!</a>
+<!-- http://www.runoob.com/js/js-void.html -->

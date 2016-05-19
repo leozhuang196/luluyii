@@ -6,6 +6,8 @@ use yii\web\Controller;
 use app\models\Customer;
 use app\models\Order;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class TestController extends Controller
 {
@@ -123,10 +125,11 @@ class TestController extends Controller
     }
     public function actionTest()
     {
-        $model = new \app\models\Test();
+        /* $model = new \app\models\Test();
         return $this->render('test', [
             'model' => $model,
-        ]);
+        ]); */
+        return $this->render('test');
     }
 
     //邮件发送
