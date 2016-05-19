@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use modules\user\models\User;
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     "height"=>"40"
                 ]],
                 'value' => function ($model){
-                return  '../../'.$model->image;}],
+                return  Yii::$app->params['siteDomain'].'/'.$model->image;}],
             ['attribute' => 'sex',
             'value' => function ($model) {
                 return UserInfo::getSex($model->sex);},
