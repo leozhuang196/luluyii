@@ -12,8 +12,4 @@ $example = function ($arg) use ($message) {
 $example("hello"); */
 
 
-use yii\grid\GridView;
-use yii\widgets\LinkPager;
-?>
-<?=LinkPager::widget(['pagination' => $pages]);?>
 

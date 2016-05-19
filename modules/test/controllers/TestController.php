@@ -138,13 +138,7 @@ class TestController extends Controller
     ]); 
      return $this->render('test', ['model' => $model, 'dataProvider' => $dataProvider]);
     */
-    $curPage = Yii::$app->request->get('page',1);  //获取当前页
-    $pageSize = 2;                 //设置每页显示条数
-    $count = \modules\user\models\User::find()->count();
-    $pages = new Pagination(['totalCount' =>$count, 'pageSize' => $pageSize]);
-    
-    $data = \modules\user\models\User::find();
-      return $this->render('test', ['pages'=>$pages,'data'=>$data]);
+        return $this->render('test');
     }
 
     //邮件发送
