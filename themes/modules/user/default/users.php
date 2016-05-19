@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use modules\user\models\User;
 use yii\helpers\Html;
 $this->title = '活跃用户';
@@ -14,7 +14,7 @@ $this->title = '活跃用户';
             <div class="col-md-2">
             	<div class='media user-card'>
             		<div class='media-left'>
-            			<?= Html::a($value->showImage($value,['width'=>'60','height'=>'60']),['default/show','user_id'=>$user['username']])?>
+            			<?= Html::a($value->showImage($value,['width'=>'60','height'=>'60']),['default/show','username'=>$user['username']])?>
             		</div>
             		<div class='media-body'>
             			<div class='media-heading'><?= Html::a($user['username'],['default/show','username'=>$user['username']])?></div>
