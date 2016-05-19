@@ -5,6 +5,7 @@ use yii\bootstrap\Tabs;
 use kartik\file\FileInput;
 ?>
 <div class="user-info-form">
+
 	 <?php $form = ActiveForm::begin([
             'options' => ['enctype' => 'multipart/form-data']
         ]);
@@ -26,9 +27,16 @@ use kartik\file\FileInput;
     
     $fields = [];
     $fields[] = $form->field($model, 'image')->label(Yii::t('user', 'Image'))->widget(FileInput::classname(), [
-        'language' => 'zh',
         'options' => ['accept' => 'image/*'],
         //这里的更新头像还没有完善！
+        
+        'pluginOptions' => [
+            'initialPreview' => "<img src='" . Yii::$app->params['siteDomain'] . '/' . $model->image . "' >",
+            'initialPreviewConfig' => [
+                    'caption' => $model->image,
+                    //'url' => Url::to(['/catalog/core/item-img/delete', 'id' => $itemImage->img_id]),
+                ],
+        ]
     ]);
     $fieldGroups[] = ['label' => '<i class="fa fa-file-image-o"></i>' . Yii::t('user', 'Image'),
         'content' =>'<div class="panel panel-primary"><div class="panel-body">'. implode('', $fields).'</div></div>'];

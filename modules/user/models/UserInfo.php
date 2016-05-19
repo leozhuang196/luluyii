@@ -78,7 +78,7 @@ class UserInfo extends \yii\db\ActiveRecord
     }
     
     public static function showImage($model,$option=['width'=>'35','height'=>'35']) {
-        return Html::img('@web/'.$model->image,['width'=> $option['width'],'height'=>$option['height']]);
+        return Html::img(Yii::$app->params['siteDomain'].'/'.$model->image,['width'=> $option['width'],'height'=>$option['height']]);
     }
     
     

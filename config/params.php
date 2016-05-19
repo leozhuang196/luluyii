@@ -10,4 +10,5 @@ return [
     'siteName' => 'luluyii',
     'icon-framework' => 'fa',
     'defaultUserImage' => 'images/default.jpg',
+    'siteDomain' => 'http://www.luluyii.com',
 ];
