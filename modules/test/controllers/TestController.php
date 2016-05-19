@@ -8,6 +8,7 @@ use app\models\Order;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use modules\post\models\PostType;
 
 class TestController extends Controller
 {

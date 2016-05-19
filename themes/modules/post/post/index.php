@@ -8,7 +8,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p><?= Html::a("<i class='fa fa-plus'></i> ".Yii::t('post', 'Create'), ['create'], ['class' => 'btn btn-success']) ?></p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',

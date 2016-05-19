@@ -1,8 +1,12 @@
+<?php
+$message = 'hello';
+//从父作用域继承变量
+$example = function () use ($message){
+    var_dump($message);
+};
+$example();
 
-<div id='hello'>我是hello</div>
-<button onclick='sayhello()'>点我</button>
-<script type='text/javascript'>
-function sayhello(){
-	$('#hello').show();
-}
-</script>
+$example = function ($arg) use ($message) {
+    var_dump($arg . ' ' . $message);
+};
+$example("hello");
