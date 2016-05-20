@@ -11,4 +11,7 @@ return [
     'icon-framework' => 'fa',
     'defaultUserImage' => 'userImage/defaultImage.jpg',
     'imageDomain' => 'http://image.luluyii.cn',
+    'luluyiiGlobal' => [
+        'sex' => ['0'=>'男','1'=>'女','2'=>'保密'],
+    ],
 ];

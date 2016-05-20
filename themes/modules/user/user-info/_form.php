@@ -13,7 +13,7 @@ use modules\user\models\UserInfo;
         ]);
     $fieldGroups = [];
     $fields = [];
-    $fields[] = $form->field($model, 'sex')->dropDownList(['0'=>'男','1'=>'女','2'=>'保密']);
+    $fields[] = $form->field($model, 'sex')->dropDownList(Yii::$app->params['luluyiiGlobal']['sex']);
     $fields[] = $form->field($model, 'qq')->textInput();
     $fields[] = $form->field($model, 'birthday')->textInput();
     $fields[] = $form->field($model, 'location')->textInput();

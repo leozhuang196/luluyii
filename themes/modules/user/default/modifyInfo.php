@@ -16,7 +16,7 @@ $this->title = '修改个人信息';
             </div>
             <div class='panel-body'>
                 <?php $form = ActiveForm::begin(['id'=>'modifyInfoForm']);?>
-                    <?=$form->field($model,'sex')->inline()->radioList((['0'=>'男','女','保密']))?>
+                    <?=$form->field($model,'sex')->inline()->radioList(Yii::$app->params['luluyiiGlobal']['sex'])?>
                     <?=$form->field($model,'qq')->textInput()?>
                     <?=$form->field($model,'location')->textInput()?>
                     <?= $form->field($model, 'signature')->textInput()?>

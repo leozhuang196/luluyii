@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'sex',
             'value' => function ($model) {
                 return UserInfo::getSex($model->sex);},
-            "filter" => UserInfo::dropDown("sex")],
+            "filter" => Yii::$app->params['luluyiiGlobal']['sex']],
+            //"filter" => UserInfo::dropDown("sex")],
             'score',
             'signature',
             ['attribute' => 'qq',
