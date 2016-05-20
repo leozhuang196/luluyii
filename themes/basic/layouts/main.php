@@ -20,9 +20,7 @@ AppAsset::register($this);
 <div class="wrap">
 	<?= $this->render('header')?>
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
         <!-- 获取flash -->
         <?php
             if( Yii::$app->getSession()->hasFlash('success') ) {
@@ -36,7 +34,7 @@ AppAsset::register($this);
             if( Yii::$app->getSession()->hasFlash('error') ) {
                 echo Alert::widget([
                     'options' => [
-                        'class' => 'alert alert-error',
+                        'class' => 'alert alert-danger',
                     ],
                     'body' => Yii::$app->getSession()->getFlash('error'),
                 ]);

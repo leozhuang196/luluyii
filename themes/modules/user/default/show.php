@@ -31,7 +31,7 @@ use modules\user\models\UserFans;
                         ["width"=>"84",
                         "height"=>"84"
                         ]],
-                'value' => '../../'.$user_info->image],
+                'value' => Yii::$app->params['imageDomain'].'/'.$user_info->image],
                 'score',
                 ['attribute' => '粉丝数量',
                  'format' => 'raw',

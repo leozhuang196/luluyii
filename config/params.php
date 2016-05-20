@@ -9,6 +9,6 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'siteName' => 'luluyii',
     'icon-framework' => 'fa',
-    'defaultUserImage' => 'images/default.jpg',
-    'siteDomain' => 'http://www.luluyii.com',
+    'defaultUserImage' => 'userImage/defaultImage.jpg',
+    'imageDomain' => 'http://www.image.luluyii.com',
 ];

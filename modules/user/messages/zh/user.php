@@ -32,4 +32,10 @@ return [
     'Update' => '更新用户',
     'Delete' => '删除用户',
     'BasicInfo' => '基本信息',
+    /* 'delete image fail' => '无法删除图片',
+    'save images to database fail' => '无法保存图片到数据库',
+    'Type is wrong' => '图片的类型错误', 
+    'Image format must be jpg/png/jpeg and size less than 2M' => '图片格式必须为jpg/png/jpeg，且大小不能超过2M',
+    'Create image dir fail' => '无法创建图片文件夹',
+    'Remove image fail' => '无法将临时图片存放位置移动到你的项目',*/
 ];

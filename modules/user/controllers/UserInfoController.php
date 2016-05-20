@@ -79,7 +79,7 @@ class UserInfoController extends Controller
             ]);
         }
     }
-
+    
     protected function findModel($id)
     {
         if (($model = UserInfo::findOne($id)) !== null) {

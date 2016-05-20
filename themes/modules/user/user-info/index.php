@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     "height"=>"40"
                 ]],
                 'value' => function ($model){
-                return  Yii::$app->params['siteDomain'].'/'.$model->image;}],
+                return  Yii::$app->params['imageDomain'].'/'.$model->image;}],
             ['attribute' => 'sex',
             'value' => function ($model) {
                 return UserInfo::getSex($model->sex);},

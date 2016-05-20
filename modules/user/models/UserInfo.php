@@ -54,34 +54,6 @@ class UserInfo extends \yii\db\ActiveRecord
         }
     }
     
-    public function saveImage($model)
-    {
-        $image = UploadedFile::getInstance($model, 'image');
-        if($image === NULL || !in_array($image->getExtension(), ['jpg','png','jpeg']) || $image->size > 200000){
-            return false;
-        }
-        $randName = time().'.'.$image->getExtension();
-        $rootPath = 'images/'.date('Y',time()).'/';
-        if (!file_exists($rootPath)) {
-            mkdir($rootPath);
-        }
-        $image->saveAs($rootPath . $randName);
-        $user_info = UserInfo::findOne(['user_id' => Yii::$app->user->id]);
-        //如果不是默认的头像，用户更新头像的时候删除之前更新过的头像，避免默认头像被删除
-        if($user_info->image !== \Yii::$app->params['defaultUserImage']){
-            if(isset($user_info->image) && $user_info->image!=null){
-                unlink($user_info->image);
-            }
-        }
-        $user_info->image = $rootPath . $randName;
-        return $user_info->save();
-    }
-    
-    public static function showImage($model,$option=['width'=>'35','height'=>'35']) {
-        return Html::img(Yii::$app->params['siteDomain'].'/'.$model->image,['width'=> $option['width'],'height'=>$option['height']]);
-    }
-    
-    
     //下拉筛选
     public static function dropDown ($column, $value = null)
     {
@@ -99,5 +71,44 @@ class UserInfo extends \yii\db\ActiveRecord
         }else{
             return array_key_exists($column, $dropDownList) ? $dropDownList[$column] : false;
         }
+    }
+    
+    public function saveImage($model)
+    {
+        $image = UploadedFile::getInstance($model, 'image');
+        if($image === NULL || !in_array($image->getExtension(), ['jpg','png','jpeg']) || $image->size > 200000){
+            return null;
+        }
+        $imageName = md5(time().$image->name).'.'.$image->getExtension();
+        $userPath = 'userImage/'.$model->user_id;
+        $path = Yii::getAlias('@images').'/'.$userPath;
+        $pic = $userPath.'/'.$imageName;
+        //创建文件夹
+        if (!is_dir($path) && !mkdir($path,0777,true) && chmod($path,0777)) {
+            return null;
+        }
+        //保存图片
+        /* if (!$image->saveAs($path.'/'.$imageName)) {
+            return null;
+        } */
+        if (!move_uploaded_file($image->tempName, $path.'/'.$imageName)) {
+            return null;
+        }
+        //如果不是默认的头像，用户更新头像的时候删除之前更新过的头像，避免默认头像被删除
+        //这里$modle->image=null，所以得重新获取image，原因：可能是前面被置空了
+        $user_info = UserInfo::findOne(['user_id'=>$model->user_id]);
+        if($user_info->image !== \Yii::$app->params['defaultUserImage']){
+            if(isset($user_info->image) && $user_info->image!=null){
+                unlink(Yii::getAlias('@images').'/'.$user_info->image);
+            }
+        }
+        if ($this->validate()){
+            $user_info->image = $pic;
+            return $user_info->save();
+        }
+    }
+    
+    public static function showImage($model,$option=['width'=>'35','height'=>'35']) {
+        return Html::img(Yii::$app->params['imageDomain'].'/'.$model->image,['width'=> $option['width'],'height'=>$option['height']]);
     }
 }
