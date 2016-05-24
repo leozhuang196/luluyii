@@ -46,7 +46,7 @@ $config = [
                     '@app/views'=>'@themes/basic',
                     '@modules/user/views'=>'@themes/modules/user',
                     '@modules/post/views'=>'@themes/modules/post',
-                    '@modules/rbac/views'=>'@themes/modules/rbac',
+                    '@modules/shop/views'=>'@themes/modules/shop',
                 ],
             ],
         ],
@@ -64,9 +64,9 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@modules/post/messages',
                 ],
-                'rbac' => [
+                'shop' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@modules/rbac/messages',
+                    'basePath' => '@modules/shop/messages',
                 ],
             ],
         ],

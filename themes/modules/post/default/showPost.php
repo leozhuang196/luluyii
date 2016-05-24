@@ -21,9 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
 					<span class='pull-right'>
 						<span>
 						<?php if (PostCollection::exitCollect($model->id)):?>
-							<?= Html::a("<i class='fa fa-star-o active'></i>",['/post/default/no-collect','id'=>$model->id])?>
+							<?= Html::a("<i class='fa fa-star-o active'></i>",['/post/default/no-collect','id'=>$model->id],['title'=>'取消收藏'])?>
 						<?php else:?>
-							<?= Html::a("<i class='fa fa-star-o'></i>",['/post/default/collect','id'=>$model->id])?>
+							<?= Html::a("<i class='fa fa-star-o'></i>",['/post/default/collect','id'=>$model->id],['title'=>'收藏'])?>
 						<?php endif;?>
 							<?= $model->collection?>
 						</span>

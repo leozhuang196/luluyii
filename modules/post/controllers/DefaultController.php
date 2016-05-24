@@ -10,6 +10,12 @@ use modules\post\models\PostCollection;
 
 class DefaultController extends Controller
 {
+    public function init()
+    {
+        parent::init();
+        $this->layout = '@themes/basic/layouts/main.php';
+    }
+    
     public function behaviors()
     {
         return [

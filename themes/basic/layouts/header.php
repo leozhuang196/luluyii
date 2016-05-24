@@ -14,7 +14,8 @@ NavBar::begin([
 ]);
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
-    'items' => [['label' => Icon::show('user').'会员','url' => ['/user/default/users']]],
+    'items' => [['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
+                ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span>商城','url' => ['/shop']]],
     'encodeLabels' => false]);
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => '注册', 'url' => ['/user/default/signup']];
@@ -41,11 +42,7 @@ if (Yii::$app->user->isGuest) {
             ['label' => UserInfo::showImage($userInfo),
                 'items' => [
                     ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'User Manager'),'url' => ['/user/user']],
-                    ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'UserInfo Manager'),'url' => ['/user/user-info']],
-                    ['label' => '<span class="glyphicon glyphicon-book"></span> '.Yii::t('post', 'Post Manager'),'url' => ['/post/post']],
-                    ['label' => '<span class="glyphicon glyphicon-remove"></span> gii','url' => ['/gii']],
-                    ['label' => '<span class="glyphicon glyphicon-remove"></span> debug','url' => ['/debug']],
+                    ['label' => '<span class="glyphicon glyphicon-remove"></span> '.Yii::t('common', 'Back Manager'),'url' => ['/user/user']],
                     '<li class="divider"></li>',
                     ['label' => '<span class="glyphicon glyphicon-log-out"></span> 退出登录',
                         'url' => ['/user/default/logout'],'linkOptions' => ['data-method' => 'post']],

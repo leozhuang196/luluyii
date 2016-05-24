@@ -18,6 +18,12 @@ use modules\user\models\UserFans;
 
 class DefaultController extends Controller
 {
+    public function init()
+    {
+        parent::init();
+        $this->layout = '@themes/basic/layouts/main.php';
+    }
+    
     public function behaviors()
     {
         return [

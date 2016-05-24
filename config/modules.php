@@ -18,5 +18,8 @@ return
     'gridview' =>  [
         'class' => '\kartik\grid\Module'
     ],
+    'shop' => [
+        'class' => 'modules\shop\Module',
+    ],
 ];
 ?>
