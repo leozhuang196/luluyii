@@ -39,7 +39,7 @@ if (Yii::$app->user->isGuest) {
     }else{
         $menuItems = [
             ['label' => '<span class="glyphicon glyphicon-bell"></span>','url' => ['/user/default/notice-message']],
-            ['label' => UserInfo::showImage($userInfo),
+            ['label' => UserInfo::showImage($userInfo,['width'=>20,'height'=>20]),
                 'items' => [
                     ['label' => '<span class="glyphicon glyphicon-home"></span> 个人中心','url' => ['/user/default/modify-info']],
                     ['label' => '<span class="glyphicon glyphicon-remove"></span> '.Yii::t('common', 'Back Manager'),'url' => ['/user/user']],

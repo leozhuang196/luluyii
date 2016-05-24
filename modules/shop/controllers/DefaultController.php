@@ -1,7 +1,5 @@
 <?php
-
 namespace modules\shop\controllers;
-
 use yii\web\Controller;
 
 class DefaultController extends Controller
