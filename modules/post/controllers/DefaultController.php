@@ -6,6 +6,7 @@ use modules\post\models\Post;
 use yii\web\NotFoundHttpException;
 use modules\user\models\User;
 use yii\data\Pagination;
+use modules\post\models\PostCollection;
 
 class DefaultController extends Controller
 {
@@ -49,7 +50,7 @@ class DefaultController extends Controller
         $model->user_id = User::getUser()->id;
         $model->author = User::getUser()->username;
         $model->type = $type;
-        $model->created_time = time();
+        $model->created_time = time()+Yii::$app->params['luluyiiGlobal']['utc']['china'];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success','成功发布');
             return $this->refresh();
@@ -69,6 +70,44 @@ class DefaultController extends Controller
             return $this->refresh();
         }
         return $this->render('updatePost',['model'=>$model]);
+    }
+    
+    public function actionCollect($id)
+    {
+        $model = $this->findModel($id);
+        $model->collection ++;
+        $collection = new PostCollection();
+        $collection->user_id = Yii::$app->user->id;
+        $collection->post_id = $id;
+        $collection->created_time = time()+Yii::$app->params['luluyiiGlobal']['utc']['china'];
+        if ($collection->save() && $model->save()){
+            Yii::$app->getSession()->setFlash('success','收藏成功');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+    }
+    
+    public function actionNoCollect($id)
+    {
+        $model = $this->findModel($id);
+        $model->collection --;
+        $collect = PostCollection::findOne(['post_id'=>$id]);
+        $collect->nocollect($collect);
+        if ($model->save()){
+            Yii::$app->getSession()->setFlash('success','取消收藏成功');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+    }
+    
+    public function actionMyCollect()
+    {
+        $collect = PostCollection::find()->where(['user_id'=>Yii::$app->user->id])->orderBy(['created_time'=>SORT_DESC])->all();
+        return $this->render('myCollect',['collect'=>$collect]);
+    }
+    
+    public function actionMyPost()
+    {
+        $post = Post::find()->where(['user_id'=>Yii::$app->user->id])->orderBy(['created_time'=>SORT_DESC])->all();
+        return $this->render('myPost',['post'=>$post]);
     }
 
     protected function findModel($id)

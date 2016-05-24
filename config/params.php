@@ -13,5 +13,6 @@ return [
     'imageDomain' => 'http://image.luluyii.cn',
     'luluyiiGlobal' => [
         'sex' => ['0'=>'男','1'=>'女','2'=>'保密'],
+        'utc' => ['china'=>'8*60*60'],
     ],
 ];

@@ -4,6 +4,7 @@ use yii\bootstrap\ActiveForm;
 use modules\user\models\User;
 use modules\user\models\UserInfo;
 use modules\post\models\Post;
+use modules\post\models\PostCollection;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label'=>Post::getPostType($model->type),'url'=>['/post/default/show-posts','type'=>$model->type]];
 $this->params['breadcrumbs'][] = $this->title;
@@ -18,7 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
 					<span><i class='fa fa-eye'></i><?= $model->view_num?></span>
 					<span><i class='fa fa-comments-o'></i><?= $model->comment_num?></span>
 					<span class='pull-right'>
-						<span><i class='fa fa-star-o'></i><?= $model->collection?></span>
+						<span>
+						<?php if (PostCollection::exitCollect($model->id)):?>
+							<?= Html::a("<i class='fa fa-star-o active'></i>",['/post/default/no-collect','id'=>$model->id])?>
+						<?php else:?>
+							<?= Html::a("<i class='fa fa-star-o'></i>",['/post/default/collect','id'=>$model->id])?>
+						<?php endif;?>
+							<?= $model->collection?>
+						</span>
 						<span><i class='fa fa-thumbs-o-up'></i><?= $model->love_num?></span>
 						<span><i class='fa fa-thumbs-o-down'></i><?= $model->hate_num?></span>
 					</span>

@@ -30,7 +30,7 @@ $this->title = '收件箱';
         					<div class='media-heading media-action'><?= '发件人'.Html::a($value->from,['default/show','username'=>$value->from])?></div>
         					<p><?= $value->content?></p>
         					<div class='media-action'>
-        						<?= date('Y-m-d H:s',$value->send_time)?>
+        						<?= date('Y-m-d H:i',$value->send_time)?>
         						<span class='pull-right'>
         							<?= Html::a('回复',['default/send-message','username' => $value->from])?>
 								</span>

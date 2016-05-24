@@ -119,3 +119,7 @@ a.desc:after {
 span{
 	margin-right: 15px;
 }
+
+.active {
+    color: #eea236;
+}
