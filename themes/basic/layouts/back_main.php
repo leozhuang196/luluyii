@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Alert;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use yii\widgets\Menu;
+use yii\bootstrap\Nav;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -24,15 +24,28 @@ AppAsset::register($this);
         <h3 class='panel-title'><strong>后台管理</strong></h3>
     </div>
     <div class='panel-body'>
-        <?=Menu::widget([
+        <?=Nav::widget([
             'options' => ['class'=>'nav nav-pills nav-stacked'],
             'items' => [
-                ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span> '.Yii::t('shop', 'Shop Manager'),'url' => ['/shop/category']],
-                ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'User Manager'),'url' => ['/user/user']],
-                ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'UserInfo Manager'),'url' => ['/user/user-info']],
+                ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span> '.Yii::t('shop', 'Shop Manager'),
+                    'items' => [
+                        ['label' => Yii::t('shop', 'Category Manager'),'url' => ['/shop/categroy']]
+                    ],
+                ],
+                ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'User Manager'),
+                    'items' => [
+                        ['label' => Yii::t('user', 'User Manager'),'url' => ['/user/user']],
+                        ['label' => Yii::t('user', 'UserInfo Manager'),'url' => ['/user/user-info']],
+                    ],
+                ],
                 ['label' => '<span class="glyphicon glyphicon-book"></span> '.Yii::t('post', 'Post Manager'),'url' => ['/post/post']],
-                ['label' => '<span class="glyphicon glyphicon-remove"></span> gii','url' => ['/gii']],
-                ['label' => '<span class="glyphicon glyphicon-remove"></span> debug','url' => ['/debug']],
+                ['label' => '<span class="glyphicon glyphicon-remove"></span> 调试',
+                    'items' => [
+                        ['label' => 'gii','url' => ['/gii']],
+                        ['label' => 'debug','url' => ['/debug']],
+                    ],
+                ],
+                
             ],
             'encodeLabels' => false,
         ])?>

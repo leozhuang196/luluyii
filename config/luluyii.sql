@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-24 10:04:30
+Date: 2016-05-25 13:21:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,7 +45,7 @@ CREATE TABLE `lulu_post_collection` (
   `post_id` int(11) NOT NULL,
   `created_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_post_type
@@ -56,6 +56,64 @@ CREATE TABLE `lulu_post_type` (
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`type_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for lulu_shop_category
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_shop_category`;
+CREATE TABLE `lulu_shop_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
+  `level` smallint(5) unsigned NOT NULL,
+  `type` varchar(64) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `root` (`root`),
+  KEY `lft` (`lft`),
+  KEY `rgt` (`rgt`),
+  KEY `level` (`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for lulu_shop_item
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_shop_item`;
+CREATE TABLE `lulu_shop_item` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `stock` int(10) NOT NULL,
+  `origin_price` decimal(10,2) NOT NULL,
+  `tag_price` decimal(10,2) NOT NULL,
+  `desc` varchar(255) NOT NULL,
+  `bar_code` varchar(255) NOT NULL,
+  `is_new` smallint(1) NOT NULL,
+  `is_hot` smallint(1) NOT NULL,
+  `is_delete` smallint(1) NOT NULL,
+  `view_num` int(11) NOT NULL,
+  `collect_num` int(11) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `created_time` int(11) NOT NULL,
+  `updated_time` int(11) NOT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for lulu_shop_item_sku
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_shop_item_sku`;
+CREATE TABLE `lulu_shop_item_sku` (
+  `sku_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `sn` varchar(45) NOT NULL,
+  `color` varchar(63) NOT NULL,
+  `size` varchar(10) NOT NULL,
+  PRIMARY KEY (`sku_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user

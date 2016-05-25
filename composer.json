@@ -12,7 +12,8 @@
     "kartik-v/yii2-grid": "@dev",
     "kartik-v/yii2-editable": "@dev",
     "kartik-v/yii2-widget-select2": "@dev",
-    "kartik-v/yii2-widget-fileinput": "@dev"
+    "kartik-v/yii2-widget-fileinput": "@dev",
+    "gilek/yii2-gtreetable": "*"
   },
   "require-dev" : {
     "yiisoft/yii2-codeception" : "*",
@@ -36,7 +37,7 @@
       "bower-asset-library" : "vendor/bower"
     }
   },
-  "minimum-stability" : "stable",
+  "minimum-stability": "dev",
   "type" : "project",
   "scripts" : {
     "post-create-project-cmd" : [ "yii\\composer\\Installer::postCreateProject" ]
