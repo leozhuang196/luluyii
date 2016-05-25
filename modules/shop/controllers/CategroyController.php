@@ -1,12 +1,11 @@
 <?php
 namespace modules\shop\controllers;
 use Yii;
-use modules\shop\controllers\DefaultController;
 use modules\shop\models\Category;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
-class CategroyController extends DefaultController
+class CategroyController extends \yii\web\Controller
 {
     public function behaviors()
     {
