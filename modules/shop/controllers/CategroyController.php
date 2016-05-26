@@ -1,37 +1,10 @@
 <?php
 namespace modules\shop\controllers;
-use Yii;
+use app\controllers\BackController;
 use modules\shop\models\Category;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
-class CategroyController extends \yii\web\Controller
+class CategroyController extends BackController
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function () {
-                            return in_array(Yii::$app->user->identity->username, Yii::$app->params['adminName']);
-                        },
-                    ]
-                ],
-            ],
-        ];
-    }
-    
-    
     public function actions() {
         return [
             'nodeChildren' => [

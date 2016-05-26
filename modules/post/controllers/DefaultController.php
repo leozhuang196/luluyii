@@ -1,21 +1,15 @@
 <?php
 namespace modules\post\controllers;
 use Yii;
-use yii\web\Controller;
+use app\controllers\FrontController;
 use modules\post\models\Post;
 use yii\web\NotFoundHttpException;
 use modules\user\models\User;
 use yii\data\Pagination;
 use modules\post\models\PostCollection;
 
-class DefaultController extends Controller
+class DefaultController extends FrontController
 {
-    public function init()
-    {
-        parent::init();
-        $this->layout = '@themes/basic/layouts/main.php';
-    }
-    
     public function behaviors()
     {
         return [

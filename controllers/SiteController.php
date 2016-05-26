@@ -1,18 +1,12 @@
 <?php
 namespace app\controllers;
 use Yii;
-use yii\web\Controller;
+use app\controllers\FrontController;
 use app\models\ContactForm;
 use modules\post\models\Post;
 
-class SiteController extends Controller
+class SiteController extends FrontController
 {
-   public function init()
-   {
-       parent::init();
-       $this->layout='@themes/basic/layouts/main.php';
-   }
-        
     public function actions()
     {
         return [
@@ -29,12 +23,11 @@ class SiteController extends Controller
                 'testLimit'=>5,
                 //fixedVerifyCode通常用在自动化测试 方便复制验证码的场景下使用
                 //每次都固定显示一个验证码，方便测试，方便开发
-                //'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
-                
         ];
     }
-
+    
     public function actionIndex()
     {
         $tutorial = Post::find()->where(['type'=>Post::POST_TYPE_TUTORIAL])->limit(3)->orderBy(['created_time'=>SORT_DESC])->all();

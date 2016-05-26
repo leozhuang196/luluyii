@@ -1,12 +1,9 @@
 <?php
-
 namespace modules\test\controllers;
-
 use yii\web\Controller;
 use modules\test\models\Test;
 use yii\web\UploadedFile;
 use modules\user\models\User;
-use modules\post\models\Post;
 
 class DefaultController extends Controller
 {

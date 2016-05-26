@@ -4,37 +4,11 @@ use Yii;
 use yii\helpers\Json;
 use modules\user\models\UserInfo;
 use modules\user\models\UserInfoSearch;
-use yii\web\Controller;
+use app\controllers\BackController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
-class UserInfoController extends Controller
+class UserInfoController extends BackController
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function () {
-                            return in_array(Yii::$app->user->identity->username, Yii::$app->params['adminName']);
-                        },
-                    ]
-                ],
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $searchModel = new UserInfoSearch();

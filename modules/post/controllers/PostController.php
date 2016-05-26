@@ -3,24 +3,11 @@ namespace modules\post\controllers;
 use Yii;
 use modules\post\models\Post;
 use modules\post\models\PostSearch;
-use yii\web\Controller;
+use app\controllers\BackController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
-class PostController extends Controller
+class PostController extends BackController
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $searchModel = new PostSearch();

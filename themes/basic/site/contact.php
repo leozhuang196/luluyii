@@ -17,6 +17,8 @@ $this->title = '联系我们';
                 <?= $form->field($model, 'subject') ?>
                 <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
                 <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                    'captchaAction' => 'site/captcha',
+                    'imageOptions'=>['alt'=>'验证码','title'=>'点击换图'],
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                 ]) ?>
                 <div class="form-group">

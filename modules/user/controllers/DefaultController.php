@@ -2,7 +2,7 @@
 namespace modules\user\controllers;
 use Yii;
 use yii\helpers\Html;
-use yii\web\Controller;
+use app\controllers\FrontController;
 use modules\user\models\LoginForm;
 use modules\user\models\SignupForm;
 use yii\web\Response;
@@ -16,14 +16,8 @@ use modules\user\models\SendMessageForm;
 use modules\user\models\UserMessage;
 use modules\user\models\UserFans;
 
-class DefaultController extends Controller
+class DefaultController extends FrontController
 {
-    public function init()
-    {
-        parent::init();
-        $this->layout = '@themes/basic/layouts/main.php';
-    }
-    
     public function behaviors()
     {
         return [

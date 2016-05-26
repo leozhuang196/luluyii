@@ -3,39 +3,11 @@ namespace modules\user\controllers;
 use Yii;
 use modules\user\models\User;
 use modules\user\models\UserSearch;
-use yii\web\Controller;
+use app\controllers\BackController;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use modules\user\models\UserInfo;
-use yii\data\Pagination;
 
-class UserController extends Controller
+class UserController extends BackController
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function () {
-                            return in_array(Yii::$app->user->identity->username, Yii::$app->params['adminName']);
-                        },
-                    ]
-                ],
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         $searchModel = new UserSearch();

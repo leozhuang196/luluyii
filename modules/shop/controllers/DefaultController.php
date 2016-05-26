@@ -1,15 +1,9 @@
 <?php
 namespace modules\shop\controllers;
-use yii\web\Controller;
+use app\controllers\FrontController;
 
-class DefaultController extends Controller
+class DefaultController extends FrontController
 {
-    public function init()
-    {
-        parent::init();
-        $this->layout = '@themes/basic/layouts/main.php';
-    }
-    
     public function actionIndex()
     {
         return $this->render('index');
