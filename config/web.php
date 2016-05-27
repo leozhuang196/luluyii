@@ -1,9 +1,21 @@
 <?php
 $config = [
     'language' => 'zh-CN',
+    //默认控制器
     //'defaultRoute' => 'post',
+    //项目时区
+    'timeZone' => 'PRC',
     'id' => 'basic',
+    //项目的根目录
     'basePath' => dirname(__DIR__),
+    //将所有的request请求交给offline控制器处理，当我们的项目需要维护的时候，
+    //将所有的请求都交友Offline控制器处理，抛出项目维护的公告
+    /*'catchAll'=>[
+        'offline',
+        //param1和param2是offline可以接收到的参数
+        'param1'=>'升级',
+        'param2'=>'维护',
+    ],*/
     'bootstrap' => ['log'],
     'components' => [
         'request' => [

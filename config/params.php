@@ -8,11 +8,11 @@ return [
     'smtpPort' => '587',
     'user.passwordResetTokenExpire' => 3600,
     'siteName' => 'luluyii',
+    'pageSize' => '6',
     'icon-framework' => 'fa',
     'defaultUserImage' => 'userImage/defaultImage.jpg',
     'imageDomain' => 'http://image.luluyii.cn',
     'luluyiiGlobal' => [
         'sex' => ['0'=>'男','1'=>'女','2'=>'保密'],
-        'utc' => ['china'=>'8*60*60'],
     ],
 ];

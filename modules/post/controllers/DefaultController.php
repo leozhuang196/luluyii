@@ -50,7 +50,8 @@ class DefaultController extends FrontController
         $model->user_id = User::getUser()->id;
         $model->author = User::getUser()->username;
         $model->type = $type;
-        $model->created_time = time()+Yii::$app->params['luluyiiGlobal']['utc']['china'];
+        //$model->created_time = time()+Yii::$app->params['luluyiiGlobal']['utc']['china'];
+        $model->created_time = time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->getSession()->setFlash('success','成功发布');
             return $this->refresh();
@@ -79,7 +80,7 @@ class DefaultController extends FrontController
         $collection = new PostCollection();
         $collection->user_id = Yii::$app->user->id;
         $collection->post_id = $id;
-        $collection->created_time = time()+Yii::$app->params['luluyiiGlobal']['utc']['china'];
+        $collection->created_time = time();
         if ($collection->save() && $model->save()){
             Yii::$app->getSession()->setFlash('success','收藏成功');
             return $this->redirect(Yii::$app->request->referrer);
