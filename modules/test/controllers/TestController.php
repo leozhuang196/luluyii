@@ -2,18 +2,16 @@
 namespace modules\test\controllers;
 use Yii;
 use app\models\Test;
-use yii\web\Controller;
+use app\controllers\FrontController;
 use app\models\Customer;
 use app\models\Order;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use modules\post\models\PostType;
 use yii\data\ActiveDataProvider;  //调用 ActiveDataProvider 类
 use common\models\User;
-use yii\data\Pagination;
 
-class TestController extends Controller
+class TestController extends FrontController
 {
     public function actionIndex(){
         $test = new Test();

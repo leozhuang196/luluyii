@@ -10,6 +10,4 @@ $example = function ($arg) use ($message) {
     var_dump($arg . ' ' . $message);
 };
 $example("hello"); */
-
-
-
+?>

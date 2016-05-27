@@ -1,11 +1,11 @@
 <?php
 namespace modules\test\controllers;
-use yii\web\Controller;
+use app\controllers\FrontController;
 use modules\test\models\Test;
 use yii\web\UploadedFile;
 use modules\user\models\User;
 
-class DefaultController extends Controller
+class DefaultController extends FrontController
 {
     public function actionIndex()
     {

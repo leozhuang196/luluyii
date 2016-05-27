@@ -19,61 +19,60 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <div class="wrap">
-<div class='sidebar panel panel-default'>
-    <div class='panel-heading'>
-        <h3 class='panel-title'><strong>后台管理</strong></h3>
-    </div>
-    <div class='panel-body'>
-        <?=Nav::widget([
-            'options' => ['class'=>'nav nav-pills nav-stacked'],
-            'items' => [
-                ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span> '.Yii::t('shop', 'Shop Manager'),
+	<div class='row'>
+        <div class='sidebar panel panel-default'>
+            <div class='panel-heading'>
+                <h3 class='panel-title'><strong>后台管理</strong></h3>
+            </div>
+        	<?=Nav::widget([
+                    'options' => ['class'=>'nav nav-pills nav-stacked'],
                     'items' => [
-                        ['label' => Yii::t('shop', 'Category Manager'),'url' => ['/shop/categroy']]
+                        ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span> '.Yii::t('shop', 'Shop Manager'),
+                            'items' => [
+                                ['label' => Yii::t('shop', 'Category Manager'),'url' => ['/shop/categroy']]
+                            ],
+                        ],
+                        ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'User Manager'),
+                            'items' => [
+                                ['label' => Yii::t('user', 'User Manager'),'url' => ['/user/user']],
+                                ['label' => Yii::t('user', 'UserInfo Manager'),'url' => ['/user/user-info']],
+                            ],
+                        ],
+                        ['label' => '<span class="glyphicon glyphicon-book"></span> '.Yii::t('post', 'Post Manager'),'url' => ['/post/post']],
+                        ['label' => '<span class="glyphicon glyphicon-remove"></span> 调试',
+                            'items' => [
+                                ['label' => 'gii','url' => ['/gii']],
+                                ['label' => 'debug','url' => ['/debug']],
+                            ],
+                        ],
                     ],
-                ],
-                ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'User Manager'),
-                    'items' => [
-                        ['label' => Yii::t('user', 'User Manager'),'url' => ['/user/user']],
-                        ['label' => Yii::t('user', 'UserInfo Manager'),'url' => ['/user/user-info']],
-                    ],
-                ],
-                ['label' => '<span class="glyphicon glyphicon-book"></span> '.Yii::t('post', 'Post Manager'),'url' => ['/post/post']],
-                ['label' => '<span class="glyphicon glyphicon-remove"></span> 调试',
-                    'items' => [
-                        ['label' => 'gii','url' => ['/gii']],
-                        ['label' => 'debug','url' => ['/debug']],
-                    ],
-                ],
-                
-            ],
-            'encodeLabels' => false,
-        ])?>
-    </div>
-</div>
-	<?= $this->render('header')?>
-    <div class="container">
-        <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
-        <!-- 获取flash -->
-        <?php
-            if( Yii::$app->getSession()->hasFlash('success') ) {
-                echo Alert::widget([
-                    'options' => [
-                        'class' => 'alert alert-success', //这里是提示框的class
-                    ],
-                    'body' => Yii::$app->getSession()->getFlash('success'), //消息体
-                ]);
-            }
-            if( Yii::$app->getSession()->hasFlash('error') ) {
-                echo Alert::widget([
-                    'options' => [
-                        'class' => 'alert alert-danger',
-                    ],
-                    'body' => Yii::$app->getSession()->getFlash('error'),
-                ]);
-            }
-        ?>
-        <div><?= $content;?></div>
+                    'encodeLabels' => false,
+                ])?>
+        </div>
+    	<?= $this->render('header')?>
+        <div class="container">
+            <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
+            <!-- 获取flash -->
+            <?php
+                if( Yii::$app->getSession()->hasFlash('success') ) {
+                    echo Alert::widget([
+                        'options' => [
+                            'class' => 'alert alert-success', //这里是提示框的class
+                        ],
+                        'body' => Yii::$app->getSession()->getFlash('success'), //消息体
+                    ]);
+                }
+                if( Yii::$app->getSession()->hasFlash('error') ) {
+                    echo Alert::widget([
+                        'options' => [
+                            'class' => 'alert alert-danger',
+                        ],
+                        'body' => Yii::$app->getSession()->getFlash('error'),
+                    ]);
+                }
+            ?>
+            <div><?= $content;?></div>
+        </div>
     </div>
 </div>
 <?=$this->render('footer')?>
