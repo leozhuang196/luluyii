@@ -1,5 +1,6 @@
 <?php
 namespace modules\post\models;
+use Yii;
 use yii\data\ActiveDataProvider;
 use modules\post\models\Post;
 
@@ -19,7 +20,7 @@ class PostSearch extends Post
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pagesize' => Yii::$app->params['pagesize'], //如果不定义，默认为20
+                'pagesize' => Yii::$app->params['pageSize'], //如果不定义，默认为20
             ],
             //'sort' => ['attributes' => ['id']],//如果定义，则只能按照id来排序，否则所有字段都可以
         ]);
