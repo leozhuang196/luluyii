@@ -14,8 +14,10 @@ NavBar::begin([
 ]);
 echo Nav::widget([
     'options' => ['class' => 'nav navbar-nav '],
-    'items' => [['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
-                ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span>商城','url' => ['/shop']]],
+    'items' => [
+        ['label' => Icon::show('user').'会员','url' => ['/user/default/users']],
+        ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span>足球商城','url' => ['/shop']],
+    ],
     'encodeLabels' => false]);
 if (Yii::$app->user->isGuest) {
     $menuItems[] = ['label' => '注册', 'url' => ['/user/default/signup']];

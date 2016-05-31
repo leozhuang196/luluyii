@@ -8,4 +8,8 @@ class Category extends TreeModel
     {
         return '{{%shop_category}}';
     }
+    
+    public static function getCategoriesByLevel($level){
+        return static::findAll(['level'=>$level]);
+    }
 }

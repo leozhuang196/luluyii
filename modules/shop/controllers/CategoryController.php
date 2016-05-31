@@ -3,7 +3,7 @@ namespace modules\shop\controllers;
 use app\controllers\BackController;
 use modules\shop\models\Category;
 
-class CategroyController extends BackController
+class CategoryController extends BackController
 {
     public function actions() {
         return [
