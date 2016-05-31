@@ -16,3 +16,11 @@ use modules\shop\models\Category;
 		<?php endforeach;?>
 	</ul>
 </nav>
+<div id="myCarousel" class="carousel slide">
+	<div class="carousel-inner">
+        <div class="active item"><img src="/01.jpg" alt="HTML5 logo" /></div>
+        <div class="item"><img src="/02.jpg" alt="JS logo"  /></div>
+    </div>
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
