@@ -1,6 +1,7 @@
 ﻿<?php
 use yii\helpers\Html;
 use modules\user\models\SigninForm;
+use app\models\Visit;
 $this->title = \Yii::$app->params['siteName'];
 $date = date('Y年m月d日',time());
 ?>
@@ -16,6 +17,10 @@ $date = date('Y年m月d日',time());
 			<?= Html::a('<i class="fa fa fa-calendar-check-o"></i>  今日已签到<br>已连续'.SigninForm::siginDay().'天','javascript:void(0)',['class'=>"btn btn-success disabled"])?>
 		<?php endif;?>
     		<?= Html::a($date.'<br>已有'.SigninForm::siginNum().'人签到</a>',['/user/default/signin-member'],['class'=>"btn btn-primary"])?>
+        </div>
+        <br/>
+        <div class="btn-group btn-group-justified">
+        	<?= Html::a($date.'<br>已有'.Visit::visitNum().'人访问</a>','javascript:void(0)',['class'=>"btn btn-primary"])?>
         </div>
     </div>
 </div>

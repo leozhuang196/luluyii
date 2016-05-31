@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-25 13:21:24
+Date: 2016-05-31 09:36:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,7 +74,7 @@ CREATE TABLE `lulu_shop_category` (
   KEY `lft` (`lft`),
   KEY `rgt` (`rgt`),
   KEY `level` (`level`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_shop_item
@@ -179,3 +179,14 @@ CREATE TABLE `lulu_user_message` (
   `send_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for lulu_user_visit
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_user_visit`;
+CREATE TABLE `lulu_user_visit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `visit_ip` varchar(255) NOT NULL,
+  `visit_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
