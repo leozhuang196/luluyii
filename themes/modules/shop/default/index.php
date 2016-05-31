@@ -1,10 +1,9 @@
 <?php 
 use modules\shop\models\Category;
 ?>
-
-<div class="row">
+<nav class="navbar navbar-inverse">
 	<ul class="nav nav-pills">
-		<li class="active"><a href="#">全部商品分类</a></li>   
+		<li><a href="#">全部商品分类</a></li>   
 		<?php $categories = Category::getCategoriesByLevel('2');foreach ($categories as $category):?>
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= $category->name?><b class="caret"></b></a>
@@ -16,4 +15,4 @@ use modules\shop\models\Category;
 		</li>
 		<?php endforeach;?>
 	</ul>
-</div>
+</nav>

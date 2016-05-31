@@ -1,12 +1,12 @@
 <?php
 namespace app\controllers;
-use yii\web\Controller;
+use app\controllers\FrontController;
 
-class OfflineController extends Controller
+class OfflineController extends FrontController
 {    
     public function actionIndex($param1,$param2)
     {
-        echo '网站正在'.$param1.$param2;
+        return $this->render('index',['param1'=>$param1,'param2'=>$param2]);
     }
 }
 ?>
