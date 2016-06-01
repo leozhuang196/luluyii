@@ -17,10 +17,12 @@ use modules\shop\models\Category;
 	</ul>
 </nav>
 <div id="myCarousel" class="carousel slide">
+	 <!-- 轮播（Carousel）项目 -->
 	<div class="carousel-inner">
-        <div class="active item"><img src="/01.jpg" alt="HTML5 logo" /></div>
-        <div class="item"><img src="/02.jpg" alt="JS logo"  /></div>
+        <div class="active item"><img src="/01.jpg" alt="HTML5 logo" width='1920' height='380'/></div>
+        <div class="item"><img src="/02.jpg" alt="JS logo" width='1920' height='380' /></div>
     </div>
+    <!-- 轮播（Carousel）导航 -->
     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>

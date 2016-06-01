@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-05-31 09:36:38
+Date: 2016-06-01 17:45:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -116,6 +116,31 @@ CREATE TABLE `lulu_shop_item_sku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for lulu_stm
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_stm`;
+CREATE TABLE `lulu_stm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `is_use` smallint(2) NOT NULL,
+  `stm_type` smallint(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for lulu_stm_img
+-- ----------------------------
+DROP TABLE IF EXISTS `lulu_stm_img`;
+CREATE TABLE `lulu_stm_img` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `stm_id` int(11) NOT NULL,
+  `pic` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pk_stm_img_pk_1` (`stm_id`),
+  CONSTRAINT `pk_stm_img_pk_1` FOREIGN KEY (`stm_id`) REFERENCES `lulu_stm` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Table structure for lulu_user
 -- ----------------------------
 DROP TABLE IF EXISTS `lulu_user`;
@@ -162,7 +187,7 @@ CREATE TABLE `lulu_user_info` (
   `signin_day` int(11) unsigned DEFAULT NULL,
   `signature` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
-  `message_from` int(12) NOT NULL,
+  `message_from` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
@@ -189,4 +214,4 @@ CREATE TABLE `lulu_user_visit` (
   `visit_ip` varchar(255) NOT NULL,
   `visit_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;

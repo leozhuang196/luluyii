@@ -28,7 +28,8 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => '<span class="glyphicon glyphicon-shopping-cart"></span> '.Yii::t('shop', 'Shop Manager'),
                         'items' => [
-                            ['label' => Yii::t('shop', 'Category Manager'),'url' => ['/shop/category']]
+                            ['label' => Yii::t('shop', 'Category Manager'),'url' => ['/shop/category']],
+                            ['label' => Yii::t('shop', 'Stm Manager'),'url' => ['/shop/stm']],
                         ],
                     ],
                     ['label' => '<span class="glyphicon glyphicon-user"></span> '.Yii::t('user', 'User Manager'),

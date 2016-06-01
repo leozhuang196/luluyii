@@ -14,5 +14,6 @@ return [
     'imageDomain' => 'http://image.luluyii.cn',
     'luluyiiGlobal' => [
         'sex' => ['0'=>'男','1'=>'女','2'=>'保密'],
+        'locations' => ['1'=>'商城首页轮播图','2'=>'顶部导航菜单','3'=>'banner'],
     ],
 ];

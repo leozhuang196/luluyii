@@ -2,15 +2,15 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use modules\user\models\User;
-$this->title = Yii::t('user', 'Manager');
+$this->title = Yii::t('user', 'User Manager');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'caption' => $this->title,
-        'captionOptions' => ['style' => 'font-size: 16px; font-weight: bold; color: #000; text-align: center;'],
+        /* 'caption' => $this->title,
+        'captionOptions' => ['style' => 'font-size: 16px; font-weight: bold; color: #000; text-align: center;'], */
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',
