@@ -70,7 +70,7 @@ class DefaultController extends FrontController
             Yii::$app->getSession()->setFlash('success','注册成功，请检查你的邮箱 '.$model->email.'，请在1小时内完成验证'.Html::a('没收到邮件？',['find-password']));
             return $this->goHome();
         }
-        return $this->render('signup', ['model' => $model]);
+        return $this->renderAjax('signup', ['model' => $model]);
     }
     
     //注册的时候通过点击邮件链接激活账号

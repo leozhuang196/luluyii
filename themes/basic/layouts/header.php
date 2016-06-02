@@ -3,6 +3,9 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use modules\user\models\UserInfo;
 use kartik\icons\Icon;
+use yii\helpers\Html;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 Icon::map($this);
 NavBar::begin([
     'brandLabel' => Yii::$app->params['siteName'],
@@ -20,8 +23,8 @@ echo Nav::widget([
     ],
     'encodeLabels' => false]);
 if (Yii::$app->user->isGuest) {
-    $menuItems[] = ['label' => '注册', 'url' => ['/user/default/signup']];
-    $menuItems[] = ['label' => '登录', 'url' => ['/user/default/login']];
+    $menuItems[] = '<li>'.Html::a(Yii::t('user', 'Signup'), ['/user/default/signup'], ['data-toggle' => 'modal','data-target' => '#signup-modal',]).'</li>';
+    $menuItems[] = ['label' => Yii::t('user', 'Login'), 'url' => ['/user/default/login']];
 } else {
     $user = Yii::$app->user;
     $identity = $user->identity;
@@ -59,4 +62,22 @@ echo Nav::widget([
     'items' => $menuItems,
 ]);
 NavBar::end();
+
+//注册页面采用bootstrap的moadl弹窗
+Modal::begin([
+    'id' => 'signup-modal',
+    'options' => ['width'=>'20'],
+    'header' => '<h4 class="modal-title">'.Yii::t('user', 'Signup').'</h4>',
+    'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a>',
+]);
+$requestUrl = Url::toRoute('/user/default/signup');
+$js = <<<JS
+    $.get('{$requestUrl}', {},
+        function (data) {
+            $('.modal-body').html(data);
+        }
+    );
+JS;
+$this->registerJs($js);
+Modal::end();
 ?>

@@ -1,5 +1,7 @@
 <?php
 return [
+    'Signup' => '注册',
+    'Login' => '登录',
     'Id' => '用户id',
     'Username' => '用户名',
     'Password' => '密码',

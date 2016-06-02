@@ -31,7 +31,8 @@ class UserController extends BackController
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            //renderAjax只显示view，以ajax方式渲染页面，可以配合js/css实现各种特效
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

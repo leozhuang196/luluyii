@@ -39,4 +39,34 @@ $example("hello"); */
       </select>
   </div>
   
-</form>   
+</form>  
+
+
+
+<?php 
+use yii\bootstrap\Modal;
+use yii\helpers\Html;
+use yii\helpers\Url;
+//创建一个按钮，用于调modal的显示
+echo Html::a('创建', '#', [
+    'id' => 'create',
+    'data-toggle' => 'modal',
+    'data-target' => '#create-modal',
+    'class' => 'btn btn-success',
+]);
+//创建modal
+Modal::begin([
+    'id' => 'create-modal',
+    'header' => '<h4 class="modal-title">创建</h4>',
+    'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a>',
+]);
+$requestUrl = Url::toRoute('create');
+$js = <<<JS
+    $.get('{$requestUrl}', {},
+        function (data) {
+            $('.modal-body').html(data);
+        }
+    );
+JS;
+$this->registerJs($js);
+Modal::end();
