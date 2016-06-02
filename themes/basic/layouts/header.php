@@ -66,18 +66,20 @@ NavBar::end();
 //注册页面采用bootstrap的moadl弹窗
 Modal::begin([
     'id' => 'signup-modal',
-    'options' => ['width'=>'20'],
     'header' => '<h4 class="modal-title">'.Yii::t('user', 'Signup').'</h4>',
     'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a>',
 ]);
 $requestUrl = Url::toRoute('/user/default/signup');
 $js = <<<JS
-    $.get('{$requestUrl}', {},
-        function (data) {
-            $('.modal-body').html(data);
-        }
-    );
+$.get('{$requestUrl}', {},
+    function (data) {
+        $('.modal-body').html(data);
+    }
+);
 JS;
-$this->registerJs($js);
+//Yii::$app->user->isGuest这句要加进去，只有未登录用户才需要加载上面的js，否则页面会持续跳转到首页（原因未知）
+if (Yii::$app->user->isGuest){
+    $this->registerJs($js);
+}
 Modal::end();
 ?>
