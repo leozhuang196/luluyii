@@ -41,12 +41,17 @@ class StmController extends BackController
     {
         $model = new Stm();
         if ($model->load(Yii::$app->request->post())) {
+            //var_dump(Yii::$app->request->post()['title']);exit();
             //$transaction = Yii::$app->db->beginTransaction ();
             if ($model->save()){
                 $stm_img = new StmImg();
                 $stm_img->stm_id = $model->id;
+                $stm_img->title = Yii::$app->request->post()['title'];
+                $stm_img->pic = Yii::$app->request->post()['pic'];
                 //$transaction->commit ();
-                $stm_img->save();
+                if (!$stm_img->save()){
+                    die('失败');
+                }
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
