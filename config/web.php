@@ -33,6 +33,7 @@ $config = [
             //修改默认的登录地址
             'loginUrl' => ['user/default/login'],
         ],
+        //异常处理控制器
         'errorHandler' => [
             //配置网站错误信息显示的页面
             'errorAction' => 'site/error',
@@ -40,6 +41,7 @@ $config = [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
         ],
+        //日志系统配置，程序日志
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -85,6 +87,7 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        //路由配置
         'urlManager' => [
             //用于URL路径化
             'enablePrettyUrl' => true,
@@ -96,6 +99,20 @@ $config = [
     ],
     'params' => require(__DIR__ . '/params.php'),
     'modules' => require(__DIR__.'/modules.php'),
+    //------------------ AOP支持 ----------------------
+    //Aspect Oriented Programming  面向切面编程。解耦是程序员编码开发过程中一直追求的。AOP也是为了解耦所诞生。
+    //具体思想是：定义一个切面，在切面的纵向定义处理方法，处理完成之后，回到横向业务流
+    'on beforeAction' => function ($event){
+        /* if (Yii::$app->request->isGet){
+            $event->isValid = false;
+            echo '不能用get请求';
+        } */
+    },
+    'on afterAction' => function ($event){
+        /* echo $event->result;
+        $event->result = date('Y-m-d H:m:s');
+        echo '<hr/>'; */
+    }
 ];
 if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';

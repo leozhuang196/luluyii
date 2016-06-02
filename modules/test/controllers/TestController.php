@@ -136,6 +136,7 @@ class TestController extends FrontController
     ]); 
      return $this->render('test', ['model' => $model, 'dataProvider' => $dataProvider]);
     */
+        //return time();
         return $this->render('test');
     }
 
