@@ -42,31 +42,23 @@ $example("hello"); */
 </form>  
 
 
-
-<?php 
-use yii\bootstrap\Modal;
-use yii\helpers\Html;
-use yii\helpers\Url;
-//创建一个按钮，用于调modal的显示
-echo Html::a('创建', '#', [
-    'id' => 'create',
-    'data-toggle' => 'modal',
-    'data-target' => '#create-modal',
-    'class' => 'btn btn-success',
-]);
-//创建modal
-Modal::begin([
-    'id' => 'create-modal',
-    'header' => '<h4 class="modal-title">创建</h4>',
-    'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a>',
-]);
-$requestUrl = Url::toRoute('create');
-$js = <<<JS
-    $.get('{$requestUrl}', {},
-        function (data) {
-            $('.modal-body').html(data);
-        }
-    );
-JS;
-$this->registerJs($js);
-Modal::end();
+<ul id="myTab" class="nav nav-tabs">
+   <li class="active"><a href="#home" data-toggle="tab">Tutorial Point Home</a></li>
+   <li><a href="#ios" data-toggle="tab">iOS</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+   <div class="tab-pane fade in active" id="home">
+      <p>Tutorials Point is a place for beginners in all technical areas. 
+         This website covers most of the latest technoligies and explains 
+         each of the technology with simple examples. You also have a 
+         <b>tryit</b> editor, wherein you can edit your code and 
+         try out different possibilities of the examples.</p>
+   </div>
+   <div class="tab-pane fade" id="ios">
+      <p>iOS is a mobile operating system developed and distributed by Apple 
+         Inc. Originally released in 2007 for the iPhone, iPod Touch, and 
+         Apple TV. iOS is derived from OS X, with which it shares the 
+         Darwin foundation. iOS is Apple's mobile version of the 
+         OS X operating system used on Apple computers.</p>
+   </div>
+</div>
