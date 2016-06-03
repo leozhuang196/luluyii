@@ -1,7 +1,7 @@
 <?php 
 use modules\shop\models\Category;
 ?>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
 	<ul class="nav nav-pills">
 		<li><a href="#">全部商品分类</a></li>   
 		<?php $categories = Category::getCategoriesByLevel('2');foreach ($categories as $category):?>
