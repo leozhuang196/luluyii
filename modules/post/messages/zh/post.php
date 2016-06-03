@@ -13,9 +13,10 @@ return [
     'Title' => '标题',
     'Created Time' => '发表时间',
     'Post Manager' => '文章管理',
-    'Posts' => '文章',
-    'Create' => '创建',
-    'Update' => '修改',
-    'Delete' => '删除',
+    'Post' => '文章',
+    'Create Post' => '创建文章',
+    'Update Post' => '修改文章',
+    'Delete Post' => '删除文章',
     'BasicInfo'=>'基本信息',
+    'Are you sure you want to delete this item?' => '你确定要删除这篇文章吗？'
 ];

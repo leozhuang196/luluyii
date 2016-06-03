@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Manager'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'User Manager'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '确定删除这个用户吗？',
+                'confirm' => Yii::t('user', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>

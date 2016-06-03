@@ -21,5 +21,10 @@ use yii\helpers\Url;
     			<dd><?= Yii::powered() ?> <?= Yii::getVersion() ?></dd>
             </div>
         </div>
+        <!-- <div class='row'>
+        	<div class='col-sm-12 col-sm-offset-4'>
+        		<span>Copyright © 鲁鲁槟</span>
+        	</div>
+        </div> -->
 	</div>
 </footer>

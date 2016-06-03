@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use kartik\grid\GridView;
-$this->title = Yii::t('post', 'Posts');
+$this->title = Yii::t('post', 'Post');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
@@ -21,9 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'comment_num',
             'view_num',
             'collection',
-            //'content',
             'created_time:datetime',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+             "template" => "{view} {update} {delete}"
+            ],
         ],
         'toggleDataOptions'=>[
             'maxCount' => 200,//当超过200条时，此按钮隐藏，以免数据太多造成加载问题
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'panel' => [
             'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> ' .Yii::t('post', 'Post Manager') . '</h3>',
             'type' => 'success',
-            'before' => Html::a('<i class="glyphicon glyphicon-book"></i>' .Yii::t('post', 'Create'), ['create'], ['class' => 'btn btn-success']),
+            'before' => Html::a('<i class="glyphicon glyphicon-book"></i>' .Yii::t('post', 'Create Post'), ['create'], ['class' => 'btn btn-success']),
             'footer' => false,
             'after' => false
         ],
