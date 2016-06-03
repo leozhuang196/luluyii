@@ -12,7 +12,7 @@ NavBar::begin([
     //'brandLabel' => Yii::t('common', 'Site Name'),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
-        'class' => 'navbar-default navbar-fixed-top',
+        'class' => 'navbar-inverse navbar-fixed-top',
     ],
 ]);
 echo Nav::widget([
