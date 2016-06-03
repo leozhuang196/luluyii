@@ -114,7 +114,7 @@ $config = [
         echo '<hr/>'; */
     }
 ];
-if (YII_ENV_DEV || Yii::$app->user->identity->username == Yii::$app->params['adminName']) {
+if (YII_ENV_DEV || \Yii::$app->user->identity->username == \Yii::$app->params['adminName']) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
