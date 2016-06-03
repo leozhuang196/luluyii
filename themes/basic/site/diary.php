@@ -31,6 +31,7 @@ $this->title = '成长日记';
 			<li>2016-05-31：添加网站的日访问量</li>
 			<li>2016-06-01：足球商城首页图片轮播——还未完成</li>
 			<li>2016-06-02：前台注册页面和后台创建用户页面使用bootstrap modal弹窗</li>
+			<li>2016-06-03：自定义gii的crud，index.php使用kartik-v/yii2-grid，_form.php使用yii\bootstrap\Tabs</li>
 		</ul>
 	</div>
 </div>

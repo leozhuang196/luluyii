@@ -1,0 +1,32 @@
+<?php
+use yii\helpers\Inflector;
+use yii\helpers\StringHelper;
+$model = new $generator->modelClass();
+$safeAttributes = $model->safeAttributes();
+if (empty($safeAttributes)) {
+    $safeAttributes = $model->attributes();
+}
+
+echo "<?php\n";
+?>
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\bootstrap\Tabs;
+?>
+<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form">
+    <?= "<?php " ?>$form = ActiveForm::begin(); 
+    	$fieldGroups = [];
+        $fields = [];
+        <?php foreach ($generator->getColumnNames() as $attribute) {
+            if (in_array($attribute, $safeAttributes)) {
+                echo "$"."fields[] = ".$generator->generateActiveField($attribute)  .";\n        ";
+            }
+        } ?>
+    	
+    	echo Tabs::widget(['items' => $fieldGroups, 'navType' => 'nav-tabs', 'encodeLabels' => false]);
+    ?>
+    <div class="form-group">
+        <?= "<?= " ?>Html::submitButton($model->isNewRecord ? <?= $generator->generateString('Create') ?> : <?= $generator->generateString('Update') ?>, ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+    <?= "<?php " ?>ActiveForm::end(); ?>
+</div>
