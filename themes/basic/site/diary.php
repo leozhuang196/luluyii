@@ -11,6 +11,7 @@ $this->title = '成长日记';
 			<li>本项目是在公司实习期间做的简单项目</li>
 			<li>本项目参考huajuan、getYii等开源项目</li>
 			<li>test模块为yii2学习笔记</li>
+			<li>本人已把test模块的yii2学习笔记放在<a href="http://www.yiichina.com/">Yii Framework中文网</a></li>
 		</ul>
 		<h3>个人联系方式</h3>
 		<ul>

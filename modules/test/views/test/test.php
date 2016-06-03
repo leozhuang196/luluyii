@@ -1,16 +1,3 @@
-<?php
-/* $message = 'hello';
-//从父作用域继承变量
-$example = function () use ($message){
-    var_dump($message);
-};
-$example();
-
-$example = function ($arg) use ($message) {
-    var_dump($arg . ' ' . $message);
-};
-$example("hello"); */
-?>
 <form role="form">
   <div class="form-group">
     <select class="form-control"> 
@@ -38,9 +25,7 @@ $example("hello"); */
         <option>游泳</option> 
       </select>
   </div>
-  
 </form>  
-
 
 <ul id="myTab" class="nav nav-tabs">
    <li class="active"><a href="#home" data-toggle="tab">Tutorial Point Home</a></li>
