@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-06-01 17:45:50
+Date: 2016-06-03 08:56:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,7 +55,7 @@ CREATE TABLE `lulu_post_type` (
   `type_id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_shop_category
@@ -116,29 +116,29 @@ CREATE TABLE `lulu_shop_item_sku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for lulu_stm
+-- Table structure for lulu_shop_stm
 -- ----------------------------
-DROP TABLE IF EXISTS `lulu_stm`;
-CREATE TABLE `lulu_stm` (
+DROP TABLE IF EXISTS `lulu_shop_stm`;
+CREATE TABLE `lulu_shop_stm` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_use` smallint(2) NOT NULL,
   `stm_type` smallint(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for lulu_stm_img
+-- Table structure for lulu_shop_stm_img
 -- ----------------------------
-DROP TABLE IF EXISTS `lulu_stm_img`;
-CREATE TABLE `lulu_stm_img` (
+DROP TABLE IF EXISTS `lulu_shop_stm_img`;
+CREATE TABLE `lulu_shop_stm_img` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `stm_id` int(11) NOT NULL,
   `pic` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `pk_stm_img_pk_1` (`stm_id`),
-  CONSTRAINT `pk_stm_img_pk_1` FOREIGN KEY (`stm_id`) REFERENCES `lulu_stm` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  CONSTRAINT `pk_stm_img_pk_1` FOREIGN KEY (`stm_id`) REFERENCES `lulu_shop_stm` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user
@@ -168,7 +168,7 @@ CREATE TABLE `lulu_user_fans` (
   `to` varchar(12) NOT NULL,
   `focus_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user_info
@@ -203,7 +203,7 @@ CREATE TABLE `lulu_user_message` (
   `content` varchar(255) NOT NULL,
   `send_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for lulu_user_visit
