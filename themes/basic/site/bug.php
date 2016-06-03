@@ -15,7 +15,6 @@ $this->title = 'bug修复';
 	</ul>
 	<h2>待扩展和完善的功能</h2>
 	<ul>
-		<li>自定义gii模板</li>
 		<li>使用高级版本的yii2</li>
 		<li>第三方登录</li>
 		<li>提醒模块</li>
