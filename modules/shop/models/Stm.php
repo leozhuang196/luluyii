@@ -6,7 +6,7 @@ class Stm extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
-        return '{{%stm}}';
+        return '{{%shop_stm}}';
     }
 
     public function rules()
