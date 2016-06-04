@@ -9,6 +9,8 @@ require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
 require(__DIR__ . '/../config/bootstrap.php');
 
+//require(__DIR__ . '/../auto/ip/IpLocation.php');
+
 //加载应该配置
 $config = require(__DIR__ . '/../config/web.php');
 
