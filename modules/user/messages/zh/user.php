@@ -35,4 +35,5 @@ return [
     'Delete User' => '删除用户',
     'BasicInfo' => '基本信息',
     'Are you sure you want to delete this item?' => '确定删除这个用户吗？',
+    'Visit Manager' => '访问管理',
 ];

@@ -36,6 +36,7 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => Yii::t('user', 'User Manager'),'url' => ['/user/user']],
                             ['label' => Yii::t('user', 'UserInfo Manager'),'url' => ['/user/user-info']],
+                            ['label' => Yii::t('user', 'Visit Manager'),'url' => ['/user/visit']],
                         ],
                     ],
                     ['label' => '<span class="glyphicon glyphicon-book"></span> '.Yii::t('post', 'Post Manager'),'url' => ['/post/post']],

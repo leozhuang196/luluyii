@@ -9,6 +9,15 @@ class Visit extends \yii\db\ActiveRecord
         return '{{%user_visit}}';
     }
     
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'visit_ip' => Yii::t('shop', 'Visit Ip'),
+            'visit_time' => Yii::t('shop', 'Visit Time'),
+        ];
+    }
+    
     //访问的日访问人数
     public static function visitNum()
     {
