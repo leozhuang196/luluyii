@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
-
 <div class="stm-img-search">
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

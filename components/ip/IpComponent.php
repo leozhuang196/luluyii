@@ -1,5 +1,7 @@
 <?php
-class IpLocation {  
+namespace app\components\ip;
+use yii\base\Component;
+class IpComponent extends Component{  
     /** 
     * @var resource 指针 
     */  
@@ -28,9 +30,9 @@ class IpLocation {
     * @param string $filename 
     * @return IpLocation 
     */  
-    public function __construct($filename = "qqwry.dat") {  
+    public function __construct($filename = "qqwry.dat") {
         $this->fp = 0;  
-        if (($this->fp = @fopen($filename, 'rb')) !== false) {  
+        if (($this->fp = @fopen($filename, 'rb')) !== false) { 
             $this->firstip = $this->getlong();  
             $this->lastip = $this->getlong();  
             $this->totalip = ($this->lastip - $this->firstip) / 7;  
@@ -192,9 +194,13 @@ class IpLocation {
             $location['area'] = "";  
         }  
         return $location;  
-    }  
-  
-      
+    }
+    
+    public function test(){
+        $a = '你好';
+        return $a;
+    }
+    
     /** 
     * 析构函数，用于在页面执行结束后自动关闭打开的文件。 
     * 
