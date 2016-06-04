@@ -1,0 +1,1 @@
+"D:\Program Files\phpStudy\php70n\php.exe" -q "D:\Program Files\phpStudy\WWW\luluyii\auto\visit\visit_auto.php"

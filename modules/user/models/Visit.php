@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace modules\user\models;
 use Yii;
 
 class Visit extends \yii\db\ActiveRecord

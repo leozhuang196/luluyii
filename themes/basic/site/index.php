@@ -1,7 +1,7 @@
 ﻿<?php
 use yii\helpers\Html;
 use modules\user\models\SigninForm;
-use app\models\Visit;
+use modules\user\models\Visit;
 $this->title = \Yii::$app->params['siteName'];
 $date = date('Y年m月d日',time());
 ?>
