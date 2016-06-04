@@ -36,4 +36,6 @@ return [
     'BasicInfo' => '基本信息',
     'Are you sure you want to delete this item?' => '确定删除这个用户吗？',
     'Visit Manager' => '访问管理',
+    'Visit Ip' => '访问IP',
+    'Visit Time' => '最近一次访问时间',
 ];

@@ -9,12 +9,21 @@ class Visit extends \yii\db\ActiveRecord
         return '{{%user_visit}}';
     }
     
+    public function rules()
+    {
+        return [
+            [['visit_ip', 'visit_time'], 'required'],
+            [['visit_time'], 'integer'],
+            [['visit_ip'], 'string', 'max' => 255],
+        ];
+    }
+    
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('shop', 'ID'),
-            'visit_ip' => Yii::t('shop', 'Visit Ip'),
-            'visit_time' => Yii::t('shop', 'Visit Time'),
+            'id' => Yii::t('user', 'ID'),
+            'visit_ip' => Yii::t('user', 'Visit Ip'),
+            'visit_time' => Yii::t('user', 'Visit Time'),
         ];
     }
     

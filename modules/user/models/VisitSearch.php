@@ -1,12 +1,12 @@
 <?php
 namespace modules\user\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use modules\user\models\Visit;
 
-class VisitSearch extends Visit{
+class VisitSearch extends Visit
+{
     public function rules()
     {
         return [

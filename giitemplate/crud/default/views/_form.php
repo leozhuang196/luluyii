@@ -22,7 +22,8 @@ use yii\bootstrap\Tabs;
                 echo "$"."fields[] = ".$generator->generateActiveField($attribute)  .";\n        ";
             }
         } ?>
-    	
+    	$fieldGroups[] = ['label' => '<i class="glyphicon glyphicon-th-large"></i>' . Yii::t('user', 'BasicInfo'),
+            'content' =>'<div class="panel panel-primary"><div class="panel-body">'. implode('', $fields).'</div></div>'];
     	echo Tabs::widget(['items' => $fieldGroups, 'navType' => 'nav-tabs', 'encodeLabels' => false]);
     ?>
     <div class="form-group">
