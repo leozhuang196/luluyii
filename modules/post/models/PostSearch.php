@@ -1,5 +1,6 @@
 <?php
 namespace modules\post\models;
+
 use Yii;
 use yii\data\ActiveDataProvider;
 use modules\post\models\Post;
