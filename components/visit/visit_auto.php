@@ -1,5 +1,4 @@
 <?php
-
 //使用pdo连接操作数据库
 try {
     $dsn = 'mysql:host=localhost;dbname=luluyii';
