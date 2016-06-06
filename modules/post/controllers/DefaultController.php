@@ -1,5 +1,6 @@
 <?php
 namespace modules\post\controllers;
+
 use Yii;
 use app\controllers\FrontController;
 use modules\post\models\Post;
