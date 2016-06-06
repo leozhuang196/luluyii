@@ -1,5 +1,6 @@
 <?php
 namespace modules\post\models;
+
 use Yii;
 use modules\user\models\User;
 
