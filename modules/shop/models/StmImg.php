@@ -1,5 +1,6 @@
 <?php
 namespace modules\shop\models;
+
 use Yii;
 
 class StmImg extends \yii\db\ActiveRecord
