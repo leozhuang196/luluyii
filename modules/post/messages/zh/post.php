@@ -18,5 +18,5 @@ return [
     'Update Post' => '修改文章',
     'Delete Post' => '删除文章',
     'BasicInfo'=>'基本信息',
-    'Are you sure you want to delete this item?' => '你确定要删除这篇文章吗？'
+    'Are you sure you want to delete this item?' => '你确定要删除这篇文章吗？',
 ];
