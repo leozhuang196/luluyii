@@ -1,4 +1,5 @@
 <?php
+
 use yii\db\ActiveRecordInterface;
 use yii\helpers\StringHelper;
 
