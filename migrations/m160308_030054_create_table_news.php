@@ -1,5 +1,4 @@
 <?php
-
 // yii\db\Schema 类定义了一整套可用的抽象类型常量
 // 抽象类型和实体类型之间的映射关系是由每个具体的 QueryBuilder 类当中的 yii\db\QueryBuilder::$typeMap 属性所指定的
 use yii\db\Schema;
