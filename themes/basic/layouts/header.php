@@ -6,6 +6,7 @@ use kartik\icons\Icon;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+
 Icon::map($this);
 NavBar::begin([
     'brandLabel' => Yii::$app->params['siteName'],
