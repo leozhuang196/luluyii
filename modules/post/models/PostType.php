@@ -1,5 +1,6 @@
 <?php
 namespace modules\post\models;
+
 use Yii;
 
 class PostType extends \yii\db\ActiveRecord
