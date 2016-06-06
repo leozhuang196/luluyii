@@ -1,5 +1,6 @@
 <?php
 namespace modules\shop\controllers;
+
 use app\controllers\FrontController;
 
 class DefaultController extends FrontController
