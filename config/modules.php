@@ -21,5 +21,6 @@ return
     'shop' => [
         'class' => 'modules\shop\Module',
     ],
+    
 ];
 ?>
