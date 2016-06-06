@@ -1,5 +1,6 @@
 <?php
 namespace app\components\ip;
+
 use yii\base\Component;
 class IpComponent extends Component{  
     /** 
