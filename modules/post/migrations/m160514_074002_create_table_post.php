@@ -1,7 +1,6 @@
 <?php
 use yii\db\Schema;
 use yii\db\Migration;
-
 class m160514_074002_create_table_post extends Migration
 {
 public function up()
