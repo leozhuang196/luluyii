@@ -1,6 +1,5 @@
 <?php
 namespace modules\shop\models;
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use modules\shop\models\Stm;
