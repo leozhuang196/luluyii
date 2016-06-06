@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 $urlParams = $generator->generateUrlParams();
