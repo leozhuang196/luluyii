@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\StringHelper;
 $modelClass = StringHelper::basename($generator->modelClass);
 $searchModelClass = StringHelper::basename($generator->searchModelClass);
