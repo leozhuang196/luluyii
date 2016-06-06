@@ -1,5 +1,6 @@
 <?php
 namespace modules\post\controllers;
+
 use Yii;
 use modules\post\models\Post;
 use modules\post\models\PostSearch;
