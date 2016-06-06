@@ -99,6 +99,7 @@ $config = [
         'ip'=>[
             'class'=>'app\components\ip\IpComponent',//加载类库
         ],
+        
     ],
     'params' => require(__DIR__ . '/params.php'),
     'modules' => require(__DIR__.'/modules.php'),
