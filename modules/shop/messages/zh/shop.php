@@ -2,7 +2,6 @@
 return [
     'Shop Manager' => '商城管理',
     'Category Manager' => '商品分类管理',
-    
     'Is Use' => '是否启用',
     'Stm Type' => '模板类型',
     'Stm Manager' => '商城模板管理',
