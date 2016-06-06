@@ -1,5 +1,6 @@
 <?php
 namespace modules\shop\models;
+
 use gilek\gtreetable\models\TreeModel;
 
 class Category extends TreeModel
