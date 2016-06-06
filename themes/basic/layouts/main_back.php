@@ -4,6 +4,7 @@ use yii\bootstrap\Alert;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\bootstrap\Nav;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
