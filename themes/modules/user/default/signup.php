@@ -13,10 +13,10 @@ $this->title = '注册';
 <?=$form->field($model,'email')->textInput()?>
 <?=$form->field($model,'password')->passwordInput()?>
 <?=$form->field($model,'repassword')->passwordInput()?>
-<?=$form->field($model,'verifyCode')->widget(Captcha::className(), [
+<!--  $form->field($model,'verifyCode')->widget(Captcha::className(), [
     'captchaAction' => '/site/captcha',
     'imageOptions'=>['alt'=>'验证码','title'=>'点击换图'],
     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-]);?>
+]);  -->
 <?=Html::submitButton('注册',['class'=>'btn btn-block btn-success'])?>
 <?php ActiveForm::end();?>
