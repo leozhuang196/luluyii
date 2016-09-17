@@ -6,3 +6,4 @@
  * Time: 17:58
  */
 //echo date('Y-m-d H:i:s', time());
+echo 'test';
